@@ -418,7 +418,7 @@ union yyalloc
 /* YYNNTS -- Number of nonterminals.  */
 #define YYNNTS  13
 /* YYNRULES -- Number of rules.  */
-#define YYNRULES  25
+#define YYNRULES  24
 /* YYNSTATES -- Number of states.  */
 #define YYNSTATES  34
 
@@ -468,8 +468,8 @@ static const yytype_uint8 yytranslate[] =
 static const yytype_uint8 yyrline[] =
 {
        0,    47,    47,    51,    52,    55,    59,    63,    64,    68,
-      75,    76,    80,    87,    95,    99,   100,   101,   102,   103,
-     107,   108,   112,   113,   117,   118
+      75,    76,    80,    87,    95,    99,   100,   101,   102,   106,
+     107,   111,   112,   116,   117
 };
 #endif
 
@@ -521,9 +521,9 @@ static const yytype_int8 yypact[] =
      means the default is an error.  */
 static const yytype_uint8 yydefact[] =
 {
-       0,     0,    13,     7,     0,     0,     3,     5,    23,    11,
-      21,     8,     1,     4,     9,     0,    19,    12,    10,    22,
-       0,     0,     0,     0,    24,     0,    20,     0,    14,    15,
+       0,     0,    13,     7,     0,     0,     3,     5,    22,    11,
+      20,     8,     1,     4,     9,     0,    24,    12,    10,    21,
+       0,     0,     0,     0,    23,     0,    19,     0,    14,    15,
       17,    16,    18,     6
 };
 
@@ -572,16 +572,16 @@ static const yytype_uint8 yystos[] =
 static const yytype_uint8 yyr1[] =
 {
        0,    13,    14,    15,    15,    16,    17,    17,    17,    18,
-      19,    19,    20,    21,    22,    22,    22,    22,    22,    22,
-      23,    23,    24,    24,    25,    25
+      19,    19,    20,    21,    22,    22,    22,    22,    22,    23,
+      23,    24,    24,    25,    25
 };
 
   /* YYR2[YYN] -- Number of symbols on the right hand side of rule YYN.  */
 static const yytype_uint8 yyr2[] =
 {
        0,     2,     1,     1,     2,     1,     4,     1,     2,     2,
-       2,     0,     1,     1,     2,     2,     2,     2,     2,     0,
-       2,     0,     3,     1,     1,     0
+       2,     0,     1,     1,     2,     2,     2,     2,     2,     2,
+       0,     3,     1,     1,     0
 };
 
 
@@ -1538,7 +1538,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 121 "shell.y" /* yacc.c:1906  */
+#line 120 "shell.y" /* yacc.c:1906  */
 
 
 void

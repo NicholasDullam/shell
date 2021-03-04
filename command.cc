@@ -102,6 +102,22 @@ void Command::execute() {
     print();
 
     // Add execution here
+    int ret;
+    for (int i = 0; i < _simpleCommands.size(); i++) {
+        ret = fork()
+        if (ret == 0) {
+            execvp(_simpleCommands[i]->args[0], _simpleCommands[i]->args);
+            perror("execvp");
+            exit(1);
+        } else if (ret < 0) {
+            perror("fork");
+            return;
+        }
+    }
+
+    if (!_background) {
+        waitpid(ret, NULL, 0);
+    }
     // For every simple command fork a new process
     // Setup i/o redirection
     // and call exec
