@@ -124,7 +124,7 @@ void Command::execute() {
 
             args[_simpleCommands[i]->_arguments.size()] = NULL;
             if (_outFile != NULL) {
-                int fd = open((*_outFile).c_str(), O_WRONLY, 0666);
+                int fd = open((*_outFile).c_str(), O_WRONLY | O_CREAT, 0666);
                 dup2(fd, 1);
             }
 
