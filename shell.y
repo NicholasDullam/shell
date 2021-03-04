@@ -106,7 +106,7 @@ iomodifier_opt:
   ;
 
 iomodifier_opt_list:
-  io_modifier_opt_list io_modifier_opt
+  iomodifier_opt_list iomodifier_opt
   | /* empty string */
   ;
 
