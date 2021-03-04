@@ -120,7 +120,7 @@ void Command::execute() {
 
     if (_inFile) {
         int fd = open((*_inFile).c_str(), O_RDONLY, 0666);
-        dup(fd, 0);
+        dup2(fd, 0);
         close(fd);
     }
 
