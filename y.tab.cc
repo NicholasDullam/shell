@@ -469,7 +469,7 @@ static const yytype_uint8 yyrline[] =
 {
        0,    47,    47,    51,    52,    55,    59,    63,    64,    68,
       75,    76,    80,    87,    95,    99,   100,   101,   102,   106,
-     107,   111,   112,   116,   117
+     107,   111,   112,   116,   119
 };
 #endif
 
@@ -1309,8 +1309,16 @@ yyreduce:
 #line 1310 "y.tab.cc" /* yacc.c:1646  */
     break;
 
+  case 23:
+#line 116 "shell.y" /* yacc.c:1646  */
+    {
+    Shell::_currentCommand._background = true;
+  }
+#line 1318 "y.tab.cc" /* yacc.c:1646  */
+    break;
 
-#line 1314 "y.tab.cc" /* yacc.c:1646  */
+
+#line 1322 "y.tab.cc" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1538,7 +1546,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 120 "shell.y" /* yacc.c:1906  */
+#line 122 "shell.y" /* yacc.c:1906  */
 
 
 void
