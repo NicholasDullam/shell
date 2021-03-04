@@ -102,7 +102,7 @@ iomodifier_opt:
     Shell::_currentCommand._append = true;
   }
   | GREATGREATAMPERSAND WORD {
-    printf("   Yacc: append error \"%s\"\n", $2->c_str());
+    printf("   Yacc: append both \"%s\"\n", $2->c_str());
     Shell::_currentCommand._outFile = $2;
     Shell::_currentCommand._errFile = $2;
     Shell::_currentCommand._append = true;
@@ -116,7 +116,10 @@ iomodifier_opt:
     printf("   Yacc: insert error \"%s\"\n", $2->c_str());
     Shell::_currentCommand._errFile = $2;
   }
-  | LESS WORD 
+  | LESS WORD  {
+    printf("   Yacc: change inFile \"%s\"\n", $2->c_str());
+    Shell::_currentCommand._inFile = $2;
+  }
   ;
 
 iomodifier_opt_list:

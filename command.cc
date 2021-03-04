@@ -101,7 +101,10 @@ void Command::print() {
 void Command::execute() {
     // Don't do anything if there are no simple commands
     if ( _simpleCommands.size() == 0 ) {
-        Shell::prompt();
+        if (isatty(0)) {
+            Shell::prompt();
+        }
+        
         return;
     }
 
@@ -147,6 +150,7 @@ void Command::execute() {
             return;
         }
 
+        dup2(defaultin, 0);
         dup2(defaultout, 1);
         dup2(defaulterr, 2);
     }
@@ -163,7 +167,9 @@ void Command::execute() {
     clear();
 
     // Print new prompt
-    Shell::prompt();
+    if (isatty(0)) {
+        Shell::prompt();
+    }
 }
 
 SimpleCommand * Command::_currentSimpleCommand;
