@@ -122,7 +122,7 @@ void Command::execute() {
 
             args[_simpleCommands[i]->_arguments.size()] = NULL;
             
-            char* tempout = _simpleCommands[i]._outFile
+            char* tempout = _simpleCommands[i]->_outFile
 
             execvp(args[0], args);
             perror("Error in Child Process");
