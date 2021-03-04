@@ -104,7 +104,7 @@ iomodifier_opt:
       Shell::_currentCommand._outFile = $2;
       Shell::_currentCommand._append = true;
     } else {
-      perror("Ambiguous output redirect.")
+      perror("Ambiguous output redirect.");
     }
   }
   | GREATGREATAMPERSAND WORD {

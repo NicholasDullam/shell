@@ -470,8 +470,8 @@ static const yytype_uint8 yytranslate[] =
 static const yytype_uint8 yyrline[] =
 {
        0,    47,    47,    51,    52,    55,    59,    63,    64,    68,
-      75,    76,    80,    87,    95,   101,   108,   114,   119,   123,
-     130,   131,   135,   136,   140,   143
+      75,    76,    80,    87,    95,   101,   110,   116,   121,   125,
+     132,   133,   137,   138,   142,   145
 };
 #endif
 
@@ -1321,60 +1321,62 @@ yyreduce:
     if (!Shell::_currentCommand._outFile) {
       Shell::_currentCommand._outFile = (yyvsp[0].cpp_string);
       Shell::_currentCommand._append = true;
+    } else {
+      perror("Ambiguous output redirect.")
     }
   }
-#line 1327 "y.tab.cc" /* yacc.c:1646  */
+#line 1329 "y.tab.cc" /* yacc.c:1646  */
     break;
 
   case 16:
-#line 108 "shell.y" /* yacc.c:1646  */
+#line 110 "shell.y" /* yacc.c:1646  */
     {
     //printf("   Yacc: append both \"%s\"\n", $2->c_str());
     Shell::_currentCommand._outFile = (yyvsp[0].cpp_string);
     Shell::_currentCommand._errFile = (yyvsp[0].cpp_string);
     Shell::_currentCommand._append = true;
   }
-#line 1338 "y.tab.cc" /* yacc.c:1646  */
+#line 1340 "y.tab.cc" /* yacc.c:1646  */
     break;
 
   case 17:
-#line 114 "shell.y" /* yacc.c:1646  */
+#line 116 "shell.y" /* yacc.c:1646  */
     {
     //printf("   Yacc: insert both \"%s\"\n", $2->c_str());
     Shell::_currentCommand._outFile = (yyvsp[0].cpp_string);
     Shell::_currentCommand._errFile = (yyvsp[0].cpp_string);
   }
-#line 1348 "y.tab.cc" /* yacc.c:1646  */
+#line 1350 "y.tab.cc" /* yacc.c:1646  */
     break;
 
   case 18:
-#line 119 "shell.y" /* yacc.c:1646  */
+#line 121 "shell.y" /* yacc.c:1646  */
     {
     //printf("   Yacc: insert error \"%s\"\n", $2->c_str());
     Shell::_currentCommand._errFile = (yyvsp[0].cpp_string);
   }
-#line 1357 "y.tab.cc" /* yacc.c:1646  */
+#line 1359 "y.tab.cc" /* yacc.c:1646  */
     break;
 
   case 19:
-#line 123 "shell.y" /* yacc.c:1646  */
+#line 125 "shell.y" /* yacc.c:1646  */
     {
     //printf("   Yacc: change inFile \"%s\"\n", $2->c_str());
     Shell::_currentCommand._inFile = (yyvsp[0].cpp_string);
   }
-#line 1366 "y.tab.cc" /* yacc.c:1646  */
+#line 1368 "y.tab.cc" /* yacc.c:1646  */
     break;
 
   case 24:
-#line 140 "shell.y" /* yacc.c:1646  */
+#line 142 "shell.y" /* yacc.c:1646  */
     {
     Shell::_currentCommand._background = true;
   }
-#line 1374 "y.tab.cc" /* yacc.c:1646  */
+#line 1376 "y.tab.cc" /* yacc.c:1646  */
     break;
 
 
-#line 1378 "y.tab.cc" /* yacc.c:1646  */
+#line 1380 "y.tab.cc" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1602,7 +1604,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 146 "shell.y" /* yacc.c:1906  */
+#line 148 "shell.y" /* yacc.c:1906  */
 
 
 void
