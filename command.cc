@@ -115,7 +115,7 @@ void Command::execute() {
                 args[j] = "ls"
             }
             
-            execvp(args[0], (const* char* args);
+            execvp(args[0], args);
             perror("Error in Child Process");
             exit(1);
         } 
