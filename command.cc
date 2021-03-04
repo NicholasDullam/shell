@@ -115,7 +115,7 @@ void Command::execute() {
                 args[j] = (char*) (*_simpleCommands[i]->_arguments[j]).c_str();
             }
 
-            args[args.size()] = NULL
+            args[_simpleCommands[i]->_arguments.size().size()] = NULL
             
             execvp(args[0], args);
             perror("Error in Child Process");
