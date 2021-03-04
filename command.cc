@@ -121,6 +121,10 @@ void Command::execute() {
             }
 
             args[_simpleCommands[i]->_arguments.size()] = NULL;
+            if (_outFile) {
+                int fd = open(_outFile, O_WRONLY, 0600);
+                dup2(fd, 1)
+            }
 
             execvp(args[0], args);
             perror("Error in Child Process");

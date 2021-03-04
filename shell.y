@@ -29,7 +29,7 @@
 
 // Token Requirements and Declarations
 %token <cpp_string> WORD
-%token NOTOKEN GREAT GREATGREAT GREATAMPERSAND GREATGREATAMPERSAND NEWLINE PIPE AMPERSAND LESS 
+%token NOTOKEN GREAT GREATGREAT GREATAMPERSAND GREATGREATAMPERSAND TWOGREAT NEWLINE PIPE AMPERSAND LESS 
 
 %{
 //#define yylex yylex
@@ -96,9 +96,13 @@ iomodifier_opt:
     printf("   Yacc: insert output \"%s\"\n", $2->c_str());
     Shell::_currentCommand._outFile = $2;
   }
-  | GREATGREAT WORD
+  | GREATGREAT WORD {
+    printf("   Yacc: insert output \"%s\"\n", $2->c_str());
+    Shell::_currentCommand._outFile = $2;
+  }
   | GREATGREATAMPERSAND WORD
   | GREATAMPERSAND WORD
+  | TWOGREAT WORD
   | LESS WORD 
   ;
 
