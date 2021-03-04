@@ -21,6 +21,7 @@
 
 #include <sys/types.h>
 #include <unistd.h>
+#include <sys/wait.h>
 
 #include "command.hh"
 #include "shell.hh"
@@ -109,7 +110,7 @@ void Command::execute() {
     for (int i = 0; i < _simpleCommands.size(); i++) {
         ret = fork();
         if (ret == 0) {
-            execvp(_simpleCommands[i]->_arguments[0], &(_simpleCommands[i]->_arguments));
+            execvp(_simpleCommands[i]->_arguments[0], _simpleCommands[i]->_arguments);
             perror("execvp");
             exit(1);
         } 
