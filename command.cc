@@ -115,12 +115,12 @@ void Command::execute() {
                 args[j] = (*_simpleCommands[i]->_arguments[j]).c_str();
             }
             execvp(args[0], args);
-            perror("execvp");
+            perror("Error in Child Process");
             exit(1);
         } 
         
         else if (ret < 0) {
-            perror("fork");
+            perror("Error Forking Child");
             return;
         }
     }
