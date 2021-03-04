@@ -109,7 +109,9 @@ void Command::execute() {
             execvp(_simpleCommands[i]->args[0], _simpleCommands[i]->args);
             perror("execvp");
             exit(1);
-        } else if (ret < 0) {
+        } 
+        
+        else if (ret < 0) {
             perror("fork");
             return;
         }
