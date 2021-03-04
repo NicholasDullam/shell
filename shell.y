@@ -100,7 +100,6 @@ iomodifier_opt:
   | GREATGREATAMPERSAND WORD
   | GREATAMPERSAND WORD
   | LESS WORD 
-  | /* can be empty */ 
   ;
 
 iomodifier_opt_list:
