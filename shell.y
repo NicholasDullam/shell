@@ -96,6 +96,8 @@ iomodifier_opt:
     //printf("   Yacc: insert output \"%s\"\n", $2->c_str());
     if (!Shell::_currentCommand._outFile) {
       Shell::_currentCommand._outFile = $2;
+    } else {
+      perror("Ambiguous output redirect.")
     }
   }
   | GREATGREAT WORD {

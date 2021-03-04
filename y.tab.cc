@@ -1322,7 +1322,7 @@ yyreduce:
       Shell::_currentCommand._outFile = (yyvsp[0].cpp_string);
       Shell::_currentCommand._append = true;
     } else {
-      perror("Ambiguous output redirect.")
+      perror("Ambiguous output redirect.");
     }
   }
 #line 1329 "y.tab.cc" /* yacc.c:1646  */
