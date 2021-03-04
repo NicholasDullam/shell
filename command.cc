@@ -118,6 +118,12 @@ void Command::execute() {
 	int defaultout = dup( 1 );
 	int defaulterr = dup( 2 );
 
+    if (_inFile) {
+        int fd = open((*_inFile).c_str(), O_RDONLY, 0666);
+        dup(fd, 0);
+        close(fd);
+    }
+
     int ret;
 
     for (int i = 0; i < _simpleCommands.size(); i++) {
