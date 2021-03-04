@@ -110,10 +110,12 @@ void Command::execute() {
     for (int i = 0; i < _simpleCommands.size(); i++) {
         ret = fork();
         if (ret == 0) {
-            char** args = (char**) malloc(_simpleCommands[i]->_arguments.size() * sizeof(char*));
+            char** args = (char**) malloc((_simpleCommands[i]->_arguments.size() + 1) * sizeof(char*));
             for (int j = 0; j < _simpleCommands[i]->_arguments.size(); j++) {
                 args[j] = (char*) (*_simpleCommands[i]->_arguments[j]).c_str();
             }
+
+            args[args.size()] = NULL
             
             execvp(args[0], args);
             perror("Error in Child Process");
