@@ -131,7 +131,6 @@ void Command::execute() {
             }
 
             if (_errFile) {
-                if ()
                 int flag = _append?O_APPEND:O_TRUNC;
                 int fd = open((*_errFile).c_str(), flag | O_WRONLY | O_CREAT, 0666);
                 dup2(fd, 2);
