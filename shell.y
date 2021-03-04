@@ -27,8 +27,9 @@
   std::string *cpp_string;
 }
 
+// Token Requirements and Declarations
 %token <cpp_string> WORD
-%token NOTOKEN GREAT NEWLINE
+%token NOTOKEN GREAT GREATGREAT NEWLINE PIPE AMPERSAND LESS AMPGREAT
 
 %{
 //#define yylex yylex
@@ -55,7 +56,7 @@ command: simple_command
        ;
 
 simple_command:	
-  command_and_args iomodifier_opt NEWLINE {
+  pipe_list iomodifier_opt_list background_opt NEWLINE {
     printf("   Yacc: Execute command\n");
     Shell::_currentCommand.execute();
   }
@@ -95,7 +96,30 @@ iomodifier_opt:
     printf("   Yacc: insert output \"%s\"\n", $2->c_str());
     Shell::_currentCommand._outFile = $2;
   }
+  | GREATGREAT WORD {
+      printf("   Yacc: insert output \"%s\"\n", $2->c_str());
+  }
+  | LESS WORD {
+        printf("   Yacc: insert output \"%s\"\n", $2->c_str());
+  }
   | /* can be empty */ 
+  ;
+
+iomodifier_opt_list:
+  io_modifier_opt_list io_modifier_opt
+  | /* empty string */
+  ;
+
+pipe_list:
+  pipe_list PIPE command_and_args
+  | cmd_and_args
+  ;
+
+background_opt:
+  AMPERSAND {
+    printf("   Yacc: set background \"%s\"\n", $2->c_str());
+  }
+  | /* empty */
   ;
 
 %%
