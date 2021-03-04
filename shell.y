@@ -29,7 +29,7 @@
 
 // Token Requirements and Declarations
 %token <cpp_string> WORD
-%token NOTOKEN GREAT GREATGREAT NEWLINE PIPE AMPERSAND LESS AMPGREAT
+%token NOTOKEN GREAT GREATGREAT GREATAMPERSAND GREATGREATAMPERSAND NEWLINE PIPE AMPERSAND LESS 
 
 %{
 //#define yylex yylex
@@ -96,12 +96,10 @@ iomodifier_opt:
     printf("   Yacc: insert output \"%s\"\n", $2->c_str());
     Shell::_currentCommand._outFile = $2;
   }
-  | GREATGREAT WORD {
-      printf("   Yacc: insert output \"%s\"\n", $2->c_str());
-  }
-  | LESS WORD {
-        printf("   Yacc: insert output \"%s\"\n", $2->c_str());
-  }
+  | GREATGREAT WORD
+  | GREATGREATAMPERSAND WORD
+  | GREATAMPERSAND WORD
+  | LESS WORD 
   | /* can be empty */ 
   ;
 
@@ -116,9 +114,7 @@ pipe_list:
   ;
 
 background_opt:
-  AMPERSAND {
-    printf("   Yacc: set background");
-  }
+  AMPERSAND
   | /* empty */
   ;
 
