@@ -135,6 +135,8 @@ void Command::execute() {
             perror("Error Forking Child");
             return;
         }
+
+        dup2(defaultout, 1);
     }
 
     if (!_background) {
