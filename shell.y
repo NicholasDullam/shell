@@ -113,7 +113,9 @@ pipe_list:
   ;
 
 background_opt:
-  AMPERSAND
+  AMPERSAND {
+    Shell::_currentCommand._background = true;
+  }
   | /* empty */
   ;
 
