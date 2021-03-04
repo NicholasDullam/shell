@@ -107,7 +107,7 @@ void Command::execute() {
     // Add execution here
     int ret;
     for (int i = 0; i < _simpleCommands.size(); i++) {
-        ret = fork()
+        ret = fork();
         if (ret == 0) {
             execvp(_simpleCommands[i]->args[0], _simpleCommands[i]->args);
             perror("execvp");
