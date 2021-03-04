@@ -97,7 +97,7 @@ iomodifier_opt:
     if (!Shell::_currentCommand._outFile) {
       Shell::_currentCommand._outFile = $2;
     } else {
-      perror("Ambiguous output redirect.")
+      perror("Ambiguous output redirect.");
     }
   }
   | GREATGREAT WORD {
