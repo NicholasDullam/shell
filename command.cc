@@ -106,11 +106,12 @@ void Command::execute() {
     print();
 
     // Add execution here
-    int ret;
 	int defaultin = dup( 0 );
 	int defaultout = dup( 1 );
 	int defaulterr = dup( 2 );
-    
+
+    int ret;
+
     for (int i = 0; i < _simpleCommands.size(); i++) {
         ret = fork();
         if (ret == 0) {
@@ -121,6 +122,8 @@ void Command::execute() {
 
             args[_simpleCommands[i]->_arguments.size()] = NULL;
             
+            char* tempout = _simpleCommands[i]._outFile
+
             execvp(args[0], args);
             perror("Error in Child Process");
             exit(1);
