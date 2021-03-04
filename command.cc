@@ -110,7 +110,9 @@ void Command::execute() {
     for (int i = 0; i < _simpleCommands.size(); i++) {
         ret = fork();
         if (ret == 0) {
-            execvp(_simpleCommands[i]->_arguments[0], _simpleCommands[i]->_arguments.c_str());
+            char **args = malloc(sizeof(_simpleCommands[i]->_arguments))
+
+            execvp(_simpleCommands[i]->_arguments[0], _simpleCommands[i]->_arguments);
             perror("execvp");
             exit(1);
         } 
