@@ -106,12 +106,15 @@ void Command::execute() {
     print();
 
     // Add execution here
-    /*int ret;
+    int ret;
     for (int i = 0; i < _simpleCommands.size(); i++) {
         ret = fork();
         if (ret == 0) {
-            char **args = malloc()
-            execvp(_simpleCommands[i]->_arguments[0], _simpleCommands[i]->_arguments);
+            char** args = malloc(_simpleCommand._arguments.size() * sizeof(char*));
+            for (int j = 0; j < _simpleCommand._arguments.size(); j++) {
+                args[j] = _simpleCommand._arguments[j];
+            }
+            execvp(args[0], args);
             perror("execvp");
             exit(1);
         } 
@@ -124,7 +127,7 @@ void Command::execute() {
 
     if (!_background) {
         waitpid(ret, NULL, 0);
-    }*/
+    }
     // For every simple command fork a new process
     // Setup i/o redirection
     // and call exec
