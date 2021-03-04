@@ -109,7 +109,9 @@ void Command::execute() {
     }
 
     // Print contents of Command data structure
-    print();
+    if (isatty(0)){
+        print();
+    }
 
     // Add execution here
 	int defaultin = dup( 0 );
@@ -121,6 +123,7 @@ void Command::execute() {
     for (int i = 0; i < _simpleCommands.size(); i++) {
         ret = fork();
         if (ret == 0) {
+            // Malloc arguments to char** pointer with null terminator
             char** args = (char**) malloc((_simpleCommands[i]->_arguments.size() + 1) * sizeof(char*));
             for (int j = 0; j < _simpleCommands[i]->_arguments.size(); j++) {
                 args[j] = (char*) (*_simpleCommands[i]->_arguments[j]).c_str();
