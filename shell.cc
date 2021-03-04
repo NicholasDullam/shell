@@ -10,7 +10,9 @@ void Shell::prompt() {
 }
 
 int main() {
-  Shell::prompt();
+  if (isatty(0)) {
+    Shell::prompt();
+  }
   yyparse();
 }
 
