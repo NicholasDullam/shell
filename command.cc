@@ -123,9 +123,16 @@ void Command::execute() {
             }
 
             args[_simpleCommands[i]->_arguments.size()] = NULL;
+
             if (_outFile) {
                 int flag = _append?O_APPEND:O_TRUNC;
                 int fd = open((*_outFile).c_str(), flag | O_WRONLY | O_CREAT, 0666);
+                dup2(fd, 1);
+            }
+
+            if (_errFile) {
+                int flag = _append?O_APPEND:O_TRUNC;
+                int fd = open((*_errFile).c_str(), flag | O_WRONLY | O_CREAT, 0666);
                 dup2(fd, 1);
             }
 
@@ -140,6 +147,7 @@ void Command::execute() {
         }
 
         dup2(defaultout, 1);
+        dup2(defaulterr, 2);
     }
 
     if (!_background) {
