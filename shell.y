@@ -103,6 +103,8 @@ iomodifier_opt:
     if (!Shell::_currentCommand._outFile) {
       Shell::_currentCommand._outFile = $2;
       Shell::_currentCommand._append = true;
+    } else {
+      perror("Ambiguous output redirect.")
     }
   }
   | GREATGREATAMPERSAND WORD {

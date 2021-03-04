@@ -1307,7 +1307,7 @@ yyreduce:
 #line 95 "shell.y" /* yacc.c:1646  */
     {
     //printf("   Yacc: insert output \"%s\"\n", $2->c_str());
-    if (!Shell:_currentCommand._outFile) {
+    if (!Shell::_currentCommand._outFile) {
       Shell::_currentCommand._outFile = (yyvsp[0].cpp_string);
     }
   }
