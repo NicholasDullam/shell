@@ -104,7 +104,7 @@ void Command::execute() {
         if (isatty(0)) {
             Shell::prompt();
         }
-        
+
         return;
     }
 
@@ -128,16 +128,20 @@ void Command::execute() {
 
             args[_simpleCommands[i]->_arguments.size()] = NULL;
 
+            // Verify outfile redirection
             if (_outFile) {
                 int flag = _append?O_APPEND:O_TRUNC;
                 int fd = open((*_outFile).c_str(), flag | O_WRONLY | O_CREAT, 0666);
                 dup2(fd, 1);
+                close(fd);
             }
 
+            // Verify errfile redirection
             if (_errFile) {
                 int flag = _append?O_APPEND:O_TRUNC;
                 int fd = open((*_errFile).c_str(), flag | O_WRONLY | O_CREAT, 0666);
                 dup2(fd, 2);
+                close(fd);
             }
 
             execvp(args[0], args);
@@ -150,9 +154,14 @@ void Command::execute() {
             return;
         }
 
+        // Reset stdin, stdout, stderr to default fd
         dup2(defaultin, 0);
         dup2(defaultout, 1);
         dup2(defaulterr, 2);
+
+        close(defaultin);
+        close(defaultout);
+        close(defaulterr);
     }
 
     if (!_background) {
