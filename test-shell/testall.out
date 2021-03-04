@@ -1,5 +1,5 @@
 Grade Report for Lab 3 Testall
-test_redirect_input Failed 0/2
+test_redirect_input Passed 2/2
 test_redirect_output Passed 2/2
 test_redirect_error Passed 1/1
 test_redirect_error2 Passed 1/1
@@ -42,4 +42,4 @@ test_wildcards6 Failed 0/1
 test_wildcards7 Passed 1/1
 test_tilde Failed 0/2
 test_robustness Failed 0/10
-Total:                   10.0 of 70.0
+Total:                   12.0 of 70.0

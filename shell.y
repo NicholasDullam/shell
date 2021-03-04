@@ -97,7 +97,7 @@ iomodifier_opt:
     if (!Shell::_currentCommand._outFile) {
       Shell::_currentCommand._outFile = $2;
     } else {
-      perror("Ambiguous output redirect.");
+      printf("Ambiguous output redirect.\n");
     }
   }
   | GREATGREAT WORD {
@@ -106,7 +106,7 @@ iomodifier_opt:
       Shell::_currentCommand._outFile = $2;
       Shell::_currentCommand._append = true;
     } else {
-      perror("Ambiguous output redirect.");
+      printf("Ambiguous output redirect.\n");
       exit(1);
     }
   }
