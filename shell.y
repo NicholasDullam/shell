@@ -112,12 +112,12 @@ iomodifier_opt_list:
 
 pipe_list:
   pipe_list PIPE command_and_args
-  | cmd_and_args
+  | command_and_args
   ;
 
 background_opt:
   AMPERSAND {
-    printf("   Yacc: set background \"%s\"\n", $2->c_str());
+    printf("   Yacc: set background");
   }
   | /* empty */
   ;
