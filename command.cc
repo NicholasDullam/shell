@@ -107,6 +107,10 @@ void Command::execute() {
 
     // Add execution here
     int ret;
+	int defaultin = dup( 0 );
+	int defaultout = dup( 1 );
+	int defaulterr = dup( 2 );
+    
     for (int i = 0; i < _simpleCommands.size(); i++) {
         ret = fork();
         if (ret == 0) {
