@@ -186,9 +186,9 @@ void Command::execute() {
     dup2(tempout, 1);
     dup2(temperr, 2);
 
-    close(defaultin);
-    close(defaultout);
-    close(defaulterr);
+    close(tempin);
+    close(tempout);
+    close(temperr);
 
     if (!_background) {
         waitpid(ret, NULL, 0);
