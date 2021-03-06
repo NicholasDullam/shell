@@ -146,7 +146,7 @@ void Command::execute() {
         if (i == _simpleCommands.size() - 1) {
             if (_outFile) {
                 int flag = _append?O_APPEND:O_TRUNC;
-                int fdout = open((*_outFile).c_str(), flag | O_WRONLY | O_CREAT, 0666);
+                fdout = open((*_outFile).c_str(), flag | O_WRONLY | O_CREAT, 0666);
             } else {
                 fdout = dup(tempout);
             }
