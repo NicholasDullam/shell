@@ -131,7 +131,7 @@ void Command::execute() {
 
     if (_errFile) {
         int flag = _append?O_APPEND:O_TRUNC;
-        int fderr = open((*_errFile).c_str(), flag | O_WRONLY | O_CREAT, 0666);
+        fderr = open((*_errFile).c_str(), flag | O_WRONLY | O_CREAT, 0666);
     } else {
         fderr = dup(temperr);
     }
