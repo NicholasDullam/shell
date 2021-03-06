@@ -157,7 +157,7 @@ void Command::execute() {
             fdout = fdpipe[1];
         }
 
-        dup2(fdout);
+        dup2(fdout, 1);
         close(fdout);
 
         ret = fork();
