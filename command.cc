@@ -148,7 +148,7 @@ void Command::execute() {
                 int flag = _append?O_APPEND:O_TRUNC;
                 int fdout = open((*_outFile).c_str(), flag | O_WRONLY | O_CREAT, 0666);
             } else {
-                fdout = dup(tempout)
+                fdout = dup(tempout);
             }
         } else {
             int fdpipe[2];
