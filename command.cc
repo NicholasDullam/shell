@@ -182,9 +182,9 @@ void Command::execute() {
     }
 
     // Reset stdin, stdout, stderr to default fd
-    dup2(defaultin, 0);
-    dup2(defaultout, 1);
-    dup2(defaulterr, 2);
+    dup2(tempin, 0);
+    dup2(tempout, 1);
+    dup2(temperr, 2);
 
     close(defaultin);
     close(defaultout);
