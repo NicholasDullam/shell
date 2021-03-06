@@ -114,19 +114,52 @@ void Command::execute() {
     }
 
     // Add execution here
-	int defaultin = dup( 0 );
-	int defaultout = dup( 1 );
-	int defaulterr = dup( 2 );
-
-    if (_inFile) {
-        int fd = open((*_inFile).c_str(), O_RDONLY, 0666);
-        dup2(fd, 0);
-        close(fd);
-    }
+    int tempin = dup ( 0 );
+    int tempout = dup ( 1 );
+    int temperr = dup ( 2 );
 
     int ret;
+    int fdout;
+    int fdin;
+    int fderr;
+
+    if (_inFile) {
+        fdin = open((*_inFile).c_str(), O_RDONLY, 0666);
+    } else {
+        fdin = dup(tempin);
+    }
+
+    if (_errFile) {
+        int flag = _append?O_APPEND:O_TRUNC;
+        int fderr = open((*_errFile).c_str(), flag | O_WRONLY | O_CREAT, 0666);
+    } else {
+        fderr = dup(temperr);
+    }
+
+    dup2(fderr, 2);
+    close(fderr);
 
     for (int i = 0; i < _simpleCommands.size(); i++) {
+        dup2(fdin, 0);
+        close(fdin);
+
+        if (i == _simpleCommands.size() - 1) {
+            if (_outFile) {
+                int flag = _append?O_APPEND:O_TRUNC;
+                int fdout = open((*_outFile).c_str(), flag | O_WRONLY | O_CREAT, 0666);
+            } else {
+                fdout = dup(tempout)
+            }
+        } else {
+            int fdpipe[2];
+            pipe(fdpipe);
+            fdin = fdpipe[0];
+            fdout = fdpipe[1];
+        }
+
+        dup2(fdout);
+        close(fdout);
+
         ret = fork();
         if (ret == 0) {
             // Malloc arguments to char** pointer with null terminator
@@ -137,22 +170,6 @@ void Command::execute() {
 
             args[_simpleCommands[i]->_arguments.size()] = NULL;
 
-            // Verify outfile redirection
-            if (_outFile) {
-                int flag = _append?O_APPEND:O_TRUNC;
-                int fd = open((*_outFile).c_str(), flag | O_WRONLY | O_CREAT, 0666);
-                dup2(fd, 1);
-                close(fd);
-            }
-
-            // Verify errfile redirection
-            if (_errFile) {
-                int flag = _append?O_APPEND:O_TRUNC;
-                int fd = open((*_errFile).c_str(), flag | O_WRONLY | O_CREAT, 0666);
-                dup2(fd, 2);
-                close(fd);
-            }
-
             execvp(args[0], args);
             perror("Error in Child Process");
             exit(1);
@@ -162,16 +179,16 @@ void Command::execute() {
             perror("Error Forking Child");
             return;
         }
-
-        // Reset stdin, stdout, stderr to default fd
-        dup2(defaultin, 0);
-        dup2(defaultout, 1);
-        dup2(defaulterr, 2);
-
-        close(defaultin);
-        close(defaultout);
-        close(defaulterr);
     }
+
+    // Reset stdin, stdout, stderr to default fd
+    dup2(defaultin, 0);
+    dup2(defaultout, 1);
+    dup2(defaulterr, 2);
+
+    close(defaultin);
+    close(defaultout);
+    close(defaulterr);
 
     if (!_background) {
         waitpid(ret, NULL, 0);
