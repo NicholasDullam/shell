@@ -144,9 +144,21 @@ void Command::execute() {
         dup2(fdin, 0);
         close(fdin);
 
-        if (!strcmp(_simpleCommands[i]->_arguments[0], "setenv")) {
-            int env = setenv(_simpleCommands[i]->_arguments[1].c_str(), _simpleCommands[i]->_arguments[2].c_str(), 1);
-            printf("%d", env);
+        char** args = (char**) malloc((_simpleCommands[i]->_arguments.size() + 1) * sizeof(char*));
+        for (int j = 0; j < _simpleCommands[i]->_arguments.size(); j++) {
+            args[j] = (char*) (*_simpleCommands[i]->_arguments[j]).c_str();
+        }
+
+        args[_simpleCommands[i]->_arguments.size()] = NULL;
+
+        if (!strcmp(_simpleCommands[i], "setenv")) {
+            int env = setenv(args[1], args[2], 1);
+            exit(0);
+        } else if (!strcmp(args[0], "unsetenv")) {
+            int env = unsetenv(args[1]);
+            exit(0);
+        } else if (!strcmp(args[0], "cd")) {
+            chdir(args[1]);
             exit(0);
         }
 
@@ -171,13 +183,6 @@ void Command::execute() {
         ret = fork();
         if (ret == 0) {
             // Malloc arguments to char** pointer with null terminator
-            char** args = (char**) malloc((_simpleCommands[i]->_arguments.size() + 1) * sizeof(char*));
-            for (int j = 0; j < _simpleCommands[i]->_arguments.size(); j++) {
-                args[j] = (char*) (*_simpleCommands[i]->_arguments[j]).c_str();
-            }
-
-            args[_simpleCommands[i]->_arguments.size()] = NULL;
-
             if (!strcmp(args[0], "printenv")){
                 char **p = environ;
                 while (*p != NULL){
