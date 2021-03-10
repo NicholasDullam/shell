@@ -25,6 +25,7 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <string.h>
+#include <stdlib.h>
 
 #include "command.hh"
 #include "shell.hh"
@@ -178,7 +179,10 @@ void Command::execute() {
                     p++;
                 }
                 exit(0);
-            }
+            } else if (!strcmp(args[0], "setenv")) {
+                int env = setenv(args[1], args[2], 1);
+
+            } 
 
             execvp(args[0], args);
             free(args);
