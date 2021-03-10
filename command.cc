@@ -151,7 +151,7 @@ void Command::execute() {
 
         args[_simpleCommands[i]->_arguments.size()] = NULL;
 
-        if (!strcmp(_simpleCommands[i], "setenv")) {
+        if (!strcmp(args[0], "setenv")) {
             int env = setenv(args[1], args[2], 1);
             exit(0);
         } else if (!strcmp(args[0], "unsetenv")) {
