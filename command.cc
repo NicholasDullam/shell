@@ -177,6 +177,8 @@ void Command::execute() {
                     printf('%s\n', *p);
                     p++;
                 }
+
+                exit(0);
             }
 
             execvp(args[0], args);
