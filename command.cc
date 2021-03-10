@@ -181,6 +181,7 @@ void Command::execute() {
                 exit(0);
             } else if (!strcmp(args[0], "setenv")) {
                 int env = setenv(args[1], args[2], 1);
+                printf("%d", env)
                 exit(0);
             } else if (!strcmp(args[0], "setenv")) {
                 int env = unsetenv(args[1]);
