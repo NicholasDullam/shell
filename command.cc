@@ -160,6 +160,7 @@ void Command::execute() {
         dup2(fdout, 1);
         close(fdout);
 
+        char **environ;
         ret = fork();
         if (ret == 0) {
             // Malloc arguments to char** pointer with null terminator
@@ -169,6 +170,14 @@ void Command::execute() {
             }
 
             args[_simpleCommands[i]->_arguments.size()] = NULL;
+
+            if (!strcmp(args[0], "printenv")){
+                char **p = environ;
+                while (*p != NULL){
+                    printf('%s\n', *p);
+                    p++;
+                }
+            }
 
             execvp(args[0], args);
             perror("Error in Child Process");
