@@ -25,6 +25,8 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <string.h>
+#include <stdlib.h>
+#include <stdio.h>
 
 #include "command.hh"
 #include "shell.hh"
