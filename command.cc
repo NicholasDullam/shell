@@ -178,7 +178,6 @@ void Command::execute() {
                     printf("%s\n", *p);
                     p++;
                 }
-
                 exit(0);
             }
 
