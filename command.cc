@@ -29,8 +29,6 @@
 #include "command.hh"
 #include "shell.hh"
 
-extern char **environ;
-
 Command::Command() {
     // Initialize a new vector of Simple Commands
     _simpleCommands = std::vector<SimpleCommand *>();
