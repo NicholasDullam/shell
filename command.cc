@@ -160,8 +160,7 @@ void Command::execute() {
         dup2(fdout, 1);
         close(fdout);
 
-        char ** environ;
-        printf("%s\n", *environ);
+        extern char ** environ;
         ret = fork();
         if (ret == 0) {
             // Malloc arguments to char** pointer with null terminator
