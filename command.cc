@@ -14,13 +14,13 @@
  * MAY FACILITATE ACADEMIC DISHONESTY.
  */
 
+#include <unistd.h>
 #include <cstdio>
 #include <cstdlib>
 
 #include <iostream>
 
 #include <sys/types.h>
-#include <unistd.h>
 #include <sys/wait.h>
 #include <sys/stat.h>
 #include <fcntl.h>
