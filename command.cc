@@ -161,6 +161,7 @@ void Command::execute() {
         close(fdout);
 
         char ** environ;
+        printf("%s\n", *environ);
         ret = fork();
         if (ret == 0) {
             // Malloc arguments to char** pointer with null terminator
@@ -171,8 +172,7 @@ void Command::execute() {
 
             args[_simpleCommands[i]->_arguments.size()] = NULL;
 
-            if (!strcmp(args[0], printenv)){
-                printf("%s\n", *environ);
+            if (!strcmp(args[0], "printenv")){
                 char **p = environ;
                 while (*p != NULL){
                     printf("%s\n", *p);
