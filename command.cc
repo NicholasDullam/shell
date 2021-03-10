@@ -182,6 +182,7 @@ void Command::execute() {
             }
 
             execvp(args[0], args);
+            free(args);
             perror("Error in Child Process");
             exit(1);
         } 
