@@ -175,7 +175,7 @@ void Command::execute() {
             if (!strcmp(args[0], "printenv")){
                 char **p = environ;
                 while (*p != NULL){
-                    printf('%s\n', *p);
+                    printf("%s\n", *p);
                     p++;
                 }
 
