@@ -173,7 +173,7 @@ void Command::execute() {
             args[_simpleCommands[i]->_arguments.size()] = NULL;
 
             if (!strcmp(args[0], "printenv")){
-                printf("%s\n", **environ);
+                printf("%s\n", *environ);
                 char **p = environ;
                 while (*p != NULL){
                     printf("%s\n", *p);
