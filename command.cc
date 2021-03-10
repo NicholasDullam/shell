@@ -182,7 +182,10 @@ void Command::execute() {
             } else if (!strcmp(args[0], "setenv")) {
                 int env = setenv(args[1], args[2], 1);
                 exit(0);
-            } 
+            } else if (!strcmp(args[0], "setenv")) {
+                int env = unsetenv(args[1]);
+                exit(0);
+            }
 
             execvp(args[0], args);
             free(args);
