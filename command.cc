@@ -145,7 +145,7 @@ void Command::execute() {
         close(fdin);
 
         if (!strcmp(_simpleCommands[i]->_arguments[0], "setenv")) {
-            int env = setenv(_simpleCommands[i]->_arguments[1], _simpleCommands[i]->_arguments[2], 1);
+            int env = setenv(_simpleCommands[i]->_arguments[1].c_str(), _simpleCommands[i]->_arguments[2].c_str(), 1);
             printf("%d", env);
             exit(0);
         }
