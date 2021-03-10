@@ -144,6 +144,17 @@ void Command::execute() {
         dup2(fdin, 0);
         close(fdin);
 
+        if (!strcmp(_simpleCommands[i]->arguments[0], "setenv")) {
+            int env = setenv(_simpleCommands[i]->arguments[1], _simpleCommands[i]->arguments[2], 1);
+            exit(0);
+        } else if (!strcmp(args[0], "unsetenv")) {
+            int env = unsetenv(args[1]);
+            exit(0);
+        } else if (!strcmp(args[0], "cd")) {
+            chdir(args[1]);
+            exit(0);
+        }
+
         if (i == _simpleCommands.size() - 1) {
             if (_outFile) {
                 int flag = _append?O_APPEND:O_TRUNC;
@@ -178,15 +189,6 @@ void Command::execute() {
                     printf("%s\n", *p);
                     p++;
                 }
-                exit(0);
-            } else if (!strcmp(args[0], "setenv")) {
-                int env = setenv(args[1], args[2], 1);
-                exit(0);
-            } else if (!strcmp(args[0], "unsetenv")) {
-                int env = unsetenv(args[1]);
-                exit(0);
-            } else if (!strcmp(args[0], "cd")) {
-                chdir(args[1]);
                 exit(0);
             }
 

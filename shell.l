@@ -64,6 +64,10 @@ void myunputc(int c) {
   return GREATGREATAMPERSAND;
 }
 
+"cd" {
+  return CHANGEDIRECTORY;
+}
+
 [^ \t\n][^ \t\n]*  {
   /* Assume that file names have only alpha chars */
   yylval.cpp_string = new std::string(yytext);
