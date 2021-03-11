@@ -38,7 +38,7 @@ int main() {
       perror("sigaction");
       exit(2);
   }
-
+/*
   struct sigaction sa_zombie;
   sa_zombie.sa_handler = zombie;
   sigemptyset(&sa_zombie.sa_mask);
@@ -47,7 +47,7 @@ int main() {
   if(error_zombie){
       perror("sigaction");
       exit(2);
-  }
+  }*/
 
   yyparse();
 }
