@@ -19,7 +19,9 @@ extern "C" void disp( int sig ){
 
 extern "C" void zombie( int sig ){
   int pid = waitpid(-1, NULL, 0);
-  printf("%d exited\n", pid);
+  if (pid >= 0) {
+    printf("%d exited\n", pid);
+  }
 }
 
 int main() {
