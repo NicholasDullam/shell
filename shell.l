@@ -18,6 +18,15 @@ void myunputc(int c) {
   unput(c);
 }
 
+void remove_character(char* s, char c) {
+  int j, n = strlen(s);
+  for (int i = j = 0; i < n; i++)
+      if (s[i] != c)
+          s[j++] = s[i];
+
+  s[j] = '\0';
+}
+
 %}
 
 %option noyywrap
@@ -67,6 +76,7 @@ void myunputc(int c) {
 [^ \"\n\t]*(\\[^ \t\n]*)(\\[^ \t\n]*)*[^ \"\n\t]* { 
   yylval.cpp_string = new std::string(yytext);
   printf("Escaping");
+  remove_character(&yytext, '\');
   return WORD;
 }
 
