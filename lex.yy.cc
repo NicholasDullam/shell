@@ -511,8 +511,17 @@ void myunputc(int c) {
   unput(c);
 }
 
-#line 515 "lex.yy.cc"
-#line 516 "lex.yy.cc"
+void remove_character(char* s, char c) {
+  int j, n = strlen(s);
+  for (int i = j = 0; i < n; i++)
+      if (s[i] != c)
+          s[j++] = s[i];
+
+  s[j] = '\0';
+}
+
+#line 524 "lex.yy.cc"
+#line 525 "lex.yy.cc"
 
 #define INITIAL 0
 
@@ -729,10 +738,10 @@ YY_DECL
 		}
 
 	{
-#line 25 "shell.l"
+#line 34 "shell.l"
 
 
-#line 736 "lex.yy.cc"
+#line 745 "lex.yy.cc"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -802,86 +811,87 @@ do_action:	/* This label is used only to access EOF actions. */
 case 1:
 /* rule 1 can match eol */
 YY_RULE_SETUP
-#line 27 "shell.l"
+#line 36 "shell.l"
 {
   return NEWLINE;
 }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 31 "shell.l"
+#line 40 "shell.l"
 {
   /* Discard spaces and tabs */
 }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 35 "shell.l"
+#line 44 "shell.l"
 {
   return GREAT;
 }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 39 "shell.l"
+#line 48 "shell.l"
 {
   return GREATGREAT;
 }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 43 "shell.l"
+#line 52 "shell.l"
 {
   return LESS;
 }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 47 "shell.l"
+#line 56 "shell.l"
 {
   return PIPE;
 }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 51 "shell.l"
+#line 60 "shell.l"
 {
   return AMPERSAND;
 }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 55 "shell.l"
+#line 64 "shell.l"
 {
   return TWOGREAT;
 }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 59 "shell.l"
+#line 68 "shell.l"
 {
   return GREATAMPERSAND;
 }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 63 "shell.l"
+#line 72 "shell.l"
 {
   return GREATGREATAMPERSAND;
 }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 67 "shell.l"
+#line 76 "shell.l"
 { 
   yylval.cpp_string = new std::string(yytext);
   printf("Escaping");
+  remove_character(&yytext, '\');
   return WORD;
 }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 73 "shell.l"
+#line 83 "shell.l"
 {
   /* Assume that file names have only alpha chars */
   yylval.cpp_string = new std::string(yytext);
@@ -890,10 +900,10 @@ YY_RULE_SETUP
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 78 "shell.l"
+#line 88 "shell.l"
 ECHO;
 	YY_BREAK
-#line 897 "lex.yy.cc"
+#line 907 "lex.yy.cc"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1910,4 +1920,4 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 78 "shell.l"
+#line 88 "shell.l"
