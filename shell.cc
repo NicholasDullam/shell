@@ -15,6 +15,10 @@ extern "C" void disp( int sig ){
   Shell::prompt();
 }
 
+extern "C" void zombie( int sig ){
+
+}
+
 int main() {
   if (isatty(0)) {
     Shell::prompt();
@@ -25,6 +29,16 @@ int main() {
   sigemptyset(&sa.sa_mask);
   sa.sa_flags = SA_RESTART;
   int error = sigaction(SIGINT, &sa, NULL);
+  if(error){
+      perror("sigaction");
+      exit(2);
+  }
+
+  struct sigaction sa_zombie;
+  sa_zombie.sa_handler = zombie;
+  sigemptyset(&sa_zombie.sa_mask);
+  sa.sa_flags = NULL;
+  int error = sigaction(SIGCHLD, &sa_zombie, NULL);
   if(error){
       perror("sigaction");
       exit(2);
