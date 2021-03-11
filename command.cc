@@ -160,6 +160,8 @@ void Command::execute() {
         } else if (!strcmp(args[0], "cd")) {
             chdir(args[1]);
             exit(0);
+        } else if (!strcmp(args[0], "exit")) {
+            exit(0);
         }
 
         if (i == _simpleCommands.size() - 1) {
