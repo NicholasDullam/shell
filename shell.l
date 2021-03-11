@@ -66,7 +66,7 @@ void myunputc(int c) {
 
 [^ \"\n\t]*(\\[^ \t\n]*)(\\[^ \t\n]*)*[^ \"\n\t]* { 
   yylval.cpp_string = new std::string(yytext);
-  return WORD;
+  return AMPERSAND;
 }
 
 [^ \t\n][^ \t\n]*  {
