@@ -20,9 +20,16 @@ void myunputc(int c) {
 
 void remove_character(char* s, char c) {
   int j, n = strlen(s);
-  for (int i = j = 0; i < n; i++)
-      if (s[i] != c)
-          s[j++] = s[i];
+  int escaped = 0; 
+
+  for (int i = j = 0; i < n; i++) {
+    if (s[i] != c || escaped) {
+      s[j++] = s[i];
+      escaped = 0;
+    } else {
+      escaped = 1;
+    }
+  }   
 
   s[j] = '\0';
 }

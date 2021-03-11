@@ -883,9 +883,9 @@ case 11:
 YY_RULE_SETUP
 #line 76 "shell.l"
 { 
+  remove_character(yytext, '\\');
   yylval.cpp_string = new std::string(yytext);
   printf("Escaping");
-  remove_character(yytext, '\\');
   return WORD;
 }
 	YY_BREAK
