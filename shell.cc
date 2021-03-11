@@ -11,7 +11,7 @@ void Shell::prompt() {
 }
 
 extern "C" void disp( int sig ){
-  printf("\n")
+  printf("\n");
   Shell::prompt();
 }
 
