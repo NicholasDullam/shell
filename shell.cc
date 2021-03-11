@@ -42,7 +42,7 @@ int main() {
   struct sigaction sa_zombie;
   sa_zombie.sa_handler = zombie;
   sigemptyset(&sa_zombie.sa_mask);
-  sa.sa_flags = SA_RESTART;;
+  sa.sa_flags = SA_RESTART;
   int error_zombie = sigaction(SIGCHLD, &sa_zombie, NULL);
   if(error_zombie){
       perror("sigaction");
