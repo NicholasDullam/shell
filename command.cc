@@ -114,7 +114,7 @@ void Command::execute() {
         print();
     }
 
-    // Add execution here
+    // Declare default file descriptors
     int tempin = dup ( 0 );
     int tempout = dup ( 1 );
     int temperr = dup ( 2 );
@@ -144,13 +144,16 @@ void Command::execute() {
         dup2(fdin, 0);
         close(fdin);
 
+        // Dynamically allocated arguments from _simpleCommands[i]
         char** args = (char**) malloc((_simpleCommands[i]->_arguments.size() + 1) * sizeof(char*));
         for (int j = 0; j < _simpleCommands[i]->_arguments.size(); j++) {
             args[j] = (char*) (*_simpleCommands[i]->_arguments[j]).c_str();
         }
 
+        // End arguments will null terminator
         args[_simpleCommands[i]->_arguments.size()] = NULL;
 
+        // Built-in parent function parsing
         if (!strcmp(args[0], "setenv")) {
             int env = setenv(args[1], args[2], 1);
             exit(0);
@@ -165,6 +168,7 @@ void Command::execute() {
         }
 
         if (i == _simpleCommands.size() - 1) {
+            // Check file descriptors for last command
             if (_outFile) {
                 int flag = _append?O_APPEND:O_TRUNC;
                 fdout = open((*_outFile).c_str(), flag | O_WRONLY | O_CREAT, 0666);
@@ -172,6 +176,7 @@ void Command::execute() {
                 fdout = dup(tempout);
             }
         } else {
+            // Pipe command if not the last command
             int fdpipe[2];
             pipe(fdpipe);
             fdin = fdpipe[0];
@@ -181,10 +186,14 @@ void Command::execute() {
         dup2(fdout, 1);
         close(fdout);
 
+        // Declare environment variable reference
         extern char ** environ;
+
+        // Initialize new child process
         ret = fork();
+
         if (ret == 0) {
-            // Malloc arguments to char** pointer with null terminator
+            // Built-in function parsing and execution
             if (!strcmp(args[0], "printenv")){
                 char **p = environ;
                 while (*p != NULL){
@@ -194,8 +203,8 @@ void Command::execute() {
                 exit(0);
             }
 
+            // Execute arg[0] executable
             execvp(args[0], args);
-            free(args);
             perror("Error in Child Process");
             exit(1);
         } 
@@ -206,22 +215,23 @@ void Command::execute() {
         }
     }
 
-    // Reset stdin, stdout, stderr to default fd
+    // Free dynamically allocated arguments
+    free(args);
+
+    // Restore default file descriptors
     dup2(tempin, 0);
     dup2(tempout, 1);
     dup2(temperr, 2);
 
+    // Close default file descriptors
     close(tempin);
     close(tempout);
     close(temperr);
 
+    // Wait for background processes
     if (!_background) {
         waitpid(ret, NULL, 0);
     }
-
-    // For every simple command fork a new process
-    // Setup i/o redirection
-    // and call exec
 
     // Clear to prepare for next command
     clear();
