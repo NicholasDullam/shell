@@ -64,7 +64,7 @@ void myunputc(int c) {
   return GREATGREATAMPERSAND;
 }
 
-[^\"](\\[^ \t\n]*)(\\[^ \t\n]*)*[^\"] { 
+[^ \"\n\t]*(\\[^ \t\n]*)(\\[^ \t\n]*)*[^ \"\n\t]* { 
   yylval.cpp_string = new std::string(yytext);
   return WORD;
 }
