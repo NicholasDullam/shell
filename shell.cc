@@ -24,7 +24,7 @@ int main() {
   sa.sa_handler = disp;
   sigemptyset(&sa.sa_mask);
   sa.sa_flags = SA_RESTART;
-  int error = sigaction(SIGINT, &signalAction, NULL );
+  int error = sigaction(SIGINT, &sigaction, NULL );
   if(error){
       perror("sigaction");
       exit(2);
