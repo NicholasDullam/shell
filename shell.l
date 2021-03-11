@@ -64,14 +64,8 @@ void myunputc(int c) {
   return GREATGREATAMPERSAND;
 }
 
-["].*["] {
-  yylval.cpp_string = new std::string(yytext);
-  return WORD;
-}
-
 [^ \t\n][^ \t\n]*  {
   /* Assume that file names have only alpha chars */
-  yytext[0] = NULL;
   yylval.cpp_string = new std::string(yytext);
   return WORD;
 }
