@@ -64,7 +64,7 @@ void myunputc(int c) {
   return GREATGREATAMPERSAND;
 }
 
-\".*\" {
+["].*["] {
   yylval.cpp_string = new std::string(yytext);
   return WORD;
 }
