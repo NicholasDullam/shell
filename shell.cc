@@ -38,8 +38,8 @@ int main() {
   sa_zombie.sa_handler = zombie;
   sigemptyset(&sa_zombie.sa_mask);
   sa.sa_flags = NULL;
-  int error = sigaction(SIGCHLD, &sa_zombie, NULL);
-  if(error){
+  int error_zombie = sigaction(SIGCHLD, &sa_zombie, NULL);
+  if(error_zombie){
       perror("sigaction");
       exit(2);
   }
