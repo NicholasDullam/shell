@@ -18,8 +18,8 @@ extern "C" void disp( int sig ){
 }
 
 extern "C" void zombie( int sig ){
-  int pid = waitpid(-1)
-  printf('%d exited\n', pid)
+  int pid = waitpid(-1);
+  printf('%d exited\n', pid);
 }
 
 int main() {
