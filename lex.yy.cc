@@ -875,7 +875,7 @@ YY_RULE_SETUP
 #line 67 "shell.l"
 { 
   yylval.cpp_string = new std::string(yytext);
-  return WORD;
+  return AMPERSAND;
 }
 	YY_BREAK
 case 12:

@@ -66,7 +66,8 @@ void myunputc(int c) {
 
 [^ \"\n\t]*(\\[^ \t\n]*)(\\[^ \t\n]*)*[^ \"\n\t]* { 
   yylval.cpp_string = new std::string(yytext);
-  return AMPERSAND;
+  printf("Escaping");
+  return WORD;
 }
 
 [^ \t\n][^ \t\n]*  {
