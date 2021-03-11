@@ -213,10 +213,10 @@ void Command::execute() {
             perror("Error Forking Child");
             return;
         }
-    }
 
-    // Free dynamically allocated arguments
-    free(args);
+        // Free dynamically allocated arguments
+        free(args);
+    }
 
     // Restore default file descriptors
     dup2(tempin, 0);
