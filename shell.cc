@@ -12,6 +12,7 @@ void Shell::prompt() {
 
 extern "C" void disp( int sig ){
 	fprintf( stderr, "\nsig:%d      Ouch!\n", sig);
+  exit(1);
 }
 
 int main() {
