@@ -74,9 +74,9 @@ void remove_character(char* s, char c) {
 }
 
 [^ \"\n\t]*(\\[^ \t\n]*)(\\[^ \t\n]*)*[^ \"\n\t]* { 
+  remove_character(yytext, '\\');
   yylval.cpp_string = new std::string(yytext);
   printf("Escaping");
-  remove_character(yytext, '\\');
   return WORD;
 }
 

@@ -885,7 +885,7 @@ YY_RULE_SETUP
 { 
   yylval.cpp_string = new std::string(yytext);
   printf("Escaping");
-  remove_character(yytext, '\');
+  remove_character(yytext, '\\');
   return WORD;
 }
 	YY_BREAK
