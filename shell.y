@@ -93,7 +93,7 @@ command_word:
 
 source:
   SOURCE WORD {
-
+    yy_create_buffer(word, YY_BUFFER_STATE)
   }
 
 iomodifier_opt:

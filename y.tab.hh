@@ -65,7 +65,8 @@ extern int yydebug;
     NEWLINE = 265,
     PIPE = 266,
     AMPERSAND = 267,
-    LESS = 268
+    LESS = 268,
+    SOURCE = 269
   };
 #endif
 /* Tokens.  */
@@ -80,6 +81,7 @@ extern int yydebug;
 #define PIPE 266
 #define AMPERSAND 267
 #define LESS 268
+#define SOURCE 269
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
@@ -92,7 +94,7 @@ union YYSTYPE
   // Example of using a c++ type in yacc
   std::string *cpp_string;
 
-#line 96 "y.tab.hh" /* yacc.c:1909  */
+#line 98 "y.tab.hh" /* yacc.c:1909  */
 };
 
 typedef union YYSTYPE YYSTYPE;
