@@ -136,10 +136,10 @@ void removeStartAndEnd(char* s) {
 
   for (int i = strlen(buffer) - 1; i >= 0; i--) {
     char c = ' ';
-    if (fromChild[i] == '\n') {
+    if (buffer[i] == '\n') {
       myunputc(' ');
     } else {
-      myunputc(fromChild[i]);
+      myunputc(buffer[i]);
     }
   }
 }
