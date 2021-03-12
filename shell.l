@@ -121,12 +121,16 @@ void removeStartAndEnd(char* s) {
   close(pin[0]);
   close(pout[1]);
 
-  char fromChild[800];
   write(pin[1], strcat(yytext, "\n"), strlen(yytext) + 1);
   write(pin[1], "exit\n", 6);
   close(pin[1]);
-
-  int n = read(pout[0], fromChild, 800);
+  
+  char* buffer = (char*) malloc(sizeof(char) * 1024);
+  char* iterator = buffer;
+  int n = read(pout[0], iterator, 1);
+  while (n != -1) {
+    int n = read(pout[0], ++iterator, 1);
+  }
   fromChild[n] = '\0';
   close(pout[0]);
 

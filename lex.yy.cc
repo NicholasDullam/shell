@@ -2007,12 +2007,12 @@ YY_RULE_SETUP
   close(pin[0]);
   close(pout[1]);
 
-  char fromChild[100];
+  char fromChild[800];
   write(pin[1], strcat(yytext, "\n"), strlen(yytext) + 1);
   write(pin[1], "exit\n", 6);
   close(pin[1]);
 
-  int n = read(pout[0], fromChild, 100);
+  int n = read(pout[0], fromChild, 800);
   fromChild[n] = '\0';
   close(pout[0]);
 
