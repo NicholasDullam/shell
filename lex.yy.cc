@@ -1996,7 +1996,7 @@ YY_RULE_SETUP
       perror("Error Forking Child");
   }
 
-  write(pin[1], yytext, strlen(yytext) + 1);
+  write(pin[1], "exit\n", 6);
   char message[700];
   read(pout[0], message, 700);
   printf("%s", message);
