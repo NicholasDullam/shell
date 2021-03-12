@@ -90,6 +90,10 @@ void removeStartAndEnd(char* s) {
   return GREATGREATAMPERSAND;
 }
 
+"source" {
+  return SOURCE;
+}
+
 [^ \"\n\t]*(\\[^ \t\n]*)(\\[^ \t\n]*)*[^ \"\n\t]* { 
   remove_character(yytext, '\\');
   yylval.cpp_string = new std::string(yytext);

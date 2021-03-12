@@ -29,7 +29,7 @@
 
 // Token Requirements and Declarations
 %token <cpp_string> WORD
-%token NOTOKEN GREAT GREATGREAT GREATAMPERSAND GREATGREATAMPERSAND TWOGREAT NEWLINE PIPE AMPERSAND LESS 
+%token NOTOKEN GREAT GREATGREAT GREATAMPERSAND GREATGREATAMPERSAND TWOGREAT NEWLINE PIPE AMPERSAND LESS SOURCE
 
 %{
 //#define yylex yylex
@@ -90,6 +90,11 @@ command_word:
     Command::_currentSimpleCommand->insertArgument( $1 );
   }
   ;
+
+source:
+  SOURCE WORD {
+
+  }
 
 iomodifier_opt:
   GREAT WORD {
