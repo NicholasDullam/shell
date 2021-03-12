@@ -122,7 +122,7 @@ void removeStartAndEnd(char* s) {
   close(pout[1]);
 
   char fromChild[100];
-  write(pin[1], strcat(yytext, '\n'), strlen(yytext) + 1);
+  write(pin[1], strcat(yytext, "\n"), strlen(yytext) + 1);
   write(pin[1], "exit\n", 6);
   close(pin[1]);
 
