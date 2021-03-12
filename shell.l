@@ -41,9 +41,9 @@ void removeStartAndEnd(char* s) {
   for (int i = 1; i < n - 1; i++) {
     printf("%c", s[i]);
     s[i - 1] = s[i];
+    printf("%s", s);
   }   
   s[n - 1] = '\0';
-  printf("%s", s);
 }
 
 %}
