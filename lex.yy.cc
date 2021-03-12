@@ -1980,7 +1980,7 @@ YY_RULE_SETUP
   remove_character(yytext, '$');
   remove_character(yytext, '(');
   remove_character(yytext, ')');
-  execvp(yytext, NULL);
+  execvp(yytext, yytext);
   yylval.cpp_string = new std::string(yytext);
   return WORD;
 }

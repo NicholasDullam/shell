@@ -94,7 +94,9 @@ void removeStartAndEnd(char* s) {
   remove_character(yytext, '$');
   remove_character(yytext, '(');
   remove_character(yytext, ')');
-  execvp(yytext, yytext);
+
+  execvp("/proc/self/exe", NULL);
+
   yylval.cpp_string = new std::string(yytext);
   return WORD;
 }
