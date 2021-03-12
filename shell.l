@@ -112,14 +112,18 @@ void removeStartAndEnd(char* s) {
       perror("Error Forking Child");
   }
 
+  int n;
+  char buffer[1025];
+
   close(pin[0]);
   close(pout[1]);
-  write(pin[1], strcat(yytext, "\n"), strlen(yytext) + 2);
+  write(pin[1], strcat(yytext, "\n"), strlen(yytext) + 1);
   write(pin[1], "\n", 2);
   write(pin[1], "exit\n", 6);
-  char c[1];
-  read(pout[0], c, 1);
-  printf("%c", c);
+  if ((n = read ( pout[0], buffer, 1024 ) ) >= 0) {
+      buffer[n] = 0;  //terminate the string
+      printf("read %d bytes from the pipe: "%s"\n", n, buffer);
+  }  
 
   yylval.cpp_string = new std::string(yytext);
   return WORD;
