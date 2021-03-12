@@ -43,6 +43,7 @@ void removeStartAndEnd(char* s) {
     s[i - 1] = s[i];
   }   
   s[n - 1] = '\0';
+  printf("%s", s);
 }
 
 %}
