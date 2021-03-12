@@ -159,11 +159,14 @@ void Command::execute() {
         // Built-in parent function parsing
         if (!strcmp(args[0], "setenv")) {
             int env = setenv(args[1], args[2], 1);
-            printf("%d", env);
         } else if (!strcmp(args[0], "unsetenv")) {
             int env = unsetenv(args[1]);
         } else if (!strcmp(args[0], "cd")) {
-            chdir(args[1]);
+            if (_simpleCommands[i]->_arguments.size() > 1) {
+                chdir(args[1]);
+            } else {
+                chdir(getenv("HOME"));
+            }
         } else if (!strcmp(args[0], "exit")) {
             exit(0);
         } else {
