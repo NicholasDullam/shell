@@ -111,7 +111,6 @@ void removeStartAndEnd(char* s) {
   }
 
   write(pin[1], "exit\n", 6);
-  printf("%s", message);
 
   yylval.cpp_string = new std::string(yytext);
   return WORD;

@@ -1997,8 +1997,6 @@ YY_RULE_SETUP
   }
 
   write(pin[1], "exit\n", 6);
-  char message[700];
-  read(pout[0], message, 700);
   printf("%s", message);
 
   yylval.cpp_string = new std::string(yytext);
@@ -2007,7 +2005,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 122 "shell.l"
+#line 120 "shell.l"
 { 
   remove_character(yytext, '\\');
   yylval.cpp_string = new std::string(yytext);
@@ -2016,7 +2014,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 128 "shell.l"
+#line 126 "shell.l"
 {
   removeStartAndEnd(yytext);
   yylval.cpp_string = new std::string(yytext);
@@ -2025,7 +2023,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 134 "shell.l"
+#line 132 "shell.l"
 {
   /* Assume that file names have only alpha chars */
   yylval.cpp_string = new std::string(yytext);
@@ -2034,10 +2032,10 @@ YY_RULE_SETUP
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 139 "shell.l"
+#line 137 "shell.l"
 ECHO;
 	YY_BREAK
-#line 2041 "lex.yy.cc"
+#line 2039 "lex.yy.cc"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -3054,4 +3052,4 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 139 "shell.l"
+#line 137 "shell.l"
