@@ -86,6 +86,12 @@ void remove_character(char* s, char c) {
   return WORD;
 }
 
+[^ \t\n]*\"*[^ \t\n][^ \t\n]*\"[^ \t\n]* {
+  printf("testing")
+  yylval.cpp_string = new std::string(yytext);
+  return WORD;
+}
+
 [^ \t\n][^ \t\n]*  {
   /* Assume that file names have only alpha chars */
   yylval.cpp_string = new std::string(yytext);
