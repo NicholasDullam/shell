@@ -128,6 +128,7 @@ void removeStartAndEnd(char* s) {
   char* buffer = (char*) malloc(sizeof(char) * 1024);
   char* iterator = buffer;
   while (read(pout[0], iterator++, 1) >= 0) {
+    printf("testing");
     *iterator = '\0';
   }
 
