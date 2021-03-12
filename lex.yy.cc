@@ -586,7 +586,7 @@ void removeStartAndEnd(char* s) {
   int j, n = strlen(s);
 
   s[0] = '\0';
-  for (int i = 1; i < n - 1; i++) {
+  for (int i = 1; i < n; i++) {
     s[i - 1] = s[i];
     printf("%s", s);
   }   
