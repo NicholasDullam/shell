@@ -2021,7 +2021,7 @@ YY_RULE_SETUP
   close(pout[0]);
 
   for (int i = strlen(fromChild) - 1; i >= 0; i--) {
-    unputc(fromChild[i]);
+    myunputc(fromChild[i]);
   }
 }
 	YY_BREAK

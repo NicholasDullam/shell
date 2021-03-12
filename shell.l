@@ -135,7 +135,12 @@ void removeStartAndEnd(char* s) {
   close(pout[0]);
 
   for (int i = strlen(fromChild) - 1; i >= 0; i--) {
-    myunputc(fromChild[i]);
+    char c = ' '
+    if (fromChild[i] == '/n') {
+      myunputc(' ');
+    } else {
+      myunputc(fromChild[i]);
+    }
   }
 }
 
