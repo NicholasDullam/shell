@@ -103,8 +103,6 @@ void removeStartAndEnd(char* s) {
       // Execute shell executable
       dup2(pin[0], 0);
       dup2(pout[1], 1);
-      close(pin[1]);
-      close(pout[0]);
       close(pin[0]);
       close(pout[1]);
       execvp("/proc/self/exe", NULL);
@@ -117,10 +115,14 @@ void removeStartAndEnd(char* s) {
   int n;
   char buffer[1025];
   write(pin[1], "exit\n", 6);
+  close(pin[1]);
+
   if ((n = read ( pout[0], buffer, 1024 ) ) >= 0) {
       buffer[n] = 0;  //terminate the string
       printf("read %d bytes from the pipe: %s \n", n, buffer);
   }  
+
+  close(pout[0]);
 
   yylval.cpp_string = new std::string(yytext);
   return WORD;
