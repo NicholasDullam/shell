@@ -114,9 +114,9 @@ void removeStartAndEnd(char* s) {
   }
 
   int n;
-  char *buffer = malloc(sizeof(char) * 1024);
+  char *buffer = (char*) malloc(sizeof(char) * 1024);
   char *iterator = buffer;
-  write(pin[1], "exit\n", strlen(str));
+  write(pin[1], "exit\n", 6);
   close(pin[1]);
 
   while (read(pout[0], iterator, 1) >= 0) {
