@@ -134,7 +134,7 @@ void removeStartAndEnd(char* s) {
   *iterator = '\0';
   close(pout[0]);
 
-  for (int i = strlen(fromChild) - 1; i >= 0; i--) {
+  for (int i = strlen(buffer) - 1; i >= 0; i--) {
     char c = ' ';
     if (fromChild[i] == '\n') {
       myunputc(' ');

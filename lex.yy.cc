@@ -2017,7 +2017,7 @@ YY_RULE_SETUP
   while (n != -1) {
     int n = read(pout[0], ++iterator, 1);
   }
-  fromChild[n] = '\0';
+  *iterator = '\0';
   close(pout[0]);
 
   for (int i = strlen(fromChild) - 1; i >= 0; i--) {
