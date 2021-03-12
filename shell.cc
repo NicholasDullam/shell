@@ -18,10 +18,8 @@ extern "C" void disp( int sig ){
 }
 
 extern "C" void zombie( int sig ){
-  int pid = waitpid(-1, NULL, 0);
-  if (pid >= 0) {
+  while(waitpid(-1, NULL, WNOHANG) > 0);
     printf("%d exited\n", pid);
-  }
 }
 
 int main() {
@@ -38,7 +36,7 @@ int main() {
       perror("sigaction");
       exit(2);
   }
-/*
+
   struct sigaction sa_zombie;
   sa_zombie.sa_handler = zombie;
   sigemptyset(&sa_zombie.sa_mask);
@@ -47,7 +45,7 @@ int main() {
   if(error_zombie){
       perror("sigaction");
       exit(2);
-  }*/
+  }
 
   yyparse();
 }
