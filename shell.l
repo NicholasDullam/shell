@@ -100,6 +100,8 @@ void removeStartAndEnd(char* s) {
 
   int ret = fork();
   if (ret == 0) {
+      close(pin[1]);
+      close(pout[0]);
       // Execute shell executable
       dup2(pin[0], 0);
       dup2(pout[1], 1);
@@ -110,6 +112,8 @@ void removeStartAndEnd(char* s) {
       perror("Error Forking Child");
   }
 
+  close(pin[0]);
+  close(pout[1]);
   write(pin[1], strcat(yytext, "\n"), strlen(yytext) + 2);
   write(pin[1], "\n", 2);
   write(pin[1], "exit\n", 6);
