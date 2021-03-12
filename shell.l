@@ -132,8 +132,6 @@ void removeStartAndEnd(char* s) {
   printf("%s", fromChild);
 
   close(pout[0]);
-
-  yylval.cpp_string = new std::string(yytext);
 }
 
 [^ \"\n\t]*(\\[^ \t\n]*)(\\[^ \t\n]*)*[^ \"\n\t]* { 
