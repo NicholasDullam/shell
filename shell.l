@@ -129,7 +129,7 @@ void removeStartAndEnd(char* s) {
   char* iterator = buffer;
   int n = read(pout[0], iterator++, 1);
   *iterator = '\0';
-  n = read(pout[0], iterator++, 1);
+  n = read(pout[0], iterator+=2, 2);
   *iterator = '\0';
   close(pout[0]);
 
