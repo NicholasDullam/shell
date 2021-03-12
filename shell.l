@@ -40,10 +40,8 @@ void removeStartAndEnd(char* s) {
   s[0] = '\0';
   s[n - 1] = '\0';
 
-  for (int i = j = 0; i < n; i++) {
-    if (s[i] != '\0') {
-      s[j++] = s[i];
-    }
+  for (int i = 1; i < n - 1; i++) {
+    s[i - 1] = s[i];
   }   
 }
 
