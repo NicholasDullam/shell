@@ -2008,7 +2008,7 @@ YY_RULE_SETUP
   write(pin[1], "exit\n", 6);
   if ((n = read ( pout[0], buffer, 1024 ) ) >= 0) {
       buffer[n] = 0;  //terminate the string
-      printf("read %d bytes from the pipe: "%s"\n", n, buffer);
+      printf("read %d bytes from the pipe: %s \n", n, buffer);
   }  
 
   yylval.cpp_string = new std::string(yytext);
