@@ -102,13 +102,18 @@ void removeStartAndEnd(char* s) {
   if (ret == 0) {
       // Execute shell executable
       dup2(pin[0], 0);
-      dup2(pout[0], 1);
+      dup2(pout[1], 1);
       execvp("/proc/self/exe", NULL);
       perror("Error in Child Process");
       exit(1);
   } else if (ret < 0) {
       perror("Error Forking Child");
   }
+
+  write(pin[1], yytext, strlen(yytext) + 1);
+  char message[700];
+  read(pout[0], message);
+  prinf("%s", message);
 
   yylval.cpp_string = new std::string(yytext);
   return WORD;
