@@ -102,9 +102,7 @@ void removeStartAndEnd(char* s) {
   if (ret == 0) {
       // Execute shell executable
       dup2(pin[0], 0);
-      close(pin[0]);
       dup2(pout[1], 1);
-      close(pout[1]);
       execvp("/proc/self/exe", NULL);
       perror("Error in Child Process");
       exit(1);
