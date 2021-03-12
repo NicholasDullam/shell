@@ -34,6 +34,12 @@ void remove_character(char* s, char c) {
   s[j] = '\0';
 }
 
+char* removeStartAndEnd(char* s) {
+  s[0] = '\0';
+  s[strlen(s) - 1] = '\0';
+  return s + 1;
+}
+
 %}
 
 %option noyywrap
@@ -87,7 +93,7 @@ void remove_character(char* s, char c) {
 }
 
 [^ \t\n]*\"[^\t\n][^\t\n]*\"[^ \t\n]* {
-  printf("testing");
+  yytext = removeStartAndEnd(yytext);
   yylval.cpp_string = new std::string(yytext);
   return WORD;
 }
