@@ -112,7 +112,7 @@ void removeStartAndEnd(char* s) {
 
   write(pin[1], yytext, strlen(yytext) + 1);
   char message[700];
-  read(pout[0], message);
+  read(pout[0], message, 700);
   printf("%s", message);
 
   yylval.cpp_string = new std::string(yytext);
