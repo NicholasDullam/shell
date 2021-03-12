@@ -114,15 +114,14 @@ void removeStartAndEnd(char* s) {
   }
 
   int n;
-  char buffer[1025];
-  char str[] = "exit\n";
-  write(pin[1], &str, strlen(str));
+  char *buffer = malloc(sizeof(char) * 1024);
+  char *iterator = buffer;
+  write(pin[1], "exit\n", strlen(str));
   close(pin[1]);
 
-  if ((n = read ( pout[0], buffer, 1024 ) ) >= 0) {
-      buffer[n] = 0;  //terminate the string
-      printf("read %d bytes from the pipe: %s \n", n, buffer);
-  }  
+  while (read(pout[0], iterator, 1) >= 0) {
+    iterator++;
+  }
 
   close(pout[0]);
 
