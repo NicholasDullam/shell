@@ -2022,7 +2022,7 @@ YY_RULE_SETUP
 
   for (int i = strlen(fromChild) - 1; i >= 0; i--) {
     char c = ' ';
-    if (fromChild[i] == '/n') {
+    if (fromChild[i] == '\n') {
       myunputc(' ');
     } else {
       myunputc(fromChild[i]);
