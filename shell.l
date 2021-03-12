@@ -100,11 +100,16 @@ void removeStartAndEnd(char* s) {
 
   int ret = fork();
   if (ret == 0) {
-      // Execute shell executable
+      close(pin[1]);
+      close(pout[0]);
+
       dup2(pin[0], 0);
       close(pin[0]);
+
       dup2(pout[1], 1);
       close(pout[1]);
+      
+      // Execute shell executable
       execvp("/proc/self/exe", NULL);
       perror("Error in Child Process");
       exit(1);
@@ -112,6 +117,9 @@ void removeStartAndEnd(char* s) {
       perror("Error Forking Child");
       exit(1);
   }
+
+  close(pin[0]);
+  close(pout[1]);
 
   char *buffer = (char*) malloc(sizeof(char) * 1024);
   char *iterator = buffer;
