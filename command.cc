@@ -163,7 +163,10 @@ void Command::execute() {
             int env = unsetenv(args[1]);
         } else if (!strcmp(args[0], "cd")) {
             if (_simpleCommands[i]->_arguments.size() > 1) {
-                chdir(args[1]);
+                int ret = chdir(args[1]);
+                if (!ret) {
+                    printerr("cd: can't cd to %s", args[1]);
+                }
             } else {
                 chdir(getenv("HOME"));
             }
