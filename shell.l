@@ -128,7 +128,7 @@ void removeStartAndEnd(char* s) {
   int n = read(pout[0], fromChild, 1);
   fromChild[n] = '\0';
 
-  prints("%s", fromChild);
+  printf("%s", fromChild);
 
   close(pout[0]);
 
