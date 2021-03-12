@@ -117,8 +117,6 @@ void removeStartAndEnd(char* s) {
 
   close(pin[0]);
   close(pout[1]);
-  write(pin[1], yytext, strlen(yytext) + 1);
-  write(pin[1], "\n", 2);
   write(pin[1], "exit\n", 6);
   if ((n = read ( pout[0], buffer, 1024 ) ) >= 0) {
       buffer[n] = 0;  //terminate the string
