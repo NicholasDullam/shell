@@ -110,7 +110,7 @@ void removeStartAndEnd(char* s) {
       perror("Error Forking Child");
   }
 
-  write(pin[1], yytext, strlen(yytext) + 1);
+  write(pin[1], strcat(yytext, "\n"), strlen(yytext) + 2);
   write(pin[1], "\n", 2);
   write(pin[1], "exit\n", 6);
   char c[1];

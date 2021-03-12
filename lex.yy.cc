@@ -1999,7 +1999,7 @@ YY_RULE_SETUP
   write(pin[1], yytext, strlen(yytext) + 1);
   write(pin[1], "\n", 2);
   write(pin[1], "exit\n", 6);
-  char c;
+  char c[1];
   read(pout[0], c, 1);
   printf("%c", c);
 
