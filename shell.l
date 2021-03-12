@@ -128,10 +128,15 @@ void removeStartAndEnd(char* s) {
 
   int n = read(pout[0], fromChild, 1);
   fromChild[n] = '\0';
+  close(pout[0]);
 
   printf("%s", fromChild);
 
   close(pout[0]);
+
+  for (int i = strlen(fromChild) - 1; i >= 0; i--) {
+    unputc(fromChild[i]);
+  }
 }
 
 [^ \"\n\t]*(\\[^ \t\n]*)(\\[^ \t\n]*)*[^ \"\n\t]* { 
