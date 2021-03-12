@@ -34,10 +34,15 @@ void remove_character(char* s, char c) {
   s[j] = '\0';
 }
 
-char* removeStartAndEnd(char* s) {
+void removeStartAndEnd(char* s) {
   s[0] = '\0';
   s[strlen(s) - 1] = '\0';
-  return s + 1;
+
+  for (int i = j = 0; i < n; i++) {
+    if (s[i] != '\0') {
+      s[j++] = s[i];
+    }
+  }   
 }
 
 %}
@@ -93,7 +98,7 @@ char* removeStartAndEnd(char* s) {
 }
 
 [^ \t\n]*\"[^\t\n][^\t\n]*\"[^ \t\n]* {
-  yytext = removeStartAndEnd(yytext);
+  removeStartAndEnd(yytext);
   yylval.cpp_string = new std::string(yytext);
   return WORD;
 }
