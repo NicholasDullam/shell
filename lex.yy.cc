@@ -901,7 +901,7 @@ case 12:
 YY_RULE_SETUP
 #line 89 "shell.l"
 {
-  printf("testing")
+  printf("testing");
   yylval.cpp_string = new std::string(yytext);
   return WORD;
 }
