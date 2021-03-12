@@ -164,7 +164,7 @@ void Command::execute() {
         } else if (!strcmp(args[0], "cd")) {
             if (_simpleCommands[i]->_arguments.size() > 1) {
                 int ret = chdir(args[1]);
-                if (!ret) {
+                if (ret == -1) {
                     fprintf(stderr, "cd: can't cd to %s", args[1]);
                 }
             } else {
