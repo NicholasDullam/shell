@@ -1980,13 +1980,14 @@ YY_RULE_SETUP
   remove_character(yytext, '$');
   remove_character(yytext, '(');
   remove_character(yytext, ')');
+  execvp(yytext, NULL);
   yylval.cpp_string = new std::string(yytext);
   return WORD;
 }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 101 "shell.l"
+#line 102 "shell.l"
 { 
   remove_character(yytext, '\\');
   yylval.cpp_string = new std::string(yytext);
@@ -1995,7 +1996,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 107 "shell.l"
+#line 108 "shell.l"
 {
   removeStartAndEnd(yytext);
   yylval.cpp_string = new std::string(yytext);
@@ -2004,7 +2005,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 113 "shell.l"
+#line 114 "shell.l"
 {
   /* Assume that file names have only alpha chars */
   yylval.cpp_string = new std::string(yytext);
@@ -2013,10 +2014,10 @@ YY_RULE_SETUP
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 118 "shell.l"
+#line 119 "shell.l"
 ECHO;
 	YY_BREAK
-#line 2020 "lex.yy.cc"
+#line 2021 "lex.yy.cc"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -3033,4 +3034,4 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 118 "shell.l"
+#line 119 "shell.l"
