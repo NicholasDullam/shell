@@ -29,7 +29,7 @@
 
 // Token Requirements and Declarations
 %token <cpp_string> WORD
-%token NOTOKEN GREAT GREATGREAT GREATAMPERSAND GREATGREATAMPERSAND TWOGREAT NEWLINE PIPE AMPERSAND LESS SOURCE
+%token NOTOKEN GREAT GREATGREAT GREATAMPERSAND GREATGREATAMPERSAND TWOGREAT NEWLINE PIPE AMPERSAND LESS
 
 %{
 //#define yylex yylex
@@ -91,12 +91,6 @@ command_word:
   }
   ;
 
-source:
-  SOURCE WORD {
-    yy_create_buffer(word, YY_BUFFER_STATE)
-  }
-  ;
-  
 iomodifier_opt:
   GREAT WORD {
     //printf("   Yacc: insert output \"%s\"\n", $2->c_str());

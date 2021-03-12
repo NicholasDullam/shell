@@ -472,8 +472,8 @@ static const yytype_uint8 yytranslate[] =
 static const yytype_uint8 yyrline[] =
 {
        0,    47,    47,    51,    52,    55,    59,    63,    64,    68,
-      75,    76,    80,    87,   100,   108,   118,   124,   129,   133,
-     140,   141,   145,   146,   150,   153
+      75,    76,    80,    87,   101,   109,   119,   125,   130,   134,
+     141,   142,   146,   147,   151,   154
 };
 #endif
 
@@ -1306,7 +1306,7 @@ yyreduce:
     break;
 
   case 14:
-#line 100 "shell.y" /* yacc.c:1646  */
+#line 101 "shell.y" /* yacc.c:1646  */
     {
     //printf("   Yacc: insert output \"%s\"\n", $2->c_str());
     if (!Shell::_currentCommand._outFile) {
@@ -1319,7 +1319,7 @@ yyreduce:
     break;
 
   case 15:
-#line 108 "shell.y" /* yacc.c:1646  */
+#line 109 "shell.y" /* yacc.c:1646  */
     {
     //printf("   Yacc: append output \"%s\"\n", $2->c_str());
     if (!Shell::_currentCommand._outFile) {
@@ -1334,7 +1334,7 @@ yyreduce:
     break;
 
   case 16:
-#line 118 "shell.y" /* yacc.c:1646  */
+#line 119 "shell.y" /* yacc.c:1646  */
     {
     //printf("   Yacc: append both \"%s\"\n", $2->c_str());
     Shell::_currentCommand._outFile = (yyvsp[0].cpp_string);
@@ -1345,7 +1345,7 @@ yyreduce:
     break;
 
   case 17:
-#line 124 "shell.y" /* yacc.c:1646  */
+#line 125 "shell.y" /* yacc.c:1646  */
     {
     //printf("   Yacc: insert both \"%s\"\n", $2->c_str());
     Shell::_currentCommand._outFile = (yyvsp[0].cpp_string);
@@ -1355,7 +1355,7 @@ yyreduce:
     break;
 
   case 18:
-#line 129 "shell.y" /* yacc.c:1646  */
+#line 130 "shell.y" /* yacc.c:1646  */
     {
     //printf("   Yacc: insert error \"%s\"\n", $2->c_str());
     Shell::_currentCommand._errFile = (yyvsp[0].cpp_string);
@@ -1364,7 +1364,7 @@ yyreduce:
     break;
 
   case 19:
-#line 133 "shell.y" /* yacc.c:1646  */
+#line 134 "shell.y" /* yacc.c:1646  */
     {
     //printf("   Yacc: change inFile \"%s\"\n", $2->c_str());
     Shell::_currentCommand._inFile = (yyvsp[0].cpp_string);
@@ -1373,7 +1373,7 @@ yyreduce:
     break;
 
   case 24:
-#line 150 "shell.y" /* yacc.c:1646  */
+#line 151 "shell.y" /* yacc.c:1646  */
     {
     Shell::_currentCommand._background = true;
   }
@@ -1609,7 +1609,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 156 "shell.y" /* yacc.c:1906  */
+#line 157 "shell.y" /* yacc.c:1906  */
 
 
 void
