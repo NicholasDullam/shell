@@ -159,6 +159,7 @@ void Command::execute() {
         // Built-in parent function parsing
         if (!strcmp(args[0], "setenv")) {
             int env = putenv(args[1]);
+            printf("%d", env);
         } else if (!strcmp(args[0], "unsetenv")) {
             int env = unsetenv(args[1]);
         } else if (!strcmp(args[0], "cd")) {
