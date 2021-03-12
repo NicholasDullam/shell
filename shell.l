@@ -87,7 +87,7 @@ void remove_character(char* s, char c) {
 }
 
 [^ \t\n]*\"*[^ \t\n][^ \t\n]*\"[^ \t\n]* {
-  printf("testing")
+  printf("testing");
   yylval.cpp_string = new std::string(yytext);
   return WORD;
 }
