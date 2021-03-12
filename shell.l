@@ -122,16 +122,12 @@ void removeStartAndEnd(char* s) {
   close(pout[1]);
 
   char fromChild[100];
-  write(pin[1], "ls\n", 4);
+  write(pin[1], strcat(yytext, '\n'), strlen(yytext) + 1);
   write(pin[1], "exit\n", 6);
   close(pin[1]);
 
   int n = read(pout[0], fromChild, 100);
   fromChild[n] = '\0';
-  close(pout[0]);
-
-  printf("%s", fromChild);
-
   close(pout[0]);
 
   for (int i = strlen(fromChild) - 1; i >= 0; i--) {
