@@ -115,6 +115,7 @@ void removeStartAndEnd(char* s) {
 
   int n;
   char buffer[1025];
+  char str[] = "exit\n";
   write(pin[1], &str, 6);
   close(pin[1]);
 
