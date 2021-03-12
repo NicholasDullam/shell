@@ -100,11 +100,13 @@ void removeStartAndEnd(char* s) {
 
   int ret = fork();
   if (ret == 0) {
-      close(pin[1]);
-      close(pout[0]);
       // Execute shell executable
       dup2(pin[0], 0);
       dup2(pout[1], 1);
+      close(pin[1]);
+      close(pout[0]);
+      close(pin[0]);
+      close(pout[1]);
       execvp("/proc/self/exe", NULL);
       perror("Error in Child Process");
       exit(1);
@@ -114,9 +116,6 @@ void removeStartAndEnd(char* s) {
 
   int n;
   char buffer[1025];
-
-  close(pin[0]);
-  close(pout[1]);
   write(pin[1], "exit\n", 6);
   if ((n = read ( pout[0], buffer, 1024 ) ) >= 0) {
       buffer[n] = 0;  //terminate the string
