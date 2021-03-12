@@ -590,7 +590,7 @@ void removeStartAndEnd(char* s) {
     s[i - 1] = s[i];
     printf("%s", s);
   }   
-  s[n - 1] = '\0';
+  s[n - 2] = '\0';
 }
 
 #line 597 "lex.yy.cc"
