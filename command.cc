@@ -144,6 +144,9 @@ void Command::execute() {
         dup2(fdin, 0);
         close(fdin);
 
+        // Declare environment variable reference
+        extern char ** environ;
+
         // Dynamically allocated arguments from _simpleCommands[i]
         char** args = (char**) malloc((_simpleCommands[i]->_arguments.size() + 1) * sizeof(char*));
         for (int j = 0; j < _simpleCommands[i]->_arguments.size(); j++) {
@@ -165,53 +168,50 @@ void Command::execute() {
             exit(0);
         } else if (!strcmp(args[0], "exit")) {
             exit(0);
-        }
-
-        if (i == _simpleCommands.size() - 1) {
-            // Check file descriptors for last command
-            if (_outFile) {
-                int flag = _append?O_APPEND:O_TRUNC;
-                fdout = open((*_outFile).c_str(), flag | O_WRONLY | O_CREAT, 0666);
-            } else {
-                fdout = dup(tempout);
-            }
         } else {
-            // Pipe command if not the last command
-            int fdpipe[2];
-            pipe(fdpipe);
-            fdin = fdpipe[0];
-            fdout = fdpipe[1];
-        }
-
-        dup2(fdout, 1);
-        close(fdout);
-
-        // Declare environment variable reference
-        extern char ** environ;
-
-        // Initialize new child process
-        ret = fork();
-
-        if (ret == 0) {
-            // Built-in function parsing and execution
-            if (!strcmp(args[0], "printenv")){
-                char **p = environ;
-                while (*p != NULL){
-                    printf("%s\n", *p);
-                    p++;
+            if (i == _simpleCommands.size() - 1) {
+                // Check file descriptors for last command
+                if (_outFile) {
+                    int flag = _append?O_APPEND:O_TRUNC;
+                    fdout = open((*_outFile).c_str(), flag | O_WRONLY | O_CREAT, 0666);
+                } else {
+                    fdout = dup(tempout);
                 }
-                exit(0);
+            } else {
+                // Pipe command if not the last command
+                int fdpipe[2];
+                pipe(fdpipe);
+                fdin = fdpipe[0];
+                fdout = fdpipe[1];
             }
 
-            // Execute arg[0] executable
-            execvp(args[0], args);
-            perror("Error in Child Process");
-            exit(1);
-        } 
-        
-        else if (ret < 0) {
-            perror("Error Forking Child");
-            return;
+            dup2(fdout, 1);
+            close(fdout);
+
+            // Initialize new child process
+            ret = fork();
+
+            if (ret == 0) {
+                // Built-in function parsing and execution
+                if (!strcmp(args[0], "printenv")){
+                    char **p = environ;
+                    while (*p != NULL){
+                        printf("%s\n", *p);
+                        p++;
+                    }
+                    exit(0);
+                }
+
+                // Execute arg[0] executable
+                execvp(args[0], args);
+                perror("Error in Child Process");
+                exit(1);
+            } 
+            
+            else if (ret < 0) {
+                perror("Error Forking Child");
+                return;
+            }
         }
 
         // Free dynamically allocated arguments
