@@ -38,12 +38,11 @@ void removeStartAndEnd(char* s) {
   int j, n = strlen(s);
 
   s[0] = '\0';
-  s[n - 1] = '\0';
-
   for (int i = 1; i < n - 1; i++) {
     printf("%c", s[i]);
     s[i - 1] = s[i];
   }   
+  s[n - 1] = '\0';
 }
 
 %}
