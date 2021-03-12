@@ -110,11 +110,12 @@ void removeStartAndEnd(char* s) {
       exit(1);
   } else if (ret < 0) {
       perror("Error Forking Child");
+      exit(1);
   }
 
   int n;
   char buffer[1025];
-  write(pin[1], "exit\n", 6);
+  write(pin[1], &str, 6);
   close(pin[1]);
 
   if ((n = read ( pout[0], buffer, 1024 ) ) >= 0) {
