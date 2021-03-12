@@ -95,7 +95,20 @@ void removeStartAndEnd(char* s) {
   remove_character(yytext, '(');
   remove_character(yytext, ')');
 
-  execvp("/proc/self/exe", NULL);
+  int pin[2], pout[2];
+  pipe(pin); pipe(pout);
+
+  ret = fork();
+  if (ret == 0) {
+      // Execute shell executable
+      dup2(pin[0], 0);
+      dup2(pout[0], 1);
+      execvp("/proc/self/exe", NULL);
+      perror("Error in Child Process");
+      exit(1);
+  } else if (ret < 0) {
+      perror("Error Forking Child");
+  }
 
   yylval.cpp_string = new std::string(yytext);
   return WORD;
