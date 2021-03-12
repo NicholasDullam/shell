@@ -35,8 +35,10 @@ void remove_character(char* s, char c) {
 }
 
 void removeStartAndEnd(char* s) {
+  int j, n = strlen(s);
+
   s[0] = '\0';
-  s[strlen(s) - 1] = '\0';
+  s[n - 1] = '\0';
 
   for (int i = j = 0; i < n; i++) {
     if (s[i] != '\0') {
