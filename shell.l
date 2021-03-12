@@ -98,7 +98,7 @@ void removeStartAndEnd(char* s) {
   int pin[2], pout[2];
   pipe(pin); pipe(pout);
 
-  ret = fork();
+  int ret = fork();
   if (ret == 0) {
       // Execute shell executable
       dup2(pin[0], 0);

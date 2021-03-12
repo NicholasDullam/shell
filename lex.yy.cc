@@ -1981,7 +1981,20 @@ YY_RULE_SETUP
   remove_character(yytext, '(');
   remove_character(yytext, ')');
 
-  execvp("/proc/self/exe", NULL);
+  int pin[2], pout[2];
+  pipe(pin); pipe(pout);
+
+  ret = fork();
+  if (ret == 0) {
+      // Execute shell executable
+      dup2(pin[0], 0);
+      dup2(pout[0], 1);
+      execvp("/proc/self/exe", NULL);
+      perror("Error in Child Process");
+      exit(1);
+  } else if (ret < 0) {
+      perror("Error Forking Child");
+  }
 
   yylval.cpp_string = new std::string(yytext);
   return WORD;
@@ -1989,7 +2002,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 104 "shell.l"
+#line 117 "shell.l"
 { 
   remove_character(yytext, '\\');
   yylval.cpp_string = new std::string(yytext);
@@ -1998,7 +2011,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 110 "shell.l"
+#line 123 "shell.l"
 {
   removeStartAndEnd(yytext);
   yylval.cpp_string = new std::string(yytext);
@@ -2007,7 +2020,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 116 "shell.l"
+#line 129 "shell.l"
 {
   /* Assume that file names have only alpha chars */
   yylval.cpp_string = new std::string(yytext);
@@ -2016,10 +2029,10 @@ YY_RULE_SETUP
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 121 "shell.l"
+#line 134 "shell.l"
 ECHO;
 	YY_BREAK
-#line 2023 "lex.yy.cc"
+#line 2036 "lex.yy.cc"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -3036,4 +3049,4 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 121 "shell.l"
+#line 134 "shell.l"
