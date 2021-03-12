@@ -2001,10 +2001,10 @@ YY_RULE_SETUP
   char *iterator = buffer;
   write(pin[1], "exit\n", 6);
   close(pin[1]);
-/*
+
   while (read(pout[0], iterator, 1) != -1) {
     iterator++;
-  }*/
+  }
 
   close(pout[0]);
 

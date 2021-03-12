@@ -117,8 +117,11 @@ void removeStartAndEnd(char* s) {
   close(pin[1]);
 
   while (read(pout[0], iterator, 1) != -1) {
+    buffer[strlen(buffer) - 1] = '\0';
+    printf("%s", buffer);
     iterator++;
   }
+
 
   close(pout[0]);
 
