@@ -52,9 +52,9 @@ void source(char *s) {
   } else {
     yy_switch_to_buffer( yy_create_buffer( yyin, YY_BUF_SIZE ) );
     yyparse();
+    yyrestart(stdin);
+    yyparse();
   }
-
-  BEGIN(INITIAL);
 }
 
 void removeStartAndEnd(char* s) {
