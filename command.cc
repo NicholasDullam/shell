@@ -176,7 +176,6 @@ void Command::execute() {
             exit(0);
         } else if (!strcmp(args[0], "source")){
             source(args[1]);
-            exit(0);
         } else {
             if (i == _simpleCommands.size() - 1) {
                 // Check file descriptors for last command
