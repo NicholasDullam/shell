@@ -69,10 +69,10 @@ void removeStartAndEnd(char* s) {
 
 %option noyywrap
 
- %{
-#define MAX_INCLUDE_DEPTH 10
-YY_BUFFER_STATE include_stack[MAX_INCLUDE_DEPTH];
-int include_stack_ptr = 0;
+%{
+  #define MAX_INCLUDE_DEPTH 10
+  YY_BUFFER_STATE include_stack[MAX_INCLUDE_DEPTH];
+  int include_stack_ptr = 0;
 %}
 
 %%
