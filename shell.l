@@ -53,6 +53,8 @@ void source(char *s) {
     yy_switch_to_buffer( yy_create_buffer( yyin, YY_BUF_SIZE ) );
     yyparse();
   }
+
+  BEGIN(INITIAL);
 }
 
 void removeStartAndEnd(char* s) {
@@ -68,12 +70,6 @@ void removeStartAndEnd(char* s) {
 %}
 
 %option noyywrap
-
-%{
-  #define MAX_INCLUDE_DEPTH 10
-  YY_BUFFER_STATE include_stack[MAX_INCLUDE_DEPTH];
-  int include_stack_ptr = 0;
-%}
 
 %%
 
@@ -198,7 +194,7 @@ void removeStartAndEnd(char* s) {
 <<EOF>> {
   if ( --include_stack_ptr == 0 )
       {
-      yyterminate();
+        yyterminate();
       }
 
   else
