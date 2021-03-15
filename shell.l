@@ -50,9 +50,9 @@ void source(char *s) {
   if (!yyin) {
     fprintf( stderr, "No File" );
   } else {
-    yy_switch_to_buffer( yy_create_buffer( yyin, YY_BUF_SIZE ) );
+    yy_push_buffer_state( yy_create_buffer( yyin, YY_BUF_SIZE ) );
     yyparse();
-    yyrestart(stdin);
+    yy_pop_buffer_state();
     yyparse();
   }
 }
