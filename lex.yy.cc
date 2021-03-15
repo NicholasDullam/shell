@@ -2080,7 +2080,7 @@ case YY_STATE_EOF(INITIAL):
 #line 184 "shell.l"
 {
   yypop_buffer_state();
-  if ( --include_stack_ptr == 0 )
+  if ( !YY_CURRENT_BUFFER )
     {
     yyterminate();
     }
