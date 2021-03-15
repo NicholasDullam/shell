@@ -47,7 +47,6 @@ void source(char *s) {
     yypush_buffer_state( yy_create_buffer( yyin, YY_BUF_SIZE ) );
     fclose(yyin);
     yyparse();
-    yyrestart(stdin);   
   }
 }
 
