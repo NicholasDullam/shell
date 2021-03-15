@@ -44,7 +44,7 @@ void source(char *s) {
   if (!yyin) {
     fprintf( stderr, "No File" );
   } else {
-    yy_restart(stdin);    
+    yyrestart(stdin);    
     yypush_buffer_state( yy_create_buffer( yyin, YY_BUF_SIZE ) );
     yy_flush_buffer( YY_CURRENT_BUFFER ); 
     yyparse();
