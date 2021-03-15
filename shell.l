@@ -38,6 +38,7 @@ void source(char *s) {
   printf("Running Source");
   FILE *yyin = fopen(s, "r");
   yypush_buffer_state(yy_create_buffer( yyin, YY_BUF_SIZE ));
+  yyparse();
 }
 
 void removeStartAndEnd(char* s) {
