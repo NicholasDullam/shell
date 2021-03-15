@@ -183,6 +183,9 @@ void removeStartAndEnd(char* s) {
 
 <<EOF>> {
   yypop_buffer_state();
-  yyterminate();
+  if ( --include_stack_ptr == 0 )
+    {
+    yyterminate();
+    }
 }
 
