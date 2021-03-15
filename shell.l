@@ -12,6 +12,10 @@
 #include <cstring>
 #include "y.tab.hh"
 
+#define MAX_INCLUDE_DEPTH 10
+YY_BUFFER_STATE include_stack[MAX_INCLUDE_DEPTH];
+int include_stack_ptr = 0;
+
 static  void yyunput (int c,char *buf_ptr  );
 
 void myunputc(int c) {
@@ -66,12 +70,6 @@ void removeStartAndEnd(char* s) {
 %}
 
 %option noyywrap
-
-%{
-#define MAX_INCLUDE_DEPTH 10
-YY_BUFFER_STATE include_stack[MAX_INCLUDE_DEPTH];
-int include_stack_ptr = 0;
-%}
 
 %%
 
