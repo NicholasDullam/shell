@@ -53,7 +53,6 @@ void source(char *s) {
     yy_switch_to_buffer( yy_create_buffer( yyin, YY_BUF_SIZE ) );
     yyparse();
     yyrestart(stdin);
-    yyparse();
   }
 }
 
@@ -195,12 +194,5 @@ void removeStartAndEnd(char* s) {
   if ( --include_stack_ptr == 0 )
       {
         yyterminate();
-      }
-
-  else
-      {
-      yy_delete_buffer( YY_CURRENT_BUFFER );
-      yy_switch_to_buffer(
-            include_stack[include_stack_ptr] );
       }
   }
