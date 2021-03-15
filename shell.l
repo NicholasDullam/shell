@@ -35,13 +35,19 @@ void remove_character(char* s, char c) {
 }
 
 void source(char *s) {
-  printf("Running Source");
+  if ( include_stack_ptr >= MAX_INCLUDE_DEPTH )
+    {
+    fprintf( stderr, "Includes nested too deeply" );
+    exit( 1 );
+    }
+
+  include_stack[include_stack_ptr++] = YY_CURRENT_BUFFER;
   FILE *yyin = fopen(s, "r");
+
   if (!yyin) {
-    printf("Error");
+    fprintf( stderr, "No File" );
   } else {
-    yypush_buffer_state(yy_create_buffer( yyin, YY_BUF_SIZE ));
-    yyparse();
+    yy_switch_to_buffer( yy_create_buffer( yyin, YY_BUF_SIZE ) );
     yyrestart(stdin);
     yyparse();
   }
@@ -60,6 +66,12 @@ void removeStartAndEnd(char* s) {
 %}
 
 %option noyywrap
+
+%{
+#define MAX_INCLUDE_DEPTH 10
+YY_BUFFER_STATE include_stack[MAX_INCLUDE_DEPTH];
+int include_stack_ptr = 0;
+%}
 
 %%
 
