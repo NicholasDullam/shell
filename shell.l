@@ -180,3 +180,7 @@ void removeStartAndEnd(char* s) {
   return WORD;
 }
 
+<<EOF>> {
+  yypop_buffer_state();
+}
+
