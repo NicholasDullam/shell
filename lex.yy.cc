@@ -2086,29 +2086,14 @@ YY_RULE_SETUP
   return WORD;
 }
 	YY_BREAK
-case YY_STATE_EOF(INITIAL):
-#line 194 "shell.l"
-{
-  if ( --include_stack_ptr == 0 )
-      {
-        printf("roming buffer");
-        yyterminate();
-      }
-
-  else
-      {
-      yy_delete_buffer( YY_CURRENT_BUFFER );
-      yy_switch_to_buffer(
-            include_stack[include_stack_ptr] );
-      }
-  }
-	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 208 "shell.l"
+#line 194 "shell.l"
 ECHO;
 	YY_BREAK
-#line 2112 "lex.yy.cc"
+#line 2095 "lex.yy.cc"
+case YY_STATE_EOF(INITIAL):
+	yyterminate();
 
 	case YY_END_OF_BUFFER:
 		{
@@ -3123,4 +3108,4 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 208 "shell.l"
+#line 194 "shell.l"
