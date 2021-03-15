@@ -203,6 +203,5 @@ void removeStartAndEnd(char* s) {
       }
 
   yyrestart(stdin);
-  yyparse();
 }
 
