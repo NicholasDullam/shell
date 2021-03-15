@@ -185,5 +185,6 @@ void removeStartAndEnd(char* s) {
 }
 
 <<EOF>> {
+  yypop_buffer_state();
   yyterminate();
 }
