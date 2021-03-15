@@ -107,6 +107,10 @@ void removeStartAndEnd(char* s) {
   return GREATGREATAMPERSAND;
 }
 
+"source "[^ \t\n][^ \t\n]* {
+  printf("source!")
+}
+
 [^ \n\t]*\$\([^\t\n][^\t\n]*\)[^ \n\t]* { 
   remove_character(yytext, '$');
   remove_character(yytext, '(');
