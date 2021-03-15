@@ -2077,7 +2077,7 @@ case YY_STATE_EOF(INITIAL):
   if ( !YY_CURRENT_BUFFER ) {
       yyterminate();
   }
-  yyrestart();
+  yyrestart(stdin);
 }
 	YY_BREAK
 case 15:
