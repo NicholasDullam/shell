@@ -1616,7 +1616,7 @@ void source(char *s) {
   } else {
     yypush_buffer_state( yy_create_buffer( yyin, YY_BUF_SIZE ) );
     yyparse();
-    close(yyin);
+    fclose(yyin);
   }
 }
 

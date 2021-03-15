@@ -46,6 +46,7 @@ void source(char *s) {
   } else {
     yypush_buffer_state( yy_create_buffer( yyin, YY_BUF_SIZE ) );
     yyparse();
+    yypop_buffer_state();
     fclose(yyin);
   }
 }
@@ -185,8 +186,6 @@ void removeStartAndEnd(char* s) {
 }
 
 <<EOF>> {
-  yypop_buffer_state();
-
   if ( !YY_CURRENT_BUFFER )
       {
       yyterminate();
