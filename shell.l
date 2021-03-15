@@ -38,7 +38,7 @@ void remove_character(char* s, char c) {
   s[j] = '\0';
 }
 
-void source(char *s) {
+/*void source(char *s) {
   FILE *yyin = fopen(s, "r");
 
   if (!yyin) {
@@ -48,7 +48,7 @@ void source(char *s) {
     yyparse();
     fclose(yyin);
   }
-}
+}*/
 
 void removeStartAndEnd(char* s) {
   int j, n = strlen(s);
@@ -182,10 +182,4 @@ void removeStartAndEnd(char* s) {
   /* Assume that file names have only alpha chars */
   yylval.cpp_string = new std::string(yytext);
   return WORD;
-}
-
-<<EOF>> {
-  printf("testing");
-  yypop_buffer_state();
-  yyterminate();
 }
