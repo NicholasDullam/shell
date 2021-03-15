@@ -185,9 +185,4 @@ void removeStartAndEnd(char* s) {
     {
       yyterminate();
     }
-
-  else 
-    {
-      yyrestart(stdin);
-    }
 }
