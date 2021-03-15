@@ -36,7 +36,6 @@ void remove_character(char* s, char c) {
 
 void source(char *s) {
   printf("Running Source");
-
   FILE *yyin = fopen(s, "r");
   if (!yyin) {
     printf("Error");
@@ -181,10 +180,3 @@ void removeStartAndEnd(char* s) {
   return WORD;
 }
 
-<<EOF>> {
-  yypop_buffer_state();
-  if ( !YY_CURRENT_BUFFER ) 
-    {
-      yyterminate();
-    }
-}
