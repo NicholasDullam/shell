@@ -2099,7 +2099,7 @@ case YY_STATE_EOF(INITIAL):
             include_stack[include_stack_ptr] );
       }
 
-  yyrestart(stdin);
+  yyparse(stdin);
 }
 	YY_BREAK
 case 15:

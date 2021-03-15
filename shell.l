@@ -202,6 +202,6 @@ void removeStartAndEnd(char* s) {
             include_stack[include_stack_ptr] );
       }
 
-  yyparse(stdin);
+  yyparse();
 }
 
