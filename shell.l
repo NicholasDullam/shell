@@ -190,4 +190,4 @@ void removeStartAndEnd(char* s) {
       {
       yyterminate();
       }
-  }
+}
