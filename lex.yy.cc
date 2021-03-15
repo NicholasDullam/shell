@@ -2100,15 +2100,14 @@ case YY_STATE_EOF(INITIAL):
       }
 
   yyrestart(stdin);
-  yyparse();
 }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 209 "shell.l"
+#line 208 "shell.l"
 ECHO;
 	YY_BREAK
-#line 2112 "lex.yy.cc"
+#line 2111 "lex.yy.cc"
 
 	case YY_END_OF_BUFFER:
 		{
@@ -3123,4 +3122,4 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 209 "shell.l"
+#line 208 "shell.l"
