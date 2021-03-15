@@ -1608,7 +1608,7 @@ void remove_character(char* s, char c) {
   s[j] = '\0';
 }
 
-void source(char *s) {
+/*void source(char *s) {
   if ( include_stack_ptr >= MAX_INCLUDE_DEPTH )
     {
     exit( 1 );
@@ -1623,7 +1623,7 @@ void source(char *s) {
     yy_switch_to_buffer( yy_create_buffer( yyin, YY_BUF_SIZE ) );
     yyparse();
   }
-}
+}*/
 
 void removeStartAndEnd(char* s) {
   int j, n = strlen(s);
@@ -2084,28 +2084,14 @@ YY_RULE_SETUP
   return WORD;
 }
 	YY_BREAK
-case YY_STATE_EOF(INITIAL):
-#line 192 "shell.l"
-{
-  if ( --include_stack_ptr == 0 )
-      {
-        yyterminate();
-      }
-
-  else
-      {
-      yy_delete_buffer( YY_CURRENT_BUFFER );
-      yy_switch_to_buffer(
-            include_stack[include_stack_ptr] );
-      }
-}
-	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 206 "shell.l"
+#line 192 "shell.l"
 ECHO;
 	YY_BREAK
-#line 2109 "lex.yy.cc"
+#line 2093 "lex.yy.cc"
+case YY_STATE_EOF(INITIAL):
+	yyterminate();
 
 	case YY_END_OF_BUFFER:
 		{
@@ -3120,4 +3106,4 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 206 "shell.l"
+#line 192 "shell.l"
