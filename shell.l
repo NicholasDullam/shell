@@ -39,12 +39,6 @@ void remove_character(char* s, char c) {
 }
 
 void source(char *s) {
-  if ( include_stack_ptr >= MAX_INCLUDE_DEPTH )
-    {
-    exit( 1 );
-    }
-
-  include_stack[include_stack_ptr++] = YY_CURRENT_BUFFER;
   FILE *yyin = fopen(s, "r");
 
   if (!yyin) {
@@ -52,9 +46,7 @@ void source(char *s) {
   } else {
     yypush_buffer_state( yy_create_buffer( yyin, YY_BUF_SIZE ) );
     yyparse();
-    yyrestart(stdin);
-    yypop_buffer_state();
-    yyparse();
+    close(yyin);
   }
 }
 
@@ -192,3 +184,11 @@ void removeStartAndEnd(char* s) {
   return WORD;
 }
 
+<<EOF>> {
+  yypop_buffer_state();
+
+  if ( !YY_CURRENT_BUFFER )
+      {
+      yyterminate();
+      }
+  }
