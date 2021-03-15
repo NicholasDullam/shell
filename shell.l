@@ -41,7 +41,6 @@ void remove_character(char* s, char c) {
 void source(char *s) {
   if ( include_stack_ptr >= MAX_INCLUDE_DEPTH )
     {
-    fprintf( stderr, "Includes nested too deeply" );
     exit( 1 );
     }
 
