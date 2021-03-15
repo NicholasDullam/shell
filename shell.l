@@ -181,8 +181,13 @@ void removeStartAndEnd(char* s) {
 
 <<EOF>> {
   yypop_buffer_state();
-  if ( !YY_CURRENT_BUFFER ) {
+  if ( !YY_CURRENT_BUFFER ) 
+    {
       yyterminate();
-  }
-  yyrestart(stdin);
+    }
+
+  else 
+    {
+      yyrestart(stdin);
+    }
 }

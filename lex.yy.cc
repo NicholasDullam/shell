@@ -1608,7 +1608,7 @@ void source(char *s) {
   printf("Running Source");
   FILE *yyin = fopen(s, "r");
   if (!yyin) {
-    printf("Error")
+    printf("Error");
   } else {
     yypush_buffer_state(yy_create_buffer( yyin, YY_BUF_SIZE ));
     yyparse();
