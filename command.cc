@@ -204,6 +204,8 @@ void Command::execute() {
                         p++;
                     }
                     exit(0);
+                } else if (!strcmp(args[0], "source")){
+                    exit(0);
                 }
 
                 // Execute arg[0] executable
