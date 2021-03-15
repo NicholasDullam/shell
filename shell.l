@@ -108,7 +108,7 @@ void removeStartAndEnd(char* s) {
 }
 
 "source "[^ \t\n][^ \t\n]* {
-  printf("source!")
+  printf("source!");
 }
 
 [^ \n\t]*\$\([^\t\n][^\t\n]*\)[^ \n\t]* { 
