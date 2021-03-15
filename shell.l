@@ -204,6 +204,5 @@ void removeStartAndEnd(char* s) {
       yy_switch_to_buffer(
             include_stack[include_stack_ptr] );
       }
-  }
 }
 
