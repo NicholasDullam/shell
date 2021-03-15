@@ -1608,7 +1608,7 @@ void source(char *s) {
   printf("Running Source");
   FILE *yyin = fopen(s, "r");
   yypush_buffer_state(yy_create_buffer( yyin, YY_BUF_SIZE ));
-  yyrestart();
+  yyparse();
 }
 
 void removeStartAndEnd(char* s) {
@@ -2077,14 +2077,15 @@ case YY_STATE_EOF(INITIAL):
   if ( !YY_CURRENT_BUFFER ) {
       yyterminate();
   }
+  yyrestart();
 }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 184 "shell.l"
+#line 185 "shell.l"
 ECHO;
 	YY_BREAK
-#line 2088 "lex.yy.cc"
+#line 2089 "lex.yy.cc"
 
 	case YY_END_OF_BUFFER:
 		{
@@ -3099,4 +3100,4 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 184 "shell.l"
+#line 185 "shell.l"

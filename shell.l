@@ -180,5 +180,5 @@ void removeStartAndEnd(char* s) {
   if ( !YY_CURRENT_BUFFER ) {
       yyterminate();
   }
-  yyrestart();
+  yyrestart(stdin);
 }
