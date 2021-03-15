@@ -30,7 +30,7 @@
 #include "command.hh"
 #include "shell.hh"
 
-//void source(char *s);
+void source(char *s);
 
 Command::Command() {
     // Initialize a new vector of Simple Commands
@@ -174,6 +174,9 @@ void Command::execute() {
             }
         } else if (!strcmp(args[0], "exit")) {
             exit(0);
+        } else if (!strcmp(args[0], "source")){
+            source(args[1]);
+            exit(0);
         } else {
             if (i == _simpleCommands.size() - 1) {
                 // Check file descriptors for last command
@@ -205,9 +208,6 @@ void Command::execute() {
                         printf("%s\n", *p);
                         p++;
                     }
-                    exit(0);
-                } else if (!strcmp(args[0], "source")){
-                    //source(args[1]);
                     exit(0);
                 }
 
