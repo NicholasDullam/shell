@@ -1605,7 +1605,7 @@ void remove_character(char* s, char c) {
 }
 
 void source(char *s) {
-  FILE yyin = fopen(s, "r");
+  FILE *yyin = fopen(s, "r");
   yypush_buffer_state(yy_create_buffer( yyin, YY_BUF_SIZE ));
 
 }

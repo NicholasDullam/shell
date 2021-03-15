@@ -30,6 +30,8 @@
 #include "command.hh"
 #include "shell.hh"
 
+void source(char *s);
+
 Command::Command() {
     // Initialize a new vector of Simple Commands
     _simpleCommands = std::vector<SimpleCommand *>();
@@ -205,6 +207,7 @@ void Command::execute() {
                     }
                     exit(0);
                 } else if (!strcmp(args[0], "source")){
+                    source(args[1]);
                     exit(0);
                 }
 
