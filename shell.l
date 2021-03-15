@@ -44,6 +44,7 @@ void source(char *s) {
   if (!yyin) {
     fprintf( stderr, "No File" );
   } else {
+    yyflush_buffer_state( YY_CURRENT_BUFFER ); 
     yypush_buffer_state( yy_create_buffer( yyin, YY_BUF_SIZE ) );
     yyparse();
     yypop_buffer_state();
@@ -105,10 +106,6 @@ void removeStartAndEnd(char* s) {
 
 ">>&" {
   return GREATGREATAMPERSAND;
-}
-
-"source "[^ \t\n][^ \t\n]* {
-  printf("source!");
 }
 
 [^ \n\t]*\$\([^\t\n][^\t\n]*\)[^ \n\t]* { 

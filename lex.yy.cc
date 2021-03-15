@@ -2323,7 +2323,7 @@ case 11:
 YY_RULE_SETUP
 #line 110 "shell.l"
 {
-  printf("source!")
+  printf("source!");
 }
 	YY_BREAK
 case 12:
