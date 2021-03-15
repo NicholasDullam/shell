@@ -38,7 +38,7 @@ void remove_character(char* s, char c) {
   s[j] = '\0';
 }
 
-void source(char *s) {
+/*void source(char *s) {
   if ( include_stack_ptr >= MAX_INCLUDE_DEPTH )
     {
     exit( 1 );
@@ -53,7 +53,7 @@ void source(char *s) {
     yy_switch_to_buffer( yy_create_buffer( yyin, YY_BUF_SIZE ) );
     yyparse();
   }
-}
+}*/
 
 void removeStartAndEnd(char* s) {
   int j, n = strlen(s);
@@ -187,19 +187,5 @@ void removeStartAndEnd(char* s) {
   /* Assume that file names have only alpha chars */
   yylval.cpp_string = new std::string(yytext);
   return WORD;
-}
-
-<<EOF>> {
-  if ( --include_stack_ptr == 0 )
-      {
-        yyterminate();
-      }
-
-  else
-      {
-      yy_delete_buffer( YY_CURRENT_BUFFER );
-      yy_switch_to_buffer(
-            include_stack[include_stack_ptr] );
-      }
 }
 
