@@ -2080,15 +2080,18 @@ case YY_STATE_EOF(INITIAL):
 #line 184 "shell.l"
 {
   yypop_buffer_state();
-  yyterminate();
+  if ( --include_stack_ptr == 0 )
+    {
+    yyterminate();
+    }
 }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 189 "shell.l"
+#line 192 "shell.l"
 ECHO;
 	YY_BREAK
-#line 2092 "lex.yy.cc"
+#line 2095 "lex.yy.cc"
 
 	case YY_END_OF_BUFFER:
 		{
@@ -3103,4 +3106,4 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 189 "shell.l"
+#line 192 "shell.l"
