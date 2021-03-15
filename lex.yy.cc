@@ -1608,7 +1608,7 @@ void remove_character(char* s, char c) {
   s[j] = '\0';
 }
 
-void source(char *s) {
+/*void source(char *s) {
   FILE *yyin = fopen(s, "r");
 
   if (!yyin) {
@@ -1618,7 +1618,7 @@ void source(char *s) {
     yyparse();
     fclose(yyin);
   }
-}
+}*/
 
 void removeStartAndEnd(char* s) {
   int j, n = strlen(s);
@@ -2079,20 +2079,14 @@ YY_RULE_SETUP
   return WORD;
 }
 	YY_BREAK
-case YY_STATE_EOF(INITIAL):
-#line 187 "shell.l"
-{
-  printf("testing");
-  yypop_buffer_state();
-  yyterminate();
-}
-	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 192 "shell.l"
+#line 186 "shell.l"
 ECHO;
 	YY_BREAK
-#line 2096 "lex.yy.cc"
+#line 2088 "lex.yy.cc"
+case YY_STATE_EOF(INITIAL):
+	yyterminate();
 
 	case YY_END_OF_BUFFER:
 		{
@@ -3107,4 +3101,4 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 192 "shell.l"
+#line 186 "shell.l"
