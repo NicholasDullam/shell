@@ -1614,7 +1614,7 @@ void source(char *s) {
   if (!yyin) {
     fprintf( stderr, "No File" );
   } else {
-    yyflush_buffer_state( YY_CURRENT_BUFFER ); 
+    yy_flush_buffer( YY_CURRENT_BUFFER ); 
     yypush_buffer_state( yy_create_buffer( yyin, YY_BUF_SIZE ) );
     yyparse();
     yypop_buffer_state();

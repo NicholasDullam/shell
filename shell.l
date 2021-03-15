@@ -45,6 +45,7 @@ void source(char *s) {
     fprintf( stderr, "No File" );
   } else {
     yy_flush_buffer( YY_CURRENT_BUFFER ); 
+    yypop_buffer_state();
     yypush_buffer_state( yy_create_buffer( yyin, YY_BUF_SIZE ) );
     yyparse();
     yypop_buffer_state();
