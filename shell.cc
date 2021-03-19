@@ -26,6 +26,9 @@ int main() {
     Shell::prompt();
   }
 
+  printf("b\");
+  printf("b\");
+
   struct sigaction sa;
   sa.sa_handler = disp;
   sigemptyset(&sa.sa_mask);
