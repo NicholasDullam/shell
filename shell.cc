@@ -27,7 +27,6 @@ int main() {
   }
 
   printf("\b");
-  printf("\b");
 
   struct sigaction sa;
   sa.sa_handler = disp;
