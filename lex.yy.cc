@@ -3246,7 +3246,7 @@ YY_RULE_SETUP
   }
 
   printf("%s", env);
-  //free(env);
+  free(env);
 
   char* target = (char*) malloc(sizeof(char) * size);
   char* iterator = target;

@@ -247,7 +247,6 @@ void removeStartAndEnd(char* s) {
     else buffer[0] = '\0';
   }
 
-  printf("%s", env);
   free(env);
 
   char* target = (char*) malloc(sizeof(char) * size);
