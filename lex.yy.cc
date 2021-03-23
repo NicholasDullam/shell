@@ -3212,10 +3212,10 @@ case 13:
 YY_RULE_SETUP
 #line 216 "shell.l"
 {
-  char* envStart = strchr(yytext, '{');
+  char* envStart = strchr(yytext, '{') + 1;
   printf("%s", envStart);
-  char* envEnd = strchr(yytext, '}');
-  int length = (int)(envEnd - envStart) - 2;
+  char* envEnd = strchr(yytext, '}') - 1;
+  int length = (int)(envEnd - envStart);
   printf("%d", length);
 
   char* env = (char*) malloc(sizeof(char) * length);

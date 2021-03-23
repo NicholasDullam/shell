@@ -216,7 +216,7 @@ void removeStartAndEnd(char* s) {
 [^ \n\t\$\{\}]*\$\{[^ \t\n\{\}][^ \t\n\{\}]*\}[^ \n\t\$\{\}]* {
   char* envStart = strchr(yytext, '{') + 1;
   printf("%s", envStart);
-  char* envEnd = strchr(yytext, '}') - 1;
+  char* envEnd = strchr(yytext, '}');
   int length = (int)(envEnd - envStart);
   printf("%d", length);
 
