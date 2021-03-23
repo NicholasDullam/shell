@@ -2154,12 +2154,12 @@ void remove_character(char* s, char c, int p) {
   int count = 0;
 
   for (int i = j = 0; i < n; i++) {
-    if (s[i] != c || escaped && !(p && count == p)) {
+    if (s[i] != c || escaped || (p && count == p)) {
       s[j++] = s[i];
       escaped = 0;
-      count++;
     } else {
       escaped = 1;
+      count++;
     }
   }   
 
