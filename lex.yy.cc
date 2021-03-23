@@ -3212,7 +3212,7 @@ case 13:
 YY_RULE_SETUP
 #line 216 "shell.l"
 {
-  int length = (int) (strchr(yytext, "}") - strchr(yytext, "{"));
+  int length = (int) (strchr(yytext, '}') - strchr(yytext, '{'));
   printf("%d", length);
 
   remove_character(yytext, '$', 1);
