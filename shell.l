@@ -248,7 +248,12 @@ void removeStartAndEnd(char* s) {
   char* target = (char*) malloc(sizeof(char) * size);
 
   strncpy(target, yytext, (int) (envStart - yytext) - 2);
-  target[(int) (envStart - yytext)] = '\0';
+  target[(int) (envStart - yytext) - 2] = '\0';
+
+  strncpy(target[strlen(target)], buffer, strlen(buffer));
+  target[strlen(target) + strlen(buffer)] = '\0';
+
+  //strncpy(target, yytext[(int) (envStart - yytext) + length], (int) yytext[strlen(yytext)] - envEnd);
   printf("%s", target);
 
   if(buffer) {

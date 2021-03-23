@@ -3245,7 +3245,7 @@ YY_RULE_SETUP
 
   char* target = (char*) malloc(sizeof(char) * size);
 
-  strncpy(target, yytext, (int) (envStart - yytext));
+  strncpy(target, yytext, (int) (envStart - yytext) - 2);
   target[(int) (envStart - yytext)] = '\0';
   printf("%s", target);
 
