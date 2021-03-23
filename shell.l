@@ -13,8 +13,6 @@
 #include <stdlib.h>
 #include "y.tab.hh"
 
-%{
-
 #include <string.h>
 #include "y.tab.h"
 
@@ -48,9 +46,6 @@ int mygetc(FILE * f) {
 #define getc(f) mygetc(f)
 
 /////////// End added code ///////////
-
-%}
-
 
 #define MAX_INCLUDE_DEPTH 10
 YY_BUFFER_STATE include_stack[MAX_INCLUDE_DEPTH];
