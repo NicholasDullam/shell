@@ -3244,8 +3244,8 @@ YY_RULE_SETUP
   }
 
   char* target = (char*) malloc(sizeof(char) * size);
-  char* iterator = target
-
+  char* iterator = target;
+  
   strncpy(iterator, yytext, (int) (envStart - yytext) - 2);
   iterator += (int) (envStart - yytext) - 2;
 
