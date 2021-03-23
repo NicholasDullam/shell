@@ -215,16 +215,12 @@ void removeStartAndEnd(char* s) {
 
 [^ \n\t\$\{\}]*\$\{[^ \t\n\{\}][^ \t\n\{\}]*\}[^ \n\t\$\{\}]* {
   char* envStart = strchr(yytext, '{') + 1;
-  printf("%s", envStart);
   char* envEnd = strchr(yytext, '}');
   int length = (int)(envEnd - envStart);
-  printf("%d", length);
 
   char* env = (char*) malloc(sizeof(char) * length);
   env = strncpy(env, envStart, length);
   env[length] = '\0';
-
-  printf("%s", env);
 
   remove_character(yytext, '$', 1);
   remove_character(yytext, '{', NULL);
@@ -233,24 +229,24 @@ void removeStartAndEnd(char* s) {
   int size = 1024;
   char* buffer = (char*) malloc(sizeof(char) * size);
 
-  if (!strcmp(yytext, "$")) {
+  if (!strcmp(env, "$")) {
     // Return PID of the Shell
     sprintf(buffer, "%d", getpid());
-  } else if (!strcmp(yytext, "?")) {
+  } else if (!strcmp(env, "?")) {
     // Return exit code of last command
-    buffer = getenv(yytext);
-  } else if (!strcmp(yytext, "!")) {
+    buffer = getenv(env);
+  } else if (!strcmp(env, "!")) {
     // Return PID of last background process
-    buffer = getenv(yytext);
-  } else if (!strcmp(yytext, "_")) {
+    buffer = getenv(env);
+  } else if (!strcmp(env, "_")) {
     // Return the last argument of the last command
     buffer = getenv("LAST_ARG");
-  } else if (!strcmp(yytext, "SHELL")) {
+  } else if (!strcmp(env, "SHELL")) {
     // Return the path of the shell
-    buffer = getenv(yytext);
+    buffer = getenv(env);
   } else {
     // Return ENV variable expansion
-    buffer = getenv(yytext);
+    buffer = getenv(env);
   }
 
   if(buffer) {

@@ -3214,7 +3214,7 @@ YY_RULE_SETUP
 {
   char* envStart = strchr(yytext, '{') + 1;
   printf("%s", envStart);
-  char* envEnd = strchr(yytext, '}') - 1;
+  char* envEnd = strchr(yytext, '}');
   int length = (int)(envEnd - envStart);
   printf("%d", length);
 
