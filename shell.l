@@ -242,7 +242,8 @@ void removeStartAndEnd(char* s) {
     buffer = getenv(env);
   } else {
     // Return ENV variable expansion
-    buffer = getenv(env);
+    if (getenv(env)) buffer = getenv(env);
+    else buffer[0] = '\0';
   }
 
   char* target = (char*) malloc(sizeof(char) * size);
