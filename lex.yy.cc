@@ -4053,7 +4053,7 @@ case 13:
 YY_RULE_SETUP
 #line 175 "shell.l"
 {
-  printf("Env expansion")
+  printf("Env expansion");
   yylval.cpp_string = new std::string(yytext);
   return WORD;
 }

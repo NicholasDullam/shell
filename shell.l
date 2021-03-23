@@ -174,8 +174,17 @@ void removeStartAndEnd(char* s) {
 
 \$\{[^\t\n][^\t\n]*\} {
   printf("Env expansion");
-  yylval.cpp_string = new std::string(yytext);
-  return WORD;
+  int size = 1024;
+  char* buffer = (char*) malloc(sizeof(char) * size);
+  buffer = getenv(yytext);
+  for (int i = strlen(buffer) - 1; i >= 0; i--) {
+    char c = ' ';
+    if (buffer[i] == '\n') {
+      myunputc(' ');
+    } else {
+      myunputc(buffer[i]);
+    }
+  }
 }
 
 [^ \t\n]*\"[^\t\n][^\t\n]*\"[^ \t\n]* {
