@@ -179,8 +179,7 @@ void removeStartAndEnd(char* s) {
   printf("Env expansion");
   int size = 1024;
   char* buffer = (char*) malloc(sizeof(char) * size);
-  buffer = getenv(yytext);
-  printf("%s", buffer);
+  printf("%s", getenv(yytext));
   /*
   for (int i = strlen(buffer) - 1; i >= 0; i--) {
     char c = ' ';
