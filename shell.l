@@ -218,19 +218,11 @@ void removeStartAndEnd(char* s) {
 
   int size = 1024;
   char* buffer = (char*) malloc(sizeof(char) * size);
-
-
   buffer = getenv(yytext);
-  
 
   if(buffer) {
     for (int i = strlen(buffer) - 1; i >= 0; i--) {
-      char c = ' ';
-      if (buffer[i] == '\n') {
-        myunputc(' ');
-      } else {
-        myunputc(buffer[i]);
-      }
+      myunputc(buffer[i]);
     }
   }
 
