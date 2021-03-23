@@ -216,11 +216,13 @@ void removeStartAndEnd(char* s) {
 [^ \n\t\$\{\}]*\$\{[^ \t\n\{\}][^ \t\n\{\}]*\}[^ \n\t\$\{\}]* {
   char* envStart = strchr(yytext, '}');
   char* envEnd = strchr(yytext, '{');
-  int length = (int)(envEnd - envStart) - 2);
+  int length = (int)(envEnd - envStart) - 2;
 
   char* env = (char*) malloc(sizeof(char) * length);
   env = strncpy(envStart, env, length);
   env[length] = '\0';
+
+  printf("%s", env);
 
   remove_character(yytext, '$', 1);
   remove_character(yytext, '{', NULL);
