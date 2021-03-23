@@ -236,7 +236,8 @@ void removeStartAndEnd(char* s) {
     buffer = getenv(env);
   } else if (!strcmp(env, "_")) {
     // Return the last argument of the last command
-    buffer = getenv("LAST_ARG");
+    if (getenv("LAST_ARG")) buffer = getenv("LAST_ARG");
+    else buffer[0] = '\0';
   } else if (!strcmp(env, "SHELL")) {
     // Return the path of the shell
     buffer = getenv(env);
