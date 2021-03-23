@@ -245,7 +245,7 @@ void Command::execute() {
         int status;
         char statusConv[1024];
         waitpid(ret, &status, 0);
-        sprintf(statusConv, "%d", status);
+        sprintf(statusConv, "%d", WEXITSTATUS(status));
         setenv("LAST_STAT", statusConv, 1);
     } else {
         // Set the last running background process
