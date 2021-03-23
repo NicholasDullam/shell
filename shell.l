@@ -224,6 +224,7 @@ void removeStartAndEnd(char* s) {
 
   int size = 1024;
   char* buffer = (char*) malloc(sizeof(char) * size);
+  char* initialBuffer = buffer;
 
   if (!strcmp(env, "$")) {
     // Return PID of the Shell
@@ -272,7 +273,7 @@ void removeStartAndEnd(char* s) {
     }
   }
 
-  //free(buffer);
+  free(initialBuffer);
   free(target);
 }
 
