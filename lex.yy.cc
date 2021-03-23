@@ -3253,7 +3253,7 @@ YY_RULE_SETUP
   strncpy(iterator, buffer, strlen(buffer));
   iterator += strlen(buffer);
 
-  strncpy(target, yytext + (int) (envStart - yytext) + length, (int) (yytext + strlen(yytext) - envEnd));
+  strncpy(iterator, yytext + (int) (envStart - yytext) + length, (int) (yytext + strlen(yytext) - envEnd + 1));
   iterator += (int) (yytext + strlen(yytext) - envEnd);
   
   iterator[(int) (iterator - target)] = '\0';
