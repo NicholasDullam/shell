@@ -173,7 +173,7 @@ void removeStartAndEnd(char* s) {
 }
 
 \$\{[^\t\n][^\t\n]*\} {
-  printf("Env expansion")
+  printf("Env expansion");
   yylval.cpp_string = new std::string(yytext);
   return WORD;
 }
