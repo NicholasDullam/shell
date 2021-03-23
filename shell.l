@@ -219,6 +219,7 @@ void removeStartAndEnd(char* s) {
   int size = 1024;
   char* buffer = (char*) malloc(sizeof(char) * size);
 
+  printf("%s", yytext);
   if (!strcmp(yytext, "$")) {
     printf("testing");
     sprintf(buffer, "%d", getpid());
