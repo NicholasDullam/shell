@@ -221,6 +221,7 @@ void removeStartAndEnd(char* s) {
 
   if (strcmp(yytext, "$")) {
     buffer = (char*) getpid();
+    printf("%s", buffer);
   } else {
     buffer = getenv(yytext);
   }
