@@ -2631,16 +2631,22 @@ YY_RULE_SETUP
   char* buffer = (char*) malloc(sizeof(char) * size);
 
   if (!strcmp(yytext, "$")) {
+    // Return PID of the Shell
     sprintf(buffer, "%d", getpid());
   } else if (!strcmp(yytext, "?")) {
-
+    // Return exit code of last command
+    buffer = getenv(yytext);
   } else if (!strcmp(yytext, "!")) {
-
+    // Return PID of last background process
+    buffer = getenv(yytext);
   } else if (!strcmp(yytext, "_")) {
+    // Return the last argument of the last command
     buffer = getenv("LAST_ARG");
   } else if (!strcmp(yytext, "SHELL")) {
-
+    // Return the path of the shell
+    buffer = getenv(yytext);
   } else {
+    // Return ENV variable expansion
     buffer = getenv(yytext);
   }
 
@@ -2653,7 +2659,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 245 "shell.l"
+#line 251 "shell.l"
 {
   removeStartAndEnd(yytext);
   yylval.cpp_string = new std::string(yytext);
@@ -2662,7 +2668,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 251 "shell.l"
+#line 257 "shell.l"
 {
   /* Assume that file names have only alpha chars */
   yylval.cpp_string = new std::string(yytext);
@@ -2671,10 +2677,10 @@ YY_RULE_SETUP
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 256 "shell.l"
+#line 262 "shell.l"
 ECHO;
 	YY_BREAK
-#line 2678 "lex.yy.cc"
+#line 2684 "lex.yy.cc"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -3691,4 +3697,4 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 256 "shell.l"
+#line 262 "shell.l"
