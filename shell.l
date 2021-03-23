@@ -243,7 +243,7 @@ void removeStartAndEnd(char* s) {
     else buffer[0] = '\0';
   } else if (!strcmp(env, "SHELL")) {
     // Return the path of the shell
-    buffer = getenv(env);
+    buffer = realpath(getenv("SHELL_PATH"));
   } else {
     // Return ENV variable expansion
     if (getenv(env)) buffer = getenv(env);
