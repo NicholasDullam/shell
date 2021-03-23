@@ -61,13 +61,15 @@ void myunputc(int c) {
   unput(c);
 }
 
-void remove_character(char* s, char c) {
+void remove_character(char* s, char c, int p) {
   int j, n = strlen(s);
   int escaped = 0; 
+  int count = 0;
 
   for (int i = j = 0; i < n; i++) {
     if (s[i] != c || escaped) {
       s[j++] = s[i];
+      if (p && ++count == p) return
       escaped = 0;
     } else {
       escaped = 1;
@@ -212,9 +214,9 @@ void removeStartAndEnd(char* s) {
 }
 
 \$\{[^ \t\n\{\}][^ \t\n\{\}]*\} {
-  remove_character(yytext, '$');
-  remove_character(yytext, '{');
-  remove_character(yytext, '}');
+  remove_character(yytext, '$', 1);
+  remove_character(yytext, '{', NULL);
+  remove_character(yytext, '}', NULL);
 
   int size = 1024;
   char* buffer = (char*) malloc(sizeof(char) * size);

@@ -2628,7 +2628,7 @@ YY_RULE_SETUP
   int size = 1024;
   char* buffer = (char*) malloc(sizeof(char) * size);
 
-  printf("%s", yytext);
+  printf("%s bs", yytext);
   if (!strcmp(yytext, "$")) {
     printf("testing");
     sprintf(buffer, "%d", getpid());
