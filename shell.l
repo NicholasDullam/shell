@@ -219,8 +219,8 @@ void removeStartAndEnd(char* s) {
   int length = (int)(envEnd - envStart) - 2)
 
   char* env = (char*) malloc(sizeof(char) * length);
-  env = strncpy(envStart, env, length)
-  env[length] = '\0'
+  env = strncpy(envStart, env, length);
+  env[length] = '\0';
 
   remove_character(yytext, '$', 1);
   remove_character(yytext, '{', NULL);
