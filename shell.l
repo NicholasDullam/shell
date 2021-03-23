@@ -13,7 +13,6 @@
 #include <stdlib.h>
 #include "y.tab.hh"
 #include <string.h>
-#include "y.tab.h"
 
 ////////////  Start added code ///////////
 
