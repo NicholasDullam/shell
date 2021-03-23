@@ -2551,9 +2551,9 @@ case 11:
 YY_RULE_SETUP
 #line 150 "shell.l"
 { 
-  remove_character(yytext, '$');
-  remove_character(yytext, '(');
-  remove_character(yytext, ')');
+  remove_character(yytext, '$', NULL);
+  remove_character(yytext, '(', NULL);
+  remove_character(yytext, ')', NULL);
 
   int pin[2], pout[2];
   pipe(pin); pipe(pout);
@@ -2614,7 +2614,7 @@ case 12:
 YY_RULE_SETUP
 #line 210 "shell.l"
 { 
-  remove_character(yytext, '\\');
+  remove_character(yytext, '\\', NULL);
   yylval.cpp_string = new std::string(yytext);
   return WORD;
 }

@@ -69,7 +69,7 @@ void remove_character(char* s, char c, int p) {
   for (int i = j = 0; i < n; i++) {
     if (s[i] != c || escaped) {
       s[j++] = s[i];
-      if (p && ++count == p) return
+      if (p && ++count == p) return;
       escaped = 0;
     } else {
       escaped = 1;
