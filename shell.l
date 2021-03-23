@@ -218,7 +218,20 @@ void removeStartAndEnd(char* s) {
 
   int size = 1024;
   char* buffer = (char*) malloc(sizeof(char) * size);
-  buffer = getenv(yytext);
+
+  if (!strcmp(yytext, "$")) {
+
+  } else if (!strcmp(yytext, "?")) {
+
+  } else if (!strcmp(yytext, "!")) {
+
+  } else if (!strcmp(yytext, "_")) {
+
+  } else if (!strcmp(yytext, "SHELL")) {
+
+  } else {
+    buffer = getenv(yytext);
+  }
 
   if(buffer) {
     for (int i = strlen(buffer) - 1; i >= 0; i--) {
