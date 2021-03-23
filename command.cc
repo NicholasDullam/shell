@@ -244,10 +244,10 @@ void Command::execute() {
     if (!_background) {
         int status;
         waitpid(ret, &status, 0);
-        setenv("LAST_STAT", status, 1);
+        setenv("LAST_STAT", (char *) status, 1);
     } else {
         // Set the last running background process
-        setenv("LAST_BP", ret, 1);
+        setenv("LAST_BP", (char *) ret, 1);
     }
 
     // Clear to prepare for next command

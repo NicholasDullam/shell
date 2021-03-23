@@ -3232,7 +3232,7 @@ YY_RULE_SETUP
     else buffer[0] = '\0';  
   } else if (!strcmp(env, "!")) {
     // Return PID of last background process
-    if (get_env("LAST_BP")) buffer = getenv("LAST_BP");
+    if (getenv("LAST_BP")) buffer = getenv("LAST_BP");
     else buffer[0] = '\0';
     buffer = getenv(env);
   } else if (!strcmp(env, "_")) {
