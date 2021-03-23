@@ -3213,16 +3213,12 @@ YY_RULE_SETUP
 #line 216 "shell.l"
 {
   char* envStart = strchr(yytext, '{') + 1;
-  printf("%s", envStart);
   char* envEnd = strchr(yytext, '}');
   int length = (int)(envEnd - envStart);
-  printf("%d", length);
 
   char* env = (char*) malloc(sizeof(char) * length);
   env = strncpy(env, envStart, length);
   env[length] = '\0';
-
-  printf("%s", env);
 
   remove_character(yytext, '$', 1);
   remove_character(yytext, '{', NULL);
@@ -3231,24 +3227,24 @@ YY_RULE_SETUP
   int size = 1024;
   char* buffer = (char*) malloc(sizeof(char) * size);
 
-  if (!strcmp(yytext, "$")) {
+  if (!strcmp(env, "$")) {
     // Return PID of the Shell
     sprintf(buffer, "%d", getpid());
-  } else if (!strcmp(yytext, "?")) {
+  } else if (!strcmp(env, "?")) {
     // Return exit code of last command
-    buffer = getenv(yytext);
-  } else if (!strcmp(yytext, "!")) {
+    buffer = getenv(env);
+  } else if (!strcmp(env, "!")) {
     // Return PID of last background process
-    buffer = getenv(yytext);
-  } else if (!strcmp(yytext, "_")) {
+    buffer = getenv(env);
+  } else if (!strcmp(env, "_")) {
     // Return the last argument of the last command
     buffer = getenv("LAST_ARG");
-  } else if (!strcmp(yytext, "SHELL")) {
+  } else if (!strcmp(env, "SHELL")) {
     // Return the path of the shell
-    buffer = getenv(yytext);
+    buffer = getenv(env);
   } else {
     // Return ENV variable expansion
-    buffer = getenv(yytext);
+    buffer = getenv(env);
   }
 
   if(buffer) {
@@ -3260,7 +3256,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 263 "shell.l"
+#line 259 "shell.l"
 {
   removeStartAndEnd(yytext);
   yylval.cpp_string = new std::string(yytext);
@@ -3269,7 +3265,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 269 "shell.l"
+#line 265 "shell.l"
 {
   /* Assume that file names have only alpha chars */
   yylval.cpp_string = new std::string(yytext);
@@ -3278,10 +3274,10 @@ YY_RULE_SETUP
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 274 "shell.l"
+#line 270 "shell.l"
 ECHO;
 	YY_BREAK
-#line 3285 "lex.yy.cc"
+#line 3281 "lex.yy.cc"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -4298,4 +4294,4 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 274 "shell.l"
+#line 270 "shell.l"

@@ -222,10 +222,6 @@ void removeStartAndEnd(char* s) {
   env = strncpy(env, envStart, length);
   env[length] = '\0';
 
-  remove_character(yytext, '$', 1);
-  remove_character(yytext, '{', NULL);
-  remove_character(yytext, '}', NULL);
-
   int size = 1024;
   char* buffer = (char*) malloc(sizeof(char) * size);
 
@@ -248,6 +244,13 @@ void removeStartAndEnd(char* s) {
     // Return ENV variable expansion
     buffer = getenv(env);
   }
+
+  int size = 1024;
+  char* target = (char*) malloc(sizeof(char) * size);
+
+  strcpy(target, yytext, (int) (envStart - yytext))
+  target[(int) (envStart - yytext)] = '\0'
+  printf("%s", target)
 
   if(buffer) {
     for (int i = strlen(buffer) - 1; i >= 0; i--) {
