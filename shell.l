@@ -217,9 +217,10 @@ void removeStartAndEnd(char* s) {
   char* envStart = strchr(yytext, '}');
   char* envEnd = strchr(yytext, '{');
   int length = (int)(envEnd - envStart) - 2;
+  printf("%d", length);
 
   char* env = (char*) malloc(sizeof(char) * length);
-  env = strncpy(envStart, env, length);
+  env = strncpy(env, envStart, length);
   env[length] = '\0';
 
   printf("%s", env);
