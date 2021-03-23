@@ -222,16 +222,22 @@ void removeStartAndEnd(char* s) {
   char* buffer = (char*) malloc(sizeof(char) * size);
 
   if (!strcmp(yytext, "$")) {
+    // Return PID of the Shell
     sprintf(buffer, "%d", getpid());
   } else if (!strcmp(yytext, "?")) {
-
+    // Return exit code of last command
+    buffer = getenv(yytext);
   } else if (!strcmp(yytext, "!")) {
-
+    // Return PID of last background process
+    buffer = getenv(yytext);
   } else if (!strcmp(yytext, "_")) {
+    // Return the last argument of the last command
     buffer = getenv("LAST_ARG");
   } else if (!strcmp(yytext, "SHELL")) {
-
+    // Return the path of the shell
+    buffer = getenv(yytext);
   } else {
+    // Return ENV variable expansion
     buffer = getenv(yytext);
   }
 
@@ -248,7 +254,7 @@ void removeStartAndEnd(char* s) {
   return WORD;
 }
 
-[^ \t\n\&\|\>\<\$\{\}][^ \t\n\&\|\>\<\$\{\}]*  {
+[^ \t\n\&\|\>\<\$\{\}][^ \t\n\&\$\{\}|\>\<\$\{\}]*  {
   /* Assume that file names have only alpha chars */
   yylval.cpp_string = new std::string(yytext);
   return WORD;

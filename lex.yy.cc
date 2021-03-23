@@ -2637,7 +2637,7 @@ YY_RULE_SETUP
   } else if (!strcmp(yytext, "!")) {
 
   } else if (!strcmp(yytext, "_")) {
-
+    buffer = getenv("LAST_ARG");
   } else if (!strcmp(yytext, "SHELL")) {
 
   } else {
