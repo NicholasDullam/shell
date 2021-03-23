@@ -219,19 +219,19 @@ void removeStartAndEnd(char* s) {
   int size = 1024;
   char* buffer = (char*) malloc(sizeof(char) * size);
 
-  if (strcmp(yytext, "$")) {
+  if (!strcmp(yytext, "$")) {
     // Get PID of Shell
     sprintf(buffer, "%d", getpid());
-  } else if (strcmp(yytext, "?")) { 
+  } else if (!strcmp(yytext, "?")) { 
     // Get last return code
     buffer = getenv(yytext);
-  } else if (strcmp(yytext, "!")) {
+  } else if (!strcmp(yytext, "!")) {
     // Get PID of last process
     buffer = getenv(yytext);
-  } else if (strcmp(yytext, "_")) {
+  } else if (!strcmp(yytext, "_")) {
     // Last argument in fully expanded previous command
     buffer = getenv("LAST_ARG");
-  } else if (strcmp(yytext, "SHELL")) {
+  } else if (!strcmp(yytext, "SHELL")) {
     // Path of Shell
     buffer = getenv(yytext);
   } else {
