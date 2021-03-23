@@ -51,7 +51,6 @@ int mygetc(FILE * f) {
 
 %}
 
-%%
 
 #define MAX_INCLUDE_DEPTH 10
 YY_BUFFER_STATE include_stack[MAX_INCLUDE_DEPTH];
