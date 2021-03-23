@@ -11,6 +11,8 @@
 
 #include <cstring>
 #include <stdlib.h>
+#include <sys/types.h>
+#include <unistd.h>
 #include "y.tab.hh"
 /*
 #include <string.h>
@@ -216,7 +218,12 @@ void removeStartAndEnd(char* s) {
 
   int size = 1024;
   char* buffer = (char*) malloc(sizeof(char) * size);
-  buffer = getenv(yytext);
+
+  if (strcmp(yytext, "$")) {
+    buffer = getpid();
+  } else {
+    buffer = getenv(yytext);
+  }
 
   if(buffer) {
     for (int i = strlen(buffer) - 1; i >= 0; i--) {
