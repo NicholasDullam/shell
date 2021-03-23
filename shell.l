@@ -270,7 +270,7 @@ void removeStartAndEnd(char* s) {
     }
   }
 
-  free(buffer);
+  //free(buffer);
   free(target);
 }
 
