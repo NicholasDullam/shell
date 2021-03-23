@@ -182,8 +182,8 @@ void removeStartAndEnd(char* s) {
 
   int size = 1024;
   char* buffer = (char*) malloc(sizeof(char) * size);
-  printf("%s", getenv(yytext));
-  /*
+  buffer = getenv(yytext)
+
   for (int i = strlen(buffer) - 1; i >= 0; i--) {
     char c = ' ';
     if (buffer[i] == '\n') {
@@ -191,7 +191,7 @@ void removeStartAndEnd(char* s) {
     } else {
       myunputc(buffer[i]);
     }
-  }*/
+  }
 }
 
 [^ \t\n]*\"[^\t\n][^\t\n]*\"[^ \t\n]* {
