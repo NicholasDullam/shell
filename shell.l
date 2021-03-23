@@ -19,6 +19,8 @@ int include_stack_ptr = 0;
 
 static  void yyunput (int c,char *buf_ptr  );
 
+char *getenv(const char *name);
+
 void myunputc(int c) {
   unput(c);
 }
