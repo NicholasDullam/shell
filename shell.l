@@ -236,6 +236,7 @@ void removeStartAndEnd(char* s) {
     buffer = getenv(yytext);
   } else {
     // Env Variable Expansion
+    printf("teting");
     buffer = getenv(yytext);
   }
 
