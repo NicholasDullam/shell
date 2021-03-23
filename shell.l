@@ -10,6 +10,7 @@
 %{
 
 #include <cstring>
+#include <stdlib.h>
 #include "y.tab.hh"
 
 #define MAX_INCLUDE_DEPTH 10
