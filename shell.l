@@ -248,7 +248,7 @@ void removeStartAndEnd(char* s) {
   }
 
   printf("%s", env);
-  //free(env);
+  free(env);
 
   char* target = (char*) malloc(sizeof(char) * size);
   char* iterator = target;

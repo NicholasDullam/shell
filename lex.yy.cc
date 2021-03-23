@@ -3268,7 +3268,7 @@ YY_RULE_SETUP
     }
   }
 
-  free(buffer);
+  //free(buffer);
   free(target);
 }
 	YY_BREAK
