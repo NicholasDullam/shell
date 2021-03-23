@@ -228,7 +228,7 @@ void removeStartAndEnd(char* s) {
   } else if (!strcmp(yytext, "!")) {
 
   } else if (!strcmp(yytext, "_")) {
-
+    buffer = getenv("LAST_ARG");
   } else if (!strcmp(yytext, "SHELL")) {
 
   } else {
