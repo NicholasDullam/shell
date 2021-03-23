@@ -1964,7 +1964,7 @@ YY_RULE_SETUP
   char* buffer = (char*) malloc(sizeof(char) * size);
 
   if (strcmp(yytext, "$")) {
-    buffer = getpid();
+    buffer = (char*) getpid();
   } else {
     buffer = getenv(yytext);
   }
