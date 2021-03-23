@@ -3241,7 +3241,7 @@ YY_RULE_SETUP
     else buffer[0] = '\0';
   } else if (!strcmp(env, "SHELL")) {
     // Return the path of the shell
-    buffer = realpath(getenv("SHELL_PATH"));
+    realpath(getenv("SHELL_PATH", buffer));
   } else {
     // Return ENV variable expansion
     if (getenv(env)) buffer = getenv(env);
