@@ -220,13 +220,26 @@ void removeStartAndEnd(char* s) {
   char* buffer = (char*) malloc(sizeof(char) * size);
 
   if (strcmp(yytext, "$")) {
+    // Get PID of Shell
     sprintf(buffer, "%d", getpid());
-    printf("%s", buffer);
+  } else if (strcmp(yytext, "?")) { 
+    // Get last return code
+    buffer = getenv(yytext);
+  } else if (strcmp(yytext, "!")) {
+    // Get PID of last process
+    buffer = getenv(yytext);
+  } else if (strcmp(yytext, "_")) {
+    // Last argument in fully expanded previous command
+    buffer = getenv(yytext);
+  } else if (strcmp(yytext, "SHELL")) {
+    // Path of Shell
+    buffer = getenv(yytext);
   } else {
+    // Env Variable Expansion
     buffer = getenv(yytext);
   }
 
-  if(buffer) {
+  if (buffer) {
     for (int i = strlen(buffer) - 1; i >= 0; i--) {
       char c = ' ';
       if (buffer[i] == '\n') {
