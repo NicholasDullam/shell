@@ -259,7 +259,6 @@ void removeStartAndEnd(char* s) {
   iterator += (int) (yytext + strlen(yytext) - envEnd);
   
   iterator[(int) (iterator - target)] = '\0';
-  printf("%s", target);
 
   if(target) {
     for (int i = strlen(target) - 1; i >= 0; i--) {

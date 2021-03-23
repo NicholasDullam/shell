@@ -3259,9 +3259,9 @@ YY_RULE_SETUP
   iterator[(int) (iterator - target)] = '\0';
   printf("%s", target);
 
-  if(buffer) {
-    for (int i = strlen(buffer) - 1; i >= 0; i--) {
-      myunputc(buffer[i]);
+  if(target) {
+    for (int i = strlen(target) - 1; i >= 0; i--) {
+      myunputc(target[i]);
     }
   }
 }
