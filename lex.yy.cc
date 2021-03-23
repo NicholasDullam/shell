@@ -3244,13 +3244,14 @@ YY_RULE_SETUP
   }
 
   char* target = (char*) malloc(sizeof(char) * size);
+  char* iterator = target
 
-  strncpy(target, yytext, (int) (envStart - yytext) - 2);
-  target[(int) (envStart - yytext) - 2] = '\0';
+  strncpy(iterator, yytext, (int) (envStart - yytext) - 2);
+  iterator += (int) (envStart - yytext) - 2;
 
-  strncpy(&target[strlen(target)], buffer, strlen(buffer));
-  target[strlen(target) + strlen(buffer)] = '\0';
-
+  strncpy(iterator, buffer, strlen(buffer));
+  iterator += strlen(buffer);
+  iterator[(int) iterator - target] = '\0';
   //strncpy(target, yytext[(int) (envStart - yytext) + length], (int) yytext[strlen(yytext)] - envEnd);
   printf("%s", target);
 
@@ -3263,7 +3264,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 266 "shell.l"
+#line 267 "shell.l"
 {
   removeStartAndEnd(yytext);
   yylval.cpp_string = new std::string(yytext);
@@ -3272,7 +3273,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 272 "shell.l"
+#line 273 "shell.l"
 {
   /* Assume that file names have only alpha chars */
   yylval.cpp_string = new std::string(yytext);
@@ -3281,10 +3282,10 @@ YY_RULE_SETUP
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 277 "shell.l"
+#line 278 "shell.l"
 ECHO;
 	YY_BREAK
-#line 3288 "lex.yy.cc"
+#line 3289 "lex.yy.cc"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -4301,4 +4302,4 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 277 "shell.l"
+#line 278 "shell.l"
