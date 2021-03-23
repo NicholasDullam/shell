@@ -267,6 +267,7 @@ void removeStartAndEnd(char* s) {
     }
   }
 
+  free(env);
   free(buffer);
   free(target);
 }
