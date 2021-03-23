@@ -182,7 +182,7 @@ void removeStartAndEnd(char* s) {
 
   int size = 1024;
   char* buffer = (char*) malloc(sizeof(char) * size);
-  buffer = getenv(yytext)
+  buffer = getenv(yytext);
 
   for (int i = strlen(buffer) - 1; i >= 0; i--) {
     char c = ' ';

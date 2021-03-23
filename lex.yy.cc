@@ -4062,8 +4062,8 @@ YY_RULE_SETUP
 
   int size = 1024;
   char* buffer = (char*) malloc(sizeof(char) * size);
-  printf("%s", getenv(yytext));
-  /*
+  buffer = getenv(yytext)
+
   for (int i = strlen(buffer) - 1; i >= 0; i--) {
     char c = ' ';
     if (buffer[i] == '\n') {
@@ -4071,7 +4071,7 @@ YY_RULE_SETUP
     } else {
       myunputc(buffer[i]);
     }
-  }*/
+  }
 }
 	YY_BREAK
 case 14:
