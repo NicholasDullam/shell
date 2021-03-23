@@ -220,8 +220,6 @@ void removeStartAndEnd(char* s) {
   remove_character(yytext, '$', 1);
   remove_character(yytext, '{', NULL);
   remove_character(yytext, '}', NULL);
-  char* buffer = (char*) malloc(sizeof(char) * size);
-
 
   int size = 1024;
   char* buffer = (char*) malloc(sizeof(char) * size);
