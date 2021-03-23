@@ -211,7 +211,7 @@ void removeStartAndEnd(char* s) {
   return WORD;
 }
 
-\$\{[^\t\n\{\}\$][^\t\n\{\}\$]*\} {
+\$\{[^\t\n\{\}][^\t\n\{\}]*\} {
   remove_character(yytext, '$');
   remove_character(yytext, '{');
   remove_character(yytext, '}');
@@ -219,10 +219,13 @@ void removeStartAndEnd(char* s) {
   int size = 1024;
   char* buffer = (char*) malloc(sizeof(char) * size);
 
-  // Env Variable Expansion
-  buffer = getenv(yytext);
+  if (strcmp(yytext, "$")) {
+    buffer = (char*) getpid();
+  } else {
+    buffer = getenv(yytext);
+  }
 
-  if (buffer) {
+  if(buffer) {
     for (int i = strlen(buffer) - 1; i >= 0; i--) {
       char c = ' ';
       if (buffer[i] == '\n') {
@@ -232,8 +235,6 @@ void removeStartAndEnd(char* s) {
       }
     }
   }
-
-  free(buffer);
 }
 
 [^ \t\n]*\"[^\t\n][^\t\n]*\"[^ \t\n]* {
