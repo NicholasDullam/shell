@@ -148,9 +148,9 @@ void removeStartAndEnd(char* s) {
 }
 
 [^ \n\t]*\$\([^\t\n][^\t\n]*\)[^ \n\t]* { 
-  remove_character(yytext, '$');
-  remove_character(yytext, '(');
-  remove_character(yytext, ')');
+  remove_character(yytext, '$', NULL);
+  remove_character(yytext, '(', NULL);
+  remove_character(yytext, ')', NULL);
 
   int pin[2], pout[2];
   pipe(pin); pipe(pout);
@@ -208,7 +208,7 @@ void removeStartAndEnd(char* s) {
 }
 
 [^ \"\n\t]*(\\[^ \t\n]*)(\\[^ \t\n]*)*[^ \"\n\t]* { 
-  remove_character(yytext, '\\');
+  remove_character(yytext, '\\', NULL);
   yylval.cpp_string = new std::string(yytext);
   return WORD;
 }
