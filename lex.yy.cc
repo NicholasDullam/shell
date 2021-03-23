@@ -2802,7 +2802,7 @@ YY_RULE_SETUP
   char* buffer = (char*) malloc(sizeof(char) * size);
 
   if (strcmp(yytext, "$")) {
-    buffer = itoa(getpid());
+    sprintf(buffer, "%d", getpid());
     printf("%s", buffer);
   } else {
     buffer = getenv(yytext);
