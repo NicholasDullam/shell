@@ -214,7 +214,7 @@ void removeStartAndEnd(char* s) {
 }
 
 [^ \n\t\$\{\}]*\$\{[^ \t\n\{\}][^ \t\n\{\}]*\}[^ \n\t\$\{\}]* {
-  int length = (int) (strchr(yytext, "}") - strchr(yytext, "{"));
+  int length = (int) (strchr(yytext, '}') - strchr(yytext, '{'));
   printf("%d", length);
 
   remove_character(yytext, '$', 1);
