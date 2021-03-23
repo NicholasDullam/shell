@@ -153,6 +153,9 @@ void Command::execute() {
         char** args = (char**) malloc((_simpleCommands[i]->_arguments.size() + 1) * sizeof(char*));
         for (int j = 0; j < _simpleCommands[i]->_arguments.size(); j++) {
             args[j] = (char*) (*_simpleCommands[i]->_arguments[j]).c_str();
+            if (j == _simpleCommands[i]->_arguments.size() - 1) {
+                setenv("LAST_ARG", args[j], 1);
+            }
         }
 
         // End arguments will null terminator
