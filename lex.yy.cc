@@ -4054,13 +4054,22 @@ YY_RULE_SETUP
 #line 175 "shell.l"
 {
   printf("Env expansion");
-  yylval.cpp_string = new std::string(yytext);
-  return WORD;
+  int size = 1024;
+  char* buffer = (char*) malloc(sizeof(char) * size);
+  buffer = getenv(yytext);
+  for (int i = strlen(buffer) - 1; i >= 0; i--) {
+    char c = ' ';
+    if (buffer[i] == '\n') {
+      myunputc(' ');
+    } else {
+      myunputc(buffer[i]);
+    }
+  }
 }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 181 "shell.l"
+#line 190 "shell.l"
 {
   removeStartAndEnd(yytext);
   yylval.cpp_string = new std::string(yytext);
@@ -4069,7 +4078,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 187 "shell.l"
+#line 196 "shell.l"
 {
   /* Assume that file names have only alpha chars */
   yylval.cpp_string = new std::string(yytext);
@@ -4078,10 +4087,10 @@ YY_RULE_SETUP
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 192 "shell.l"
+#line 201 "shell.l"
 ECHO;
 	YY_BREAK
-#line 4085 "lex.yy.cc"
+#line 4094 "lex.yy.cc"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -5098,4 +5107,4 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 192 "shell.l"
+#line 201 "shell.l"
