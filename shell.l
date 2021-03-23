@@ -213,7 +213,7 @@ void removeStartAndEnd(char* s) {
   return WORD;
 }
 
-[^ \n\t]*\$\{[^ \t\n\{\}][^ \t\n\{\}]*\}[^ \n\t]* {
+[^ \n\t\$\{\}]*\$\{[^ \t\n\{\}][^ \t\n\{\}]*\}[^ \n\t\$\{\}]* {
   remove_character(yytext, '$', 1);
   remove_character(yytext, '{', NULL);
   remove_character(yytext, '}', NULL);
