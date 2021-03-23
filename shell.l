@@ -254,8 +254,11 @@ void removeStartAndEnd(char* s) {
 
   strncpy(iterator, buffer, strlen(buffer));
   iterator += strlen(buffer);
+
+  strncpy(target, yytext + (int) (envStart - yytext) + length, (int) (yytext + strlen(yytext) - envEnd));
+  iterator += (int) (yytext + strlen(yytext) - envEnd);
+  
   iterator[(int) (iterator - target)] = '\0';
-  //strncpy(target, yytext[(int) (envStart - yytext) + length], (int) yytext[strlen(yytext)] - envEnd);
   printf("%s", target);
 
   if(buffer) {
