@@ -230,7 +230,7 @@ void removeStartAndEnd(char* s) {
     buffer = getenv(yytext);
   } else if (strcmp(yytext, "_")) {
     // Last argument in fully expanded previous command
-    buffer = getenv(yytext);
+    buffer = getenv("LAST_ARG");
   } else if (strcmp(yytext, "SHELL")) {
     // Path of Shell
     buffer = getenv(yytext);
