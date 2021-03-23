@@ -13,6 +13,46 @@
 #include <stdlib.h>
 #include "y.tab.hh"
 
+%{
+
+#include <string.h>
+#include "y.tab.h"
+
+////////////  Start added code ///////////
+
+
+extern “C” char * read_line();
+
+int mygetc(FILE * f) {
+  static char *p;
+  char ch;
+
+     if (!isatty(0)) {
+  // stdin is not a tty. Call real getc
+    return getc(f);
+  }
+
+  // stdin is a tty. Call our read_line.
+  if (p==NULL || *p == 0) {
+    char * s = read_line();
+    p = s;
+  }
+
+  ch = *p;
+  p++;
+
+  return ch;
+}
+
+#undef getc
+#define getc(f) mygetc(f)
+
+/////////// End added code ///////////
+
+%}
+
+%%
+
 #define MAX_INCLUDE_DEPTH 10
 YY_BUFFER_STATE include_stack[MAX_INCLUDE_DEPTH];
 int include_stack_ptr = 0;
