@@ -242,7 +242,12 @@ void Command::execute() {
 
     // Wait for background processes
     if (!_background) {
-        waitpid(ret, NULL, 0);
+        int status;
+        waitpid(ret, &status, 0);
+        setenv("LAST_STAT", status, 1);
+    } else {
+        // Set the last running background process
+        setenv("LAST_BP", ret, 1);
     }
 
     // Clear to prepare for next command

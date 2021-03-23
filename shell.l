@@ -230,9 +230,12 @@ void removeStartAndEnd(char* s) {
     sprintf(buffer, "%d", getpid());
   } else if (!strcmp(env, "?")) {
     // Return exit code of last command
-    buffer = getenv(env);
+    if (getenv("LAST_STAT")) buffer = getenv("LAST_STAT");
+    else buffer[0] = '\0';  
   } else if (!strcmp(env, "!")) {
     // Return PID of last background process
+    if (get_env("LAST_BP")) buffer = getenv("LAST_BP");
+    else buffer[0] = '\0';
     buffer = getenv(env);
   } else if (!strcmp(env, "_")) {
     // Return the last argument of the last command
