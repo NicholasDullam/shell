@@ -184,12 +184,14 @@ void removeStartAndEnd(char* s) {
   char* buffer = (char*) malloc(sizeof(char) * size);
   buffer = getenv(yytext);
 
-  for (int i = strlen(buffer) - 1; i >= 0; i--) {
-    char c = ' ';
-    if (buffer[i] == '\n') {
-      myunputc(' ');
-    } else {
-      myunputc(buffer[i]);
+  if(buffer) {
+    for (int i = strlen(buffer) - 1; i >= 0; i--) {
+      char c = ' ';
+      if (buffer[i] == '\n') {
+        myunputc(' ');
+      } else {
+        myunputc(buffer[i]);
+      }
     }
   }
 }
@@ -200,7 +202,7 @@ void removeStartAndEnd(char* s) {
   return WORD;
 }
 
-[^ \t\n\&\|\>\<][^ \t\n\&\|\>\<]*  {
+[^ \t\n\&\|\>\<\$\{\}][^ \t\n\&\|\>\<\$\{]*  {
   /* Assume that file names have only alpha chars */
   yylval.cpp_string = new std::string(yytext);
   return WORD;
