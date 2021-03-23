@@ -273,7 +273,7 @@ void removeStartAndEnd(char* s) {
     }
   }
 
-  free(initialBuffer);
+  //free(initialBuffer);
   free(target);
 }
 

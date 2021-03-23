@@ -3222,6 +3222,7 @@ YY_RULE_SETUP
 
   int size = 1024;
   char* buffer = (char*) malloc(sizeof(char) * size);
+  char* initialBuffer = buffer;
 
   if (!strcmp(env, "$")) {
     // Return PID of the Shell
@@ -3270,13 +3271,13 @@ YY_RULE_SETUP
     }
   }
 
-  //free(buffer);
+  free(initialBuffer);
   free(target);
 }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 279 "shell.l"
+#line 280 "shell.l"
 {
   removeStartAndEnd(yytext);
   yylval.cpp_string = new std::string(yytext);
@@ -3285,7 +3286,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 285 "shell.l"
+#line 286 "shell.l"
 {
   /* Assume that file names have only alpha chars */
   yylval.cpp_string = new std::string(yytext);
@@ -3294,10 +3295,10 @@ YY_RULE_SETUP
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 290 "shell.l"
+#line 291 "shell.l"
 ECHO;
 	YY_BREAK
-#line 3301 "lex.yy.cc"
+#line 3302 "lex.yy.cc"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -4314,4 +4315,4 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 290 "shell.l"
+#line 291 "shell.l"
