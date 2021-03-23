@@ -233,6 +233,8 @@ void removeStartAndEnd(char* s) {
       }
     }
   }
+
+  free(buffer);
 }
 
 [^ \t\n]*\"[^\t\n][^\t\n]*\"[^ \t\n]* {
