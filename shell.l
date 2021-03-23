@@ -220,7 +220,7 @@ void removeStartAndEnd(char* s) {
   char* buffer = (char*) malloc(sizeof(char) * size);
 
   if (strcmp(yytext, "$")) {
-    buffer = (char*) getpid();
+    buffer = itoa(getpid());
     printf("%s", buffer);
   } else {
     buffer = getenv(yytext);
