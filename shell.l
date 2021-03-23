@@ -220,9 +220,8 @@ void removeStartAndEnd(char* s) {
   char* buffer = (char*) malloc(sizeof(char) * size);
 
 
-    // Env Variable Expansion
-    printf("teting");
-    buffer = getenv(yytext);
+  // Env Variable Expansion
+  buffer = getenv(yytext);
   
 
   if (buffer) {
