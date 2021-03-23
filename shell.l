@@ -176,7 +176,10 @@ void removeStartAndEnd(char* s) {
 }
 
 \$\{[^\t\n][^\t\n]*\} {
-  printf("Env expansion");
+  remove_character(yytext, '$');
+  remove_character(yytext, '{');
+  remove_character(yytext, '}');
+
   int size = 1024;
   char* buffer = (char*) malloc(sizeof(char) * size);
   printf("%s", getenv(yytext));
