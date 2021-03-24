@@ -152,6 +152,8 @@ void removeStartAndEnd(char* s) {
   remove_character(yytext, '(', NULL);
   remove_character(yytext, ')', NULL);
 
+  char** arguments = (char**) malloc(sizeof(char*));
+
   int pin[2], pout[2];
   pipe(pin); pipe(pout);
 
@@ -167,7 +169,6 @@ void removeStartAndEnd(char* s) {
       close(pout[1]);
       
       // Execute shell executable
-      char** arguments = (char**) malloc(sizeof(char*));
       execvp("/proc/self/exe", arguments);
       perror("Error in Child Process");
       exit(1);
@@ -209,6 +210,7 @@ void removeStartAndEnd(char* s) {
   }
 
   free(buffer);
+  free(arguments);
 }
 
 [^ \"\n\t]*(\\[^ \t\n]*)(\\[^ \t\n]*)*[^ \"\n\t]* { 
