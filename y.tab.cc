@@ -197,13 +197,13 @@ void expandWildcardsIfNecessary(char* arg) {
   regex_t re;	
   int res = regcomp(&re, reg, REG_EXTENDED|REG_NOSUB);
   if (res != 0) {
-    perror(“compile”);
+    perror("compile");
     return;
   }
 
   DIR * dir = opendir(“.”);
   if (dir == NULL) {
-    perror(“opendir”);
+    perror("opendir");
     return; 
   }
 

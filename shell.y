@@ -70,7 +70,7 @@ void expandWildcardsIfNecessary(char* arg) {
     return;
   }
 
-  DIR * dir = opendir(“.”);
+  DIR * dir = opendir(".");
   if (dir == NULL) {
     perror("opendir");
     return; 
