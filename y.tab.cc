@@ -177,7 +177,7 @@ void expandWildcardsIfNecessary(char* arg) {
     return; 
   }
 
-  char* reg = (char*) malloc(2*strlen(arg)+10); 
+  char* reg = (char*) malloc( 2 * strlen(arg)+10); 
   char* a = arg;
   char* r = reg;
   *r = '^'; r++;
