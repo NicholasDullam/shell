@@ -224,8 +224,10 @@ void removeStartAndEnd(char* s) {
 
   if (strchr(yytext, '/')) {
     printf("hi");
-  } else {
-    printf("hi");
+  } else if (strlen(yytext > 1)) {
+    strncpy(iterator, yytext + 1, strlen(yytext) - 1);
+    iterator += strlen(yytext) - 1;
+    iterator[0] = '\0';
   }
 
   yylval.cpp_string = new std::string(path);

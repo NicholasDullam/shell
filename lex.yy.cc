@@ -3802,7 +3802,7 @@ YY_RULE_SETUP
   strncpy(iterator, home, strlen(home));
   iterator += strlen(home);
 
-  path[home] = '\0';  
+  path[strlen(home)] = '\0';  
 
   if (strchr(yytext, '/')) {
     printf("hi");
