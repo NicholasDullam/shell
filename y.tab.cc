@@ -180,16 +180,16 @@ void expandWildcardsIfNecessary(char* arg) {
   char* reg = (char*) malloc(2*strlen(arg)+10); 
   char* a = arg;
   char* r = reg;
-  *r = ‘^’; r++;
+  *r = '^'; r++;
 
   while (*a) {
-    if (*a == ‘*’) { *r=‘.’; r++; *r=‘*’; r++; }
-    else if (*a == ‘?’) { *r=‘.’ r++;}
-    else if (*a == ‘.’) { *r=‘\\’; r++; *r=‘.’; r++;} else { *r=*a; r++;}
+    if (*a == '*') { *r='.'; r++; *r='*'; r++; }
+    else if (*a == '?') { *r='.' r++;}
+    else if (*a == '.') { *r='\\'; r++; *r='.'; r++;} else { *r=*a; r++;}
     a++;
   }
 
-  *r=‘$’; r++; *r=0;
+  *r='$'; r++; *r=0;
 }
 
 
