@@ -3808,9 +3808,11 @@ YY_RULE_SETUP
   if (suffix) {
     if ((int) (suffix - yytext) - 1) {
       char username[100];
-      sprintf(username, "/%s", suffix - yytext - 1);
-      strncpy(iterator, username, strlen(username));
-      iterator += strlen(username);
+      iterator[0] = '/';
+      iterator++;
+
+      strncpy(iterator, yytext + 1, (int) (suffix - yytext) - 1);
+      iterator += (int) (suffix - yytext) - 1;
       iterator[0] = '\0';
     } else {
       printf("hi");
@@ -3829,7 +3831,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 248 "shell.l"
+#line 250 "shell.l"
 { 
   remove_character(yytext, '\\', NULL);
   yylval.cpp_string = new std::string(yytext);
@@ -3838,7 +3840,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 254 "shell.l"
+#line 256 "shell.l"
 {
   char* envStart = strchr(yytext, '{') + 1;
   char* envEnd = strchr(yytext, '}');
@@ -3904,7 +3906,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 317 "shell.l"
+#line 319 "shell.l"
 {
   removeStartAndEnd(yytext);
   yylval.cpp_string = new std::string(yytext);
@@ -3913,7 +3915,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 323 "shell.l"
+#line 325 "shell.l"
 {
   /* Assume that file names have only alpha chars */
   yylval.cpp_string = new std::string(yytext);
@@ -3922,10 +3924,10 @@ YY_RULE_SETUP
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 328 "shell.l"
+#line 330 "shell.l"
 ECHO;
 	YY_BREAK
-#line 3929 "lex.yy.cc"
+#line 3931 "lex.yy.cc"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -4942,4 +4944,4 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 328 "shell.l"
+#line 330 "shell.l"

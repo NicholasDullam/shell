@@ -232,6 +232,10 @@ void removeStartAndEnd(char* s) {
       strncpy(iterator, yytext + 1, (int) (suffix - yytext) - 1);
       iterator += (int) (suffix - yytext) - 1;
       iterator[0] = '\0';
+
+      strncpy(iterator, suffix, strlen(suffix));
+      iterator += strlen(suffix);
+      iterator[0] = '\0';
     } else {
       printf("hi");
     }
