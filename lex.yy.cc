@@ -3240,7 +3240,6 @@ YY_RULE_SETUP
     // Return PID of last background process
     if (getenv("LAST_BP")) buffer = getenv("LAST_BP");
     else buffer[0] = '\0';
-    buffer = getenv(env);
   } else if (!strcmp(env, "_")) {
     // Return the last argument of the last command
     if (getenv("LAST_ARG")) buffer = getenv("LAST_ARG");
@@ -3276,13 +3275,13 @@ YY_RULE_SETUP
     }
   }
 
-  //free(initialBuffer);
+  free(initialBuffer);
   free(target);
 }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 285 "shell.l"
+#line 284 "shell.l"
 {
   removeStartAndEnd(yytext);
   yylval.cpp_string = new std::string(yytext);
@@ -3291,7 +3290,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 291 "shell.l"
+#line 290 "shell.l"
 {
   /* Assume that file names have only alpha chars */
   yylval.cpp_string = new std::string(yytext);
@@ -3300,10 +3299,10 @@ YY_RULE_SETUP
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 296 "shell.l"
+#line 295 "shell.l"
 ECHO;
 	YY_BREAK
-#line 3307 "lex.yy.cc"
+#line 3306 "lex.yy.cc"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -4320,4 +4319,4 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 296 "shell.l"
+#line 295 "shell.l"

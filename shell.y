@@ -39,6 +39,28 @@
 void yyerror(const char * s);
 int yylex();
 
+void expandWildcardsIfNecessary(char* arg) {
+  // Return if arg does not contain ‘*’ or ‘?’
+  if (!strchr('*', arg) && !strchr('?', arg)) {
+    Command::_currentSimpleCommand->insertArgument(arg);
+    return; 
+  }
+
+  char* reg = (char*) malloc(2*strlen(arg)+10); 
+  char* a = arg;
+  char* r = reg;
+  *r = ‘^’; r++;
+
+  while (*a) {
+    if (*a == ‘*’) { *r=‘.’; r++; *r=‘*’; r++; }
+    else if (*a == ‘?’) { *r=‘.’ r++;}
+    else if (*a == ‘.’) { *r=‘\\’; r++; *r=‘.’; r++;} else { *r=*a; r++;}
+    a++;
+  }
+
+  *r=‘$’; r++; *r=0;
+}
+
 %}
 
 %%
@@ -79,7 +101,7 @@ argument_list:
 argument:
   WORD {
     //printf("   Yacc: insert argument \"%s\"\n", $1->c_str());
-    Command::_currentSimpleCommand->insertArgument( $1 );\
+    expandWildcardsIfNecessary( $1 );
   }
   ;
 
