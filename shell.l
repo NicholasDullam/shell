@@ -148,7 +148,6 @@ void removeStartAndEnd(char* s) {
 }
 
 [^ \n\t]*\$\([^\t\n][^\t\n]*\)[^ \n\t]* { 
-  printf("subshell");
   remove_character(yytext, '$', NULL);
   remove_character(yytext, '(', NULL);
   remove_character(yytext, ')', NULL);
@@ -168,7 +167,7 @@ void removeStartAndEnd(char* s) {
       close(pout[1]);
       
       // Execute shell executable
-      char** arguments;
+      char** arguments = malloc(sizeof(char*));
       execvp("/proc/self/exe", arguments);
       perror("Error in Child Process");
       exit(1);
