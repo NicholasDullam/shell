@@ -206,6 +206,8 @@ void removeStartAndEnd(char* s) {
       myunputc(buffer[i]);
     }
   }
+
+  free(buffer);
 }
 
 [^ \"\n\t]*(\\[^ \t\n]*)(\\[^ \t\n]*)*[^ \"\n\t]* { 
