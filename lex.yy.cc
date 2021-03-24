@@ -3795,7 +3795,7 @@ case 12:
 YY_RULE_SETUP
 #line 215 "shell.l"
 {
-  printf("tilda")
+  printf("tilda");
   remove_character(yytext, '\\', NULL);
   yylval.cpp_string = new std::string(yytext);
   return WORD;
