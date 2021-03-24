@@ -173,7 +173,7 @@ int yylex();
 
 void expandWildcardsIfNecessary(char* arg) {
   // Return if arg does not contain ‘*’ or ‘?’
-  if (!strchr('*', arg) && !strchr('?', arg)) {
+  if (!strchr(arg, '*') && !strchr(arg, '?')) {
     Command::_currentSimpleCommand->insertArgument(arg);
     return; 
   }
