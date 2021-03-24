@@ -3795,13 +3795,28 @@ case 12:
 YY_RULE_SETUP
 #line 215 "shell.l"
 {
-  yylval.cpp_string = new std::string("/homes");
+  char path[100];
+  char home[] = "/homes";
+
+  char* iterator = path;
+  strncpy(iterator, home, strlen(home));
+  iterator += strlen(home);
+
+  path[home] = '\0';  
+
+  if (strchr(yytext, '/')) {
+    printf("hi");
+  } else {
+    printf("hi");
+  }
+
+  yylval.cpp_string = new std::string(path);
   return WORD;
 }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 220 "shell.l"
+#line 235 "shell.l"
 { 
   remove_character(yytext, '\\', NULL);
   yylval.cpp_string = new std::string(yytext);
@@ -3810,7 +3825,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 226 "shell.l"
+#line 241 "shell.l"
 {
   char* envStart = strchr(yytext, '{') + 1;
   char* envEnd = strchr(yytext, '}');
@@ -3876,7 +3891,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 289 "shell.l"
+#line 304 "shell.l"
 {
   removeStartAndEnd(yytext);
   yylval.cpp_string = new std::string(yytext);
@@ -3885,7 +3900,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 295 "shell.l"
+#line 310 "shell.l"
 {
   /* Assume that file names have only alpha chars */
   yylval.cpp_string = new std::string(yytext);
@@ -3894,10 +3909,10 @@ YY_RULE_SETUP
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 300 "shell.l"
+#line 315 "shell.l"
 ECHO;
 	YY_BREAK
-#line 3901 "lex.yy.cc"
+#line 3916 "lex.yy.cc"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -4914,4 +4929,4 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 300 "shell.l"
+#line 315 "shell.l"
