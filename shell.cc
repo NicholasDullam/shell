@@ -22,7 +22,7 @@ extern "C" void zombie( int sig ){
 }
 
 int main(int argc, char** argv) {
-  if (argc) setenv("SHELL_PATH", argv[0], 1);
+  //if (argc) setenv("SHELL_PATH", argv[0], 1);
 
   if (isatty(0)) {
     Shell::prompt();
