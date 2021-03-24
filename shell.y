@@ -60,6 +60,30 @@ void expandWildcardsIfNecessary(char* arg) {
   }
 
   *r='$'; r++; *r=0;
+
+  regex_t re;	
+  int res = regcomp(&re, reg, REG_EXTENDED|REG_NOSUB);
+  if (res != 0) {
+    perror(“compile”);
+    return;
+  }
+
+  DIR * dir = opendir(“.”);
+  if (dir == NULL) {
+    perror(“opendir”);
+    return; 
+  }
+
+  struct dirent * ent;
+  while ( (ent = readdir(dir))!= NULL) {
+    // Check if name matches
+    if (regexec(ent->d_name, expbuf ) ==0 ) {
+      // Add argument Command::_currentSimpleCommand->
+      insertArgument(strdup(ent->d_name)); }
+    }
+    
+    closedir(dir);
+  }
 }
 
 %}
