@@ -3802,7 +3802,7 @@ YY_RULE_SETUP
   strncpy(iterator, home, strlen(home));
   iterator += strlen(home);
 
-  char* default = getenv('USER');
+  char* def = getenv('USER');
 
   path[strlen(home)] = '\0';  
   char* suffix = strchr(yytext, '/');
@@ -3824,8 +3824,8 @@ YY_RULE_SETUP
       iterator[0] = '/';
       iterator++;
 
-      strncpy(iterator, default, strlen(default));
-      iterator += strlen(default);
+      strncpy(iterator, def, strlen(def));
+      iterator += strlen(def);
       iterator[0] = '\0';
 
       strncpy(iterator, suffix, strlen(suffix));
@@ -3842,8 +3842,8 @@ YY_RULE_SETUP
     iterator[0] = '/';
     iterator++;
     
-    strncpy(iterator, default, strlen(default));
-    iterator += strlen(default);
+    strncpy(iterator, def, strlen(def));
+    iterator += strlen(def);
     iterator[0] = '\0';
   }
 

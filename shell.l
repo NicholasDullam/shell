@@ -220,7 +220,7 @@ void removeStartAndEnd(char* s) {
   strncpy(iterator, home, strlen(home));
   iterator += strlen(home);
 
-  char* def = getenv('USER');
+  char* def = getenv("USER");
 
   path[strlen(home)] = '\0';  
   char* suffix = strchr(yytext, '/');
