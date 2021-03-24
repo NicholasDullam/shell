@@ -1321,7 +1321,7 @@ yyreduce:
     {
     //printf("   Yacc: insert command \"%s\"\n", $1->c_str());
     Command::_currentSimpleCommand = new SimpleCommand();
-    Command::_currentSimpleCommand->insertArgument( (yyvsp[0].cpp_string) );
+    Command::_currentSimpleCommand->insertArgument( (yyvsp[0].cpp_string)->c_str() );
   }
 #line 1327 "y.tab.cc" /* yacc.c:1646  */
     break;
