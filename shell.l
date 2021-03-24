@@ -147,7 +147,7 @@ void removeStartAndEnd(char* s) {
   return GREATGREATAMPERSAND;
 }
 
-[^ \n\t]*\$\([^\t\n][^\t\n]*\)[^ \n\t]* { 
+[^ \n\t\$\(\)]*\$\([^\t\n][^\t\n]*\)[^ \n\t\$\(\)]* { 
   remove_character(yytext, '$', NULL);
   remove_character(yytext, '(', NULL);
   remove_character(yytext, ')', NULL);
