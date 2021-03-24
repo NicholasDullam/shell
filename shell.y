@@ -78,8 +78,8 @@ void expandWildcardsIfNecessary(char* arg) {
   while ( (ent = readdir(dir))!= NULL) {
     // Check if name matches
     if (regexec(ent->d_name, expbuf ) ==0 ) {
-      // Add argument Command::_currentSimpleCommand->
-      insertArgument(strdup(ent->d_name)); }
+      // Add argument 
+      Command::_currentSimpleCommand->insertArgument(strdup(ent->d_name)); }
     }
     
     closedir(dir);
