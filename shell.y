@@ -42,6 +42,14 @@
 void yyerror(const char * s);
 int yylex();
 
+static int compare(const void* a, const void* b) {
+  return strcmp(*(const char**)a, *(const char**)b);
+}
+
+void sort(const char* arr[], int n){
+  qsort(arr, n, sizeof(const char*), compare);
+}
+
 void expandWildcardsIfNecessary(char* arg) {
   // Return if arg does not contain ‘*’ or ‘?’
   if (!strchr(arg, '*') && !strchr(arg, '?')) {
@@ -77,13 +85,30 @@ void expandWildcardsIfNecessary(char* arg) {
   }
 
   struct dirent * ent;
+  int maxEntries = 20;
+  int nEntries = 0;
+
+  char ** array = (char**) malloc(maxEntries*sizeof(char*));
   while ( (ent = readdir(dir))!= NULL) {
     // Check if name matches
     regmatch_t match;
     if (regexec(&re, ent->d_name, 1, &match, 0) == 0) {
-      // Add argument 
-      Command::_currentSimpleCommand->insertArgument(new std::string(strdup(ent->d_name))); 
+      if (nEntries == maxEntries) {
+        maxEntries *=2;
+        array = realloc(array, maxEntries*sizeof(char*)); 
+        assert(array != NULL);
+      }
+
+      array[nEntries] = strdup(ent->d_name);
+      nEntries++;      
     }
+  }
+
+  sort(array, nEntries);
+  
+  // Add arguments 
+  for (int i = 0; i < nEntries; i++) {
+      Command::_currentSimpleCommand->insertArgument(new std::string(array[i])); 
   }
 
   closedir(dir);

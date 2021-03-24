@@ -213,11 +213,11 @@ void expandWildcardsIfNecessary(char* arg) {
     regmatch_t match;
     if (regexec(&re, ent->d_name, 1, &match, 0) == 0) {
       // Add argument 
-      Command::_currentSimpleCommand->insertArgument(strdup(ent->d_name)); }
+      Command::_currentSimpleCommand->insertArgument(new std::string(strdup(ent->d_name))); 
     }
-    
-    closedir(dir);
   }
+
+  closedir(dir);
 }
 
 
