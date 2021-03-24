@@ -3271,7 +3271,7 @@ YY_RULE_SETUP
     }
   }
 
-  free(initialBuffer);
+  //free(initialBuffer);
   free(target);
 }
 	YY_BREAK
