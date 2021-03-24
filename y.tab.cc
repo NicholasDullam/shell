@@ -224,13 +224,25 @@ void expandWildcardsIfNecessary(char* arg) {
     // Check if name matches
     regmatch_t match;
     if (regexec(&re, ent->d_name, 1, &match, 0) == 0) {
-      if (nEntries == maxEntries) {
-        maxEntries *=2;
-        array = (char**) realloc(array, maxEntries*sizeof(char*)); 
-      }
+      if (ent->d_name[0] == ‘.’) {
+        if (arg[0] == ‘.’) {
+          if (nEntries == maxEntries) {
+            maxEntries *=2;
+            array = (char**) realloc(array, maxEntries*sizeof(char*)); 
+          }
 
-      array[nEntries] = strdup(ent->d_name);
-      nEntries++;      
+          array[nEntries] = strdup(ent->d_name);
+          nEntries++;             
+        } 
+      } else {
+        if (nEntries == maxEntries) {
+          maxEntries *=2;
+          array = (char**) realloc(array, maxEntries*sizeof(char*)); 
+        }
+
+        array[nEntries] = strdup(ent->d_name);
+        nEntries++;     
+      } 
     }
   }
 
@@ -245,7 +257,7 @@ void expandWildcardsIfNecessary(char* arg) {
 }
 
 
-#line 249 "y.tab.cc" /* yacc.c:358  */
+#line 261 "y.tab.cc" /* yacc.c:358  */
 
 #ifdef short
 # undef short
@@ -543,9 +555,9 @@ static const yytype_uint8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,   121,   121,   125,   126,   129,   133,   137,   138,   142,
-     149,   150,   154,   161,   169,   177,   187,   193,   198,   202,
-     209,   210,   214,   215,   219,   222
+       0,   133,   133,   137,   138,   141,   145,   149,   150,   154,
+     161,   162,   166,   173,   181,   189,   199,   205,   210,   214,
+     221,   222,   226,   227,   231,   234
 };
 #endif
 
@@ -1335,50 +1347,50 @@ yyreduce:
   switch (yyn)
     {
         case 6:
-#line 133 "shell.y" /* yacc.c:1646  */
+#line 145 "shell.y" /* yacc.c:1646  */
     {
     //printf("   Yacc: Execute command\n");
     Shell::_currentCommand.execute();
   }
-#line 1344 "y.tab.cc" /* yacc.c:1646  */
+#line 1356 "y.tab.cc" /* yacc.c:1646  */
     break;
 
   case 8:
-#line 138 "shell.y" /* yacc.c:1646  */
+#line 150 "shell.y" /* yacc.c:1646  */
     { yyerrok; }
-#line 1350 "y.tab.cc" /* yacc.c:1646  */
+#line 1362 "y.tab.cc" /* yacc.c:1646  */
     break;
 
   case 9:
-#line 142 "shell.y" /* yacc.c:1646  */
+#line 154 "shell.y" /* yacc.c:1646  */
     {
     Shell::_currentCommand.
     insertSimpleCommand( Command::_currentSimpleCommand );
   }
-#line 1359 "y.tab.cc" /* yacc.c:1646  */
+#line 1371 "y.tab.cc" /* yacc.c:1646  */
     break;
 
   case 12:
-#line 154 "shell.y" /* yacc.c:1646  */
+#line 166 "shell.y" /* yacc.c:1646  */
     {
     //printf("   Yacc: insert argument \"%s\"\n", $1->c_str());
     expandWildcardsIfNecessary( (char*) ((yyvsp[0].cpp_string)->c_str()) );
   }
-#line 1368 "y.tab.cc" /* yacc.c:1646  */
+#line 1380 "y.tab.cc" /* yacc.c:1646  */
     break;
 
   case 13:
-#line 161 "shell.y" /* yacc.c:1646  */
+#line 173 "shell.y" /* yacc.c:1646  */
     {
     //printf("   Yacc: insert command \"%s\"\n", $1->c_str());
     Command::_currentSimpleCommand = new SimpleCommand();
     Command::_currentSimpleCommand->insertArgument( (yyvsp[0].cpp_string) );
   }
-#line 1378 "y.tab.cc" /* yacc.c:1646  */
+#line 1390 "y.tab.cc" /* yacc.c:1646  */
     break;
 
   case 14:
-#line 169 "shell.y" /* yacc.c:1646  */
+#line 181 "shell.y" /* yacc.c:1646  */
     {
     //printf("   Yacc: insert output \"%s\"\n", $2->c_str());
     if (!Shell::_currentCommand._outFile) {
@@ -1387,11 +1399,11 @@ yyreduce:
       printf("Ambiguous output redirect.\n");
     }
   }
-#line 1391 "y.tab.cc" /* yacc.c:1646  */
+#line 1403 "y.tab.cc" /* yacc.c:1646  */
     break;
 
   case 15:
-#line 177 "shell.y" /* yacc.c:1646  */
+#line 189 "shell.y" /* yacc.c:1646  */
     {
     //printf("   Yacc: append output \"%s\"\n", $2->c_str());
     if (!Shell::_currentCommand._outFile) {
@@ -1402,58 +1414,58 @@ yyreduce:
       exit(1);
     }
   }
-#line 1406 "y.tab.cc" /* yacc.c:1646  */
+#line 1418 "y.tab.cc" /* yacc.c:1646  */
     break;
 
   case 16:
-#line 187 "shell.y" /* yacc.c:1646  */
+#line 199 "shell.y" /* yacc.c:1646  */
     {
     //printf("   Yacc: append both \"%s\"\n", $2->c_str());
     Shell::_currentCommand._outFile = (yyvsp[0].cpp_string);
     Shell::_currentCommand._errFile = (yyvsp[0].cpp_string);
     Shell::_currentCommand._append = true;
   }
-#line 1417 "y.tab.cc" /* yacc.c:1646  */
+#line 1429 "y.tab.cc" /* yacc.c:1646  */
     break;
 
   case 17:
-#line 193 "shell.y" /* yacc.c:1646  */
+#line 205 "shell.y" /* yacc.c:1646  */
     {
     //printf("   Yacc: insert both \"%s\"\n", $2->c_str());
     Shell::_currentCommand._outFile = (yyvsp[0].cpp_string);
     Shell::_currentCommand._errFile = (yyvsp[0].cpp_string);
   }
-#line 1427 "y.tab.cc" /* yacc.c:1646  */
+#line 1439 "y.tab.cc" /* yacc.c:1646  */
     break;
 
   case 18:
-#line 198 "shell.y" /* yacc.c:1646  */
+#line 210 "shell.y" /* yacc.c:1646  */
     {
     //printf("   Yacc: insert error \"%s\"\n", $2->c_str());
     Shell::_currentCommand._errFile = (yyvsp[0].cpp_string);
   }
-#line 1436 "y.tab.cc" /* yacc.c:1646  */
+#line 1448 "y.tab.cc" /* yacc.c:1646  */
     break;
 
   case 19:
-#line 202 "shell.y" /* yacc.c:1646  */
+#line 214 "shell.y" /* yacc.c:1646  */
     {
     //printf("   Yacc: change inFile \"%s\"\n", $2->c_str());
     Shell::_currentCommand._inFile = (yyvsp[0].cpp_string);
   }
-#line 1445 "y.tab.cc" /* yacc.c:1646  */
+#line 1457 "y.tab.cc" /* yacc.c:1646  */
     break;
 
   case 24:
-#line 219 "shell.y" /* yacc.c:1646  */
+#line 231 "shell.y" /* yacc.c:1646  */
     {
     Shell::_currentCommand._background = true;
   }
-#line 1453 "y.tab.cc" /* yacc.c:1646  */
+#line 1465 "y.tab.cc" /* yacc.c:1646  */
     break;
 
 
-#line 1457 "y.tab.cc" /* yacc.c:1646  */
+#line 1469 "y.tab.cc" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1681,7 +1693,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 225 "shell.y" /* yacc.c:1906  */
+#line 237 "shell.y" /* yacc.c:1906  */
 
 
 void

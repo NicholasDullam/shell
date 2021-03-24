@@ -93,8 +93,8 @@ void expandWildcardsIfNecessary(char* arg) {
     // Check if name matches
     regmatch_t match;
     if (regexec(&re, ent->d_name, 1, &match, 0) == 0) {
-      if (ent->d_name[0] == ‘.’) {
-        if (arg[0] == ‘.’) {
+      if (ent->d_name[0] == '.') {
+        if (arg[0] == '.') {
           if (nEntries == maxEntries) {
             maxEntries *=2;
             array = (char**) realloc(array, maxEntries*sizeof(char*)); 
