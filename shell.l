@@ -242,7 +242,6 @@ void removeStartAndEnd(char* s) {
     // Return PID of last background process
     if (getenv("LAST_BP")) buffer = getenv("LAST_BP");
     else buffer[0] = '\0';
-    buffer = getenv(env);
   } else if (!strcmp(env, "_")) {
     // Return the last argument of the last command
     if (getenv("LAST_ARG")) buffer = getenv("LAST_ARG");
@@ -278,7 +277,7 @@ void removeStartAndEnd(char* s) {
     }
   }
 
-  //free(initialBuffer);
+  free(initialBuffer);
   free(target);
 }
 
