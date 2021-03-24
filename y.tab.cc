@@ -246,14 +246,14 @@ void expandWildcardsIfNecessary(char* arg) {
     }
   }
 
+  closedir(dir);
+
   sort(array, nEntries);
 
   // Add arguments 
   for (int i = 0; i < nEntries; i++) {
       Command::_currentSimpleCommand->insertArgument(new std::string(array[i])); 
   }
-
-  closedir(dir);
 }
 
 

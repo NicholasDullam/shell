@@ -50,7 +50,7 @@ void sort(char* arr[], int n){
   qsort(arr, n, sizeof(const char*), compare);
 }
 
-void expandWildcardsIfNecessary(char* arg) {
+void expandWildcardsIfNecessary(char* arg, char* suffix) {
   // Return if arg does not contain ‘*’ or ‘?’
   if (!strchr(arg, '*') && !strchr(arg, '?')) {
     Command::_currentSimpleCommand->insertArgument(new std::string(arg));
@@ -165,7 +165,7 @@ argument_list:
 argument:
   WORD {
     //printf("   Yacc: insert argument \"%s\"\n", $1->c_str());
-    expandWildcardsIfNecessary( (char*) ($1->c_str()) );
+    expandWildcardsIfNecessary( (char*) ($1->c_str()), NULL );
   }
   ;
 
