@@ -168,7 +168,8 @@ void removeStartAndEnd(char* s) {
       close(pout[1]);
       
       // Execute shell executable
-      execvp("/proc/self/exe", []);
+      char** arguments;
+      execvp("/proc/self/exe", arguments);
       perror("Error in Child Process");
       exit(1);
   } else if (ret < 0) {
