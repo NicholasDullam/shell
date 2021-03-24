@@ -3188,6 +3188,7 @@ YY_RULE_SETUP
   }
 
   *iterator = '\0';
+  printf("%s", buffer);
   close(pout[0]);
 
   for (int i = strlen(buffer) - 1; i >= 0; i--) {
@@ -3204,7 +3205,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 213 "shell.l"
+#line 214 "shell.l"
 { 
   remove_character(yytext, '\\', NULL);
   yylval.cpp_string = new std::string(yytext);
@@ -3213,7 +3214,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 219 "shell.l"
+#line 220 "shell.l"
 {
   char* envStart = strchr(yytext, '{') + 1;
   char* envEnd = strchr(yytext, '}');
@@ -3281,7 +3282,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 284 "shell.l"
+#line 285 "shell.l"
 {
   removeStartAndEnd(yytext);
   yylval.cpp_string = new std::string(yytext);
@@ -3290,7 +3291,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 290 "shell.l"
+#line 291 "shell.l"
 {
   /* Assume that file names have only alpha chars */
   yylval.cpp_string = new std::string(yytext);
@@ -3299,10 +3300,10 @@ YY_RULE_SETUP
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 295 "shell.l"
+#line 296 "shell.l"
 ECHO;
 	YY_BREAK
-#line 3306 "lex.yy.cc"
+#line 3307 "lex.yy.cc"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -4319,4 +4320,4 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 295 "shell.l"
+#line 296 "shell.l"
