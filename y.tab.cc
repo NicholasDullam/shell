@@ -185,7 +185,7 @@ void expandWildcardsIfNecessary(char* arg) {
 
   while (*a) {
     if (*a == '*') { *r='.'; r++; *r='*'; r++; }
-    else if (*a == '?') { *r='.' r++;}
+    else if (*a == '?') { *r='.'; r++;}
     else if (*a == '.') { *r='\\'; r++; *r='.'; r++;} else { *r=*a; r++;}
     a++;
   }
