@@ -167,7 +167,7 @@ void removeStartAndEnd(char* s) {
       close(pout[1]);
       
       // Execute shell executable
-      char** arguments = malloc(sizeof(char*));
+      char** arguments = (char**) malloc(sizeof(char*));
       execvp("/proc/self/exe", arguments);
       perror("Error in Child Process");
       exit(1);
