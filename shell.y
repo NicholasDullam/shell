@@ -36,12 +36,9 @@
 #include <cstdio>
 #include "shell.hh"
 #include <string.h>
-#include <string>
 
 void yyerror(const char * s);
 int yylex();
-
-void insertArgument( std::string * argument );
 
 void expandWildcardsIfNecessary(char* arg) {
   // Return if arg does not contain ‘*’ or ‘?’
