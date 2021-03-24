@@ -3802,6 +3802,8 @@ YY_RULE_SETUP
   strncpy(iterator, home, strlen(home));
   iterator += strlen(home);
 
+  char* default = getenv('USER');
+
   path[strlen(home)] = '\0';  
   char* suffix = strchr(yytext, '/');
 
@@ -3819,6 +3821,13 @@ YY_RULE_SETUP
       iterator += strlen(suffix);
       iterator[0] = '\0';
     } else {
+      iterator[0] = '/';
+      iterator++;
+
+      strncpy(iterator, default, strlen(default));
+      iterator += strlen(default);
+      iterator[0] = '\0';
+
       strncpy(iterator, suffix, strlen(suffix));
       iterator += strlen(suffix);
       iterator[0] = '\0';    
@@ -3829,6 +3838,13 @@ YY_RULE_SETUP
     strncpy(iterator, username, strlen(username));
     iterator += strlen(username);
     iterator[0] = '\0';
+  } else {
+    iterator[0] = '/';
+    iterator++;
+    
+    strncpy(iterator, default, strlen(default));
+    iterator += strlen(default);
+    iterator[0] = '\0';
   }
 
   yylval.cpp_string = new std::string(path);
@@ -3837,7 +3853,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 256 "shell.l"
+#line 272 "shell.l"
 { 
   remove_character(yytext, '\\', NULL);
   yylval.cpp_string = new std::string(yytext);
@@ -3846,7 +3862,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 262 "shell.l"
+#line 278 "shell.l"
 {
   char* envStart = strchr(yytext, '{') + 1;
   char* envEnd = strchr(yytext, '}');
@@ -3912,7 +3928,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 325 "shell.l"
+#line 341 "shell.l"
 {
   removeStartAndEnd(yytext);
   yylval.cpp_string = new std::string(yytext);
@@ -3921,7 +3937,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 331 "shell.l"
+#line 347 "shell.l"
 {
   /* Assume that file names have only alpha chars */
   yylval.cpp_string = new std::string(yytext);
@@ -3930,10 +3946,10 @@ YY_RULE_SETUP
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 336 "shell.l"
+#line 352 "shell.l"
 ECHO;
 	YY_BREAK
-#line 3937 "lex.yy.cc"
+#line 3953 "lex.yy.cc"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -4950,4 +4966,4 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 336 "shell.l"
+#line 352 "shell.l"
