@@ -220,6 +220,8 @@ void removeStartAndEnd(char* s) {
   strncpy(iterator, home, strlen(home));
   iterator += strlen(home);
 
+  char* default = getenv('USER');
+
   path[strlen(home)] = '\0';  
   char* suffix = strchr(yytext, '/');
 
@@ -237,6 +239,13 @@ void removeStartAndEnd(char* s) {
       iterator += strlen(suffix);
       iterator[0] = '\0';
     } else {
+      iterator[0] = '/';
+      iterator++;
+
+      strncpy(iterator, default, strlen(default));
+      iterator += strlen(default);
+      iterator[0] = '\0';
+
       strncpy(iterator, suffix, strlen(suffix));
       iterator += strlen(suffix);
       iterator[0] = '\0';    
@@ -246,6 +255,13 @@ void removeStartAndEnd(char* s) {
     sprintf(username, "/%s", yytext + 1);
     strncpy(iterator, username, strlen(username));
     iterator += strlen(username);
+    iterator[0] = '\0';
+  } else {
+    iterator[0] = '/';
+    iterator++;
+    
+    strncpy(iterator, default, strlen(default));
+    iterator += strlen(default);
     iterator[0] = '\0';
   }
 
