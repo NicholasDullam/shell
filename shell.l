@@ -237,7 +237,9 @@ void removeStartAndEnd(char* s) {
       iterator += strlen(suffix);
       iterator[0] = '\0';
     } else {
-      printf("hi");
+      strncpy(iterator, suffix, strlen(suffix));
+      iterator += strlen(suffix);
+      iterator[0] = '\0';    
     }
   } else if (strlen(yytext) > 1) {
     char username[100];
