@@ -221,9 +221,18 @@ void removeStartAndEnd(char* s) {
   iterator += strlen(home);
 
   path[strlen(home)] = '\0';  
+  char* suffix = strchr(yytext, '/');
 
-  if (strchr(yytext, '/')) {
-    printf("hi");
+  if (suffix) {
+    if ((int) (suffix - yytext) - 1) {
+      char username[100];
+      sprintf(username, "/%s", (suffix - yytext) - 1);
+      strncpy(iterator, username, strlen(username));
+      iterator += strlen(username);
+      iterator[0] = '\0';
+    } else {
+      printf("hi");
+    }
   } else if (strlen(yytext) > 1) {
     char username[100];
     sprintf(username, "/%s", yytext + 1);

@@ -3809,7 +3809,7 @@ YY_RULE_SETUP
   } else if (strlen(yytext) > 1) {
     char username[100];
     sprintf(username, "/%s", yytext + 1);
-    strncpy(iterator, username, strlen(username))
+    strncpy(iterator, username, strlen(username));
     iterator += strlen(username);
     iterator[0] = '\0';
   }
