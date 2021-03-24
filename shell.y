@@ -79,7 +79,7 @@ void expandWildcardsIfNecessary(char* arg) {
   struct dirent * ent;
   while ( (ent = readdir(dir))!= NULL) {
     // Check if name matches
-    if (regexec(ent->d_name, expbuf ) ==0 ) {
+    if (regexec(ent->d_name, re ) ==0 ) {
       // Add argument 
       Command::_currentSimpleCommand->insertArgument(strdup(ent->d_name)); }
     }
