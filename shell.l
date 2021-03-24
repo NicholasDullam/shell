@@ -213,7 +213,22 @@ void removeStartAndEnd(char* s) {
 }
 
 \~[^ \n\t\$\{\}]* {
-  yylval.cpp_string = new std::string("/homes");
+  char path[100];
+  char home[] = "/homes";
+
+  char* iterator = path;
+  strncpy(iterator, home, strlen(home));
+  iterator += strlen(home);
+
+  path[home] = '\0';  
+
+  if (strchr(yytext, '/')) {
+    printf("hi");
+  } else {
+    printf("hi");
+  }
+
+  yylval.cpp_string = new std::string(path);
   return WORD;
 }
 
