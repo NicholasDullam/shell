@@ -177,7 +177,7 @@ static int compare(const void* a, const void* b) {
   return strcmp(*(const char**)a, *(const char**)b);
 }
 
-void sort(const char* arr[], int n){
+void sort(char* arr[], int n){
   qsort(arr, n, sizeof(const char*), compare);
 }
 
