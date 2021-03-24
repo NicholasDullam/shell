@@ -21,8 +21,8 @@ extern "C" void zombie( int sig ){
   while(waitpid(-1, NULL, WNOHANG) > 0);
 }
 
-int main() {
-  setenv("SHELL_PATH", "testing", 1);
+int main(int argc, char** argv) {
+  if (argv[0]) setenv("SHELL_PATH", argv[0], 1);
 
   if (isatty(0)) {
     Shell::prompt();
