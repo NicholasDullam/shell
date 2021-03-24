@@ -36,6 +36,8 @@
 #include <cstdio>
 #include "shell.hh"
 #include <string.h>
+#include <dirent.h>
+#include <regex.h>
 
 void yyerror(const char * s);
 int yylex();
