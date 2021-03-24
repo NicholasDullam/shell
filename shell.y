@@ -41,6 +41,8 @@
 void yyerror(const char * s);
 int yylex();
 
+void insertArgument( std::string * argument );
+
 void expandWildcardsIfNecessary(char* arg) {
   // Return if arg does not contain ‘*’ or ‘?’
   if (!strchr(arg, '*') && !strchr(arg, '?')) {
