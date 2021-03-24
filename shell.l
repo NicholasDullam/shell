@@ -226,7 +226,7 @@ void removeStartAndEnd(char* s) {
   if (suffix) {
     if ((int) (suffix - yytext) - 1) {
       char username[100];
-      sprintf(username, "/%s", (suffix - yytext) - 1);
+      sprintf(username, "/%s", suffix - yytext - 1);
       strncpy(iterator, username, strlen(username));
       iterator += strlen(username);
       iterator[0] = '\0';
