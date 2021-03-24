@@ -225,8 +225,10 @@ void removeStartAndEnd(char* s) {
   if (strchr(yytext, '/')) {
     printf("hi");
   } else if (strlen(yytext) > 1) {
-    strncpy(iterator, yytext + 1, strlen(yytext) - 1);
-    iterator += strlen(yytext) - 1;
+    char username[100];
+    sprintf(username, "/%s", yytext + 1);
+    strncpy(iterator, username, strlen(username))
+    iterator += strlen(username);
     iterator[0] = '\0';
   }
 

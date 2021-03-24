@@ -3806,7 +3806,7 @@ YY_RULE_SETUP
 
   if (strchr(yytext, '/')) {
     printf("hi");
-  } else if (strlen(yytext > 1)) {
+  } else if (strlen(yytext) > 1) {
     strncpy(iterator, yytext + 1, strlen(yytext) - 1);
     iterator += strlen(yytext) - 1;
     iterator[0] = '\0';
