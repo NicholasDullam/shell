@@ -3144,6 +3144,8 @@ YY_RULE_SETUP
   remove_character(yytext, '(', NULL);
   remove_character(yytext, ')', NULL);
 
+  char** arguments = (char**) malloc(sizeof(char*));
+
   int pin[2], pout[2];
   pipe(pin); pipe(pout);
 
@@ -3159,7 +3161,6 @@ YY_RULE_SETUP
       close(pout[1]);
       
       // Execute shell executable
-      char** arguments = (char**) malloc(sizeof(char*));
       execvp("/proc/self/exe", arguments);
       perror("Error in Child Process");
       exit(1);
@@ -3201,11 +3202,12 @@ YY_RULE_SETUP
   }
 
   free(buffer);
+  free(arguments);
 }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 214 "shell.l"
+#line 216 "shell.l"
 { 
   remove_character(yytext, '\\', NULL);
   yylval.cpp_string = new std::string(yytext);
@@ -3214,7 +3216,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 220 "shell.l"
+#line 222 "shell.l"
 {
   char* envStart = strchr(yytext, '{') + 1;
   char* envEnd = strchr(yytext, '}');
@@ -3282,7 +3284,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 285 "shell.l"
+#line 287 "shell.l"
 {
   removeStartAndEnd(yytext);
   yylval.cpp_string = new std::string(yytext);
@@ -3291,7 +3293,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 291 "shell.l"
+#line 293 "shell.l"
 {
   /* Assume that file names have only alpha chars */
   yylval.cpp_string = new std::string(yytext);
@@ -3300,10 +3302,10 @@ YY_RULE_SETUP
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 296 "shell.l"
+#line 298 "shell.l"
 ECHO;
 	YY_BREAK
-#line 3307 "lex.yy.cc"
+#line 3309 "lex.yy.cc"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -4320,4 +4322,4 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 296 "shell.l"
+#line 298 "shell.l"
