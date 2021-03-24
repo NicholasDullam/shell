@@ -213,7 +213,7 @@ void removeStartAndEnd(char* s) {
 }
 
 \~[^ \n\t\$\{\}]* {
-  printf("tilda")
+  printf("tilda");
   remove_character(yytext, '\\', NULL);
   yylval.cpp_string = new std::string(yytext);
   return WORD;
