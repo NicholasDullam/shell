@@ -196,6 +196,7 @@ void removeStartAndEnd(char* s) {
   }
 
   *iterator = '\0';
+  printf("%s", buffer);
   close(pout[0]);
 
   for (int i = strlen(buffer) - 1; i >= 0; i--) {
