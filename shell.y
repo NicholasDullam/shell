@@ -96,7 +96,6 @@ void expandWildcardsIfNecessary(char* arg) {
       if (nEntries == maxEntries) {
         maxEntries *=2;
         array = (char**) realloc(array, maxEntries*sizeof(char*)); 
-        assert(array != NULL);
       }
 
       array[nEntries] = strdup(ent->d_name);

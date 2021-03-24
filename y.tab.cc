@@ -226,7 +226,7 @@ void expandWildcardsIfNecessary(char* arg) {
     if (regexec(&re, ent->d_name, 1, &match, 0) == 0) {
       if (nEntries == maxEntries) {
         maxEntries *=2;
-        array = realloc(array, maxEntries*sizeof(char*)); 
+        array = (char**) realloc(array, maxEntries*sizeof(char*)); 
         assert(array != NULL);
       }
 
@@ -236,7 +236,7 @@ void expandWildcardsIfNecessary(char* arg) {
   }
 
   sort(array, nEntries);
-  
+
   // Add arguments 
   for (int i = 0; i < nEntries; i++) {
       Command::_currentSimpleCommand->insertArgument(new std::string(array[i])); 
