@@ -50,7 +50,82 @@ void sort(char* arr[], int n){
   qsort(arr, n, sizeof(const char*), compare);
 }
 
-void expandWildcardsIfNecessary(char* arg, char* suffix) {
+/*void expandWildcardsIfNecessary(char* arg) {
+  // Return if arg does not contain ‘*’ or ‘?’
+  if (!strchr(arg, '*') && !strchr(arg, '?')) {
+    Command::_currentSimpleCommand->insertArgument(new std::string(arg));
+    return; 
+  }
+
+  char* reg = (char*) malloc( 2 * strlen(arg)+10); 
+  char* a = arg;
+  char* r = reg;
+  *r = '^'; r++;
+
+  while (*a) {
+    if (*a == '*') { *r='.'; r++; *r='*'; r++; }
+    else if (*a == '?') { *r='.'; r++;}
+    else if (*a == '.') { *r='\\'; r++; *r='.'; r++;} else { *r=*a; r++;}
+    a++;
+  }
+
+  *r='$'; r++; *r=0;
+
+  regex_t re;	
+  int res = regcomp(&re, reg, REG_EXTENDED|REG_NOSUB);
+  if (res != 0) {
+    perror("compile");
+    return;
+  }
+
+  DIR * dir = opendir(".");
+  if (dir == NULL) {
+    perror("opendir");
+    return; 
+  }
+
+  struct dirent * ent;
+  int maxEntries = 20;
+  int nEntries = 0;
+
+  char ** array = (char**) malloc(maxEntries*sizeof(char*));
+  while ( (ent = readdir(dir))!= NULL) {
+    // Check if name matches
+    regmatch_t match;
+    if (regexec(&re, ent->d_name, 1, &match, 0) == 0) {
+      if (ent->d_name[0] == '.') {
+        if (arg[0] == '.') {
+          if (nEntries == maxEntries) {
+            maxEntries *=2;
+            array = (char**) realloc(array, maxEntries*sizeof(char*)); 
+          }
+
+          array[nEntries] = strdup(ent->d_name);
+          nEntries++;             
+        } 
+      } else {
+        if (nEntries == maxEntries) {
+          maxEntries *=2;
+          array = (char**) realloc(array, maxEntries*sizeof(char*)); 
+        }
+
+        array[nEntries] = strdup(ent->d_name);
+        nEntries++;     
+      } 
+    }
+  }
+
+  closedir(dir);
+
+  sort(array, nEntries);
+
+  // Add arguments 
+  for (int i = 0; i < nEntries; i++) {
+      Command::_currentSimpleCommand->insertArgument(new std::string(array[i])); 
+  }
+}*/
+
+void expandWildcardsIfNecessary(char* arg) {
   // Return if arg does not contain ‘*’ or ‘?’
   if (!strchr(arg, '*') && !strchr(arg, '?')) {
     Command::_currentSimpleCommand->insertArgument(new std::string(arg));
@@ -165,7 +240,7 @@ argument_list:
 argument:
   WORD {
     //printf("   Yacc: insert argument \"%s\"\n", $1->c_str());
-    expandWildcardsIfNecessary( (char*) ($1->c_str()), NULL );
+    expandWildcardsIfNecessary( (char*) ($1->c_str()) );
   }
   ;
 
