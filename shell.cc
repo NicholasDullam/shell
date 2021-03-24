@@ -21,7 +21,7 @@ extern "C" void zombie( int sig ){
   while(waitpid(-1, NULL, WNOHANG) > 0);
 }
 
-int main(int argc, char** argv) {
+int main() {
   //setenv("SHELL_PATH", argv[0], 1);
 
   if (isatty(0)) {
