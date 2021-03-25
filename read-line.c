@@ -26,26 +26,22 @@ void insertString(char* destination, int pos, char* seed) {
     free(strC);
 }
 
+int line_length;
+int history_length;
 
+int cursor_position;
 
 // Buffer where line is stored
-int line_length;
-int cursor_position;
 char line_buffer[MAX_BUFFER_LINE];
 
 // Simple history array
 // This history does not change. 
 // Yours have to be updated.
 int history_index = 0;
-char * history [] = {
-  "ls -al | grep x", 
-  "ps -e",
-  "cat read-line-example.c",
-  "vi hello.c",
-  "make",
-  "ls -al | grep xxx | grep yyy"
-};
-int history_length = sizeof(history)/sizeof(char *);
+int history_position = 0;
+
+int max_history = 20;
+char * history [max_history];
 
 void read_line_print_usage()
 {
@@ -135,6 +131,8 @@ char * read_line() {
         ch = 8;
         write(1,&ch,1);
 
+
+        // Remove previous index and move to the left
         int iterator = cursor_position;
         char next = line_buffer[iterator + 1];
         line_buffer[iterator] = next;
@@ -194,6 +192,7 @@ char * read_line() {
           }
         }
 
+        // Remove index and move to the left
         int iterator = cursor_position - 1;
         char next = line_buffer[iterator + 1];
         line_buffer[iterator] = next;
@@ -244,10 +243,10 @@ char * read_line() {
         }	
 
         // Copy line from history
-        strcpy(line_buffer, history[history_index]);
+        strcpy(line_buffer, history[history_position]);
         line_length = strlen(line_buffer);
         cursor_position = line_length;
-        history_index=(history_index+1) % history_length;
+        history_position=(history_position+1) % history_length;
 
         // echo line
         write(1, line_buffer, line_length);
@@ -272,6 +271,13 @@ char * read_line() {
   line_buffer[line_length]=10;
   line_length++;
   line_buffer[line_length]=0;
+
+
+  history[history_index] = (char*) malloc(sizeof(char) * strlen(line_buffer) + 1);
+  strncpy(history[history_index], line_buffer, strlen(line_buffer));
+  history[history_index][strlen(line_buffer)] = '\0';
+  history_index++;
+  history_length++;
 
   tty_term_mode();
 
