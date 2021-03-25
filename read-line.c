@@ -127,7 +127,7 @@ char * read_line() {
       break;
     } else if (ch == 4) {
       // Write a space to erase the last character read
-      if (cursor_position < line_length) {
+      if (cursor_position <= line_length) {
         ch = ' ';
         write(1,&ch,1);
 
