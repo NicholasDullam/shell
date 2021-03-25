@@ -277,7 +277,7 @@ char * read_line() {
 
   history[history_index % MAX_HISTORY] = (char*) malloc(sizeof(char) * strlen(line_buffer));
   strncpy(history[history_index % MAX_HISTORY], line_buffer, strlen(line_buffer) - 1);
-  history[history_index % MAX_HISTORY][strlen(line_buffer)] = '\0';
+  history[history_index % MAX_HISTORY][strlen(line_buffer) - 1] = '\0';
   if (history_length < MAX_HISTORY) history_length++;
   history_position = history_index % MAX_HISTORY;
   history_index++;
