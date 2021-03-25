@@ -162,7 +162,7 @@ char * read_line() {
             write(1,&ch,1);
           }
 
-          h = ' ';
+          ch = ' ';
           write(1,&ch,1);
 
           for (int i = cursor_position; i < line_length; i++) {
