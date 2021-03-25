@@ -17,6 +17,7 @@ extern void tty_term_mode(void);
 
 // Buffer where line is stored
 int line_length;
+int cursor_position;
 char line_buffer[MAX_BUFFER_LINE];
 
 // Simple history array
@@ -52,6 +53,7 @@ char * read_line() {
   tty_raw_mode();
 
   line_length = 0;
+  cursor_position = 0;
 
   // Read one line until enter is typed
   while (1) {
@@ -69,8 +71,9 @@ char * read_line() {
       if (line_length==MAX_BUFFER_LINE-2) break; 
 
       // add char to buffer.
-      line_buffer[line_length]=ch;
+      line_buffer[cursor_position]=ch;
       line_length++;
+      cursor_position++;
     }
     else if (ch==10) {
       // <Enter> was typed. Return line
