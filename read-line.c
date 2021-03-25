@@ -83,8 +83,18 @@ char * read_line() {
       if (line_length==MAX_BUFFER_LINE-2) break; 
 
       // add char to buffer.
-      insertString(line_buffer, cursor_position, ch)
-      line_buffer[cursor_position]=ch;
+      int iterator = cursor_position;
+      char prev = line_buffer[iterator];
+      char val = prev;
+      line_buffer[iterator]=ch;
+      iterator++;
+
+      while (prev != 0) {
+        val = prev;
+        prev = line_buffer[iterator];
+        line_buffer[iterator] = val;
+        iterator++;
+      }
 
       line_length++;
       cursor_position++;
