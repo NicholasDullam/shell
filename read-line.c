@@ -146,7 +146,7 @@ char * read_line() {
         line_buffer[iterator] = next;
         iterator++;
 
-        while (iterator < line_length - 1) {
+        while (iterator < line_length) {
           next = line_buffer[iterator + 1];
           line_buffer[iterator] = next;
           iterator++;
