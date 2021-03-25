@@ -13,6 +13,7 @@
 #define MAX_BUFFER_LINE 2048
 
 extern void tty_raw_mode(void);
+extern void tty_term_mode(void);
 
 // Buffer where line is stored
 int line_length;
@@ -61,7 +62,6 @@ char * read_line() {
 
     if (ch>=32) {
       // It is a printable character. 
-      printf("reading this");
       // Do echo
       write(1,&ch,1);
 
@@ -154,6 +154,8 @@ char * read_line() {
   line_buffer[line_length]=10;
   line_length++;
   line_buffer[line_length]=0;
+
+  tty_term_mode();
 
   return line_buffer;
 }

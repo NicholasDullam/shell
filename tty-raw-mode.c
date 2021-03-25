@@ -11,8 +11,12 @@
  * Also there is no automatic echo.
  */
 
+struct termios old_tty_settings;
+
 void tty_raw_mode(void)
 {
+	tcgetattr(0, &old_tty_settings);
+
 	struct termios tty_attr;
      
 	tcgetattr(0,&tty_attr);
@@ -23,4 +27,9 @@ void tty_raw_mode(void)
 	tty_attr.c_cc[VMIN] = 1;
      
 	tcsetattr(0,TCSANOW,&tty_attr);
+}
+
+void tty_term_mode(void)
+{
+	tcsetattr(0, TCSANOW, &old_tty_settings);
 }
