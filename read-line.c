@@ -17,8 +17,7 @@ extern void tty_term_mode(void);
 
 void insertString(char* destination, int pos, char* seed) {
     char * strC;
-
-    strC = (char*)malloc(strlen(destination)+strlen(seed)+1);
+    strC = (char*) malloc(strlen(destination)+strlen(seed)+1);
     strncpy(strC,destination,pos);
     strC[pos] = '\0';
     strcat(strC,seed);
@@ -26,6 +25,8 @@ void insertString(char* destination, int pos, char* seed) {
     strcpy(destination,strC);
     free(strC);
 }
+
+
 
 // Buffer where line is stored
 int line_length;
@@ -125,22 +126,25 @@ char * read_line() {
       line_buffer[0]=0;
       break;
     } else if (ch == 8) {
-      // <backspace> was typed. Remove previous character read.
+      if (cursor_pointer > 0) {
+        // <backspace> was typed. Remove previous character read.
 
-      // Go back one character
-      ch = 8;
-      write(1,&ch,1);
+        // Go back one character
+        ch = 8;
+        write(1,&ch,1);
 
-      // Write a space to erase the last character read
-      ch = ' ';
-      write(1,&ch,1);
+        // Write a space to erase the last character read
+        ch = ' ';
+        write(1,&ch,1);
 
-      // Go back one character
-      ch = 8;
-      write(1,&ch,1);
+        // Go back one character
+        ch = 8;
+        write(1,&ch,1);
 
-      // Remove one character from buffer
-      line_length--;
+        // Remove one character from buffer
+        cursor_pointer--;
+        line_length--;
+      }
     } else if (ch==27) {
       // Escape sequence. Read two chars more
       //
