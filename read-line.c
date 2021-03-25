@@ -88,8 +88,7 @@ char * read_line() {
       read_line_print_usage();
       line_buffer[0]=0;
       break;
-    }
-    else if (ch == 8) {
+    } else if (ch == 8) {
       // <backspace> was typed. Remove previous character read.
 
       // Go back one character
@@ -106,17 +105,18 @@ char * read_line() {
 
       // Remove one character from buffer
       line_length--;
-    }
-    else if (ch==27) {
+    } else if (ch==27) {
       // Escape sequence. Read two chars more
       //
       // HINT: Use the program "keyboard-example" to
       // see the ascii code for the different chars typed.
       //
+
       char ch1; 
       char ch2;
       read(0, &ch1, 1);
       read(0, &ch2, 1);
+
       if (ch1==91 && ch2==65) {
         // Up arrow. Print next line in history.
 
@@ -143,6 +143,7 @@ char * read_line() {
         // Copy line from history
         strcpy(line_buffer, history[history_index]);
         line_length = strlen(line_buffer);
+        cursor_position = line_length;
         history_index=(history_index+1)%history_length;
 
         // echo line
@@ -154,9 +155,7 @@ char * read_line() {
         if (cursor_position < line_length - 1) cursor_position++;
         // Right Arrow
       }
-      
     }
-
   }
 
   // Add eol and null char at the end of string
