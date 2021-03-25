@@ -3279,7 +3279,7 @@ char *yytext_ptr;
 #include "y.tab.hh"
 
 #include <string.h>
-#include "y.tab.h"
+#include "y.tab.hh"
 
 ////////////  Start added code ///////////
 
