@@ -133,6 +133,7 @@ char * read_line() {
         if (cursor_position < line_length - 1) cursor_position++;
         // Right Arrow
       }
+    }
 
 	// Print spaces on top
 	for (i =0; i < line_length; i++) {
