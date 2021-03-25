@@ -206,8 +206,8 @@ void Command::execute() {
             ret = fork();
             
             if (ret == 0) {
-                close(fdpipe[0]);
-                close(fdpipe[1]);
+                close(tempin);
+                close(tempout);
 
                 // Built-in function parsing and execution
                 if (!strcmp(args[0], "printenv")){
