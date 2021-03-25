@@ -135,7 +135,7 @@ char * read_line() {
         ch = 8;
         write(1,&ch,1);
 
-        int iterator = cursor_position - 1;
+        int iterator = cursor_position;
         char next = line_buffer[iterator + 1];
         line_buffer[iterator] = next;
         iterator++;
