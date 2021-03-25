@@ -104,6 +104,11 @@ char * read_line() {
           ch = line_buffer[i];
           write(1,&ch,1);
         }
+
+        for (int i = cursor_position; i < line_length; i++) {
+          ch = 8;
+          write(1,&ch,1);
+        }
       }
     }
     else if (ch==10) {
