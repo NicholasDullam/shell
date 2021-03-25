@@ -202,6 +202,8 @@ void expandWildcardsIfNecessary(char* arg) {
   for (int i = 0; i < nEntries; i++) {
       Command::_currentSimpleCommand->insertArgument(new std::string(array[i])); 
   }
+
+  free(array);
 }
 
 %}
