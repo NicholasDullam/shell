@@ -141,6 +141,17 @@ char * read_line() {
         ch = 8;
         write(1,&ch,1);
 
+        int iterator = cursor_position;
+        char next = line_buffer[iterator + 1];
+        line_buffer[iterator] = next;
+        iterator++;
+
+        while (iterator < line_length - 1) {
+          next = line_buffer[iterator + 1];
+          line_buffer[iterator] = next;
+          iterator++;
+        }
+
         // Remove one character from buffer
         cursor_position--;
         line_length--;
