@@ -210,6 +210,9 @@ void Command::execute() {
                 close(tempout);
                 close(temperr);
 
+                close(fdin);
+                close(fdout);
+
                 // Built-in function parsing and execution
                 if (!strcmp(args[0], "printenv")){
                     char **p = environ;
