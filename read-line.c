@@ -145,9 +145,9 @@ char * read_line() {
           line_buffer[iterator] = next;
           iterator++;
         }
-        
+
         if (line_length != cursor_position) {
-          for (int i = cursor_position; i < line_length; i++) {
+          for (int i = cursor_position; i < line_length - 1; i++) {
             ch = line_buffer[i];
             write(1,&ch,1);
           }
