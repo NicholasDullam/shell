@@ -246,7 +246,7 @@ char * read_line() {
           line_buffer[strlen(history[history_position])] = '\0';
           line_length = strlen(line_buffer);
           cursor_position = line_length;
-          history_position= (history_position + 1) % history_length;
+          if (history_position < history_length + 1) history_position++;
 
           // echo line
           write(1, line_buffer, line_length);
@@ -282,7 +282,7 @@ char * read_line() {
           line_buffer[strlen(history[history_position])] = '\0';
           line_length = strlen(line_buffer);
           cursor_position = line_length;
-          history_position= abs(history_position - 1) % history_length;
+          if (history_position > 0) history_position--;
 
           // echo line
           write(1, line_buffer, line_length);
