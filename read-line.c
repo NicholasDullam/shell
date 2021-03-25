@@ -118,15 +118,21 @@ char * read_line() {
       read(0, &ch1, 1);
       read(0, &ch2, 1);
       if (ch1==91 && ch2==65) {
-	// Up arrow. Print next line in history.
+        // Up arrow. Print next line in history.
 
-	// Erase old line
-	// Print backspaces
-	int i = 0;
-	for (i =0; i < line_length; i++) {
-	  ch = 8;
-	  write(1,&ch,1);
-	}
+        // Erase old line
+        // Print backspaces
+        int i = 0;
+        for (i =0; i < line_length; i++) {
+          ch = 8;
+          write(1,&ch,1);
+	    } else if (ch1==91 && ch2==68) {
+        if (cursor_position > 0) cursor_position--;
+        // Left Arrow
+      } else if (ch1==91 && ch2==67) {
+        if (cursor_position < line_length - 1) cursor_position++;
+        // Right Arrow
+      }
 
 	// Print spaces on top
 	for (i =0; i < line_length; i++) {
