@@ -176,6 +176,11 @@ void Command::execute() {
                 chdir(getenv("HOME"));
             }
         } else if (!strcmp(args[0], "exit")) {
+            // Close remaining open file descriptors
+            close(tempin);
+            close(tempout);
+            close(temperr);
+
             exit(0);
         } else {
             if (i == _simpleCommands.size() - 1) {
