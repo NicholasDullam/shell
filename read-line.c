@@ -153,7 +153,7 @@ char * read_line() {
       } else if (ch1==91 && ch2==67) {
         if (cursor_position < line_length - 1) cursor_position++;
         // Right Arrow
-      })
+      }
       
     }
 
