@@ -150,8 +150,6 @@ char * read_line() {
           }
         }
 
-        line_length--;
-
         int iterator = cursor_position - 1;
         char next = line_buffer[iterator + 1];
         line_buffer[iterator] = next;
@@ -162,6 +160,8 @@ char * read_line() {
           line_buffer[iterator] = next;
           iterator++;
         }
+
+        line_length--;
       }
     } else if (ch == 8) {
       if (cursor_position > 0) {
