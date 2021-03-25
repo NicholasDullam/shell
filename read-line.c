@@ -141,6 +141,21 @@ char * read_line() {
         ch = 8;
         write(1,&ch,1);
 
+                 if (line_length != cursor_position) {
+          for (int i = cursor_position; i < line_length; i++) {
+            ch = line_buffer[i];
+            write(1,&ch,1);
+          }
+
+          ch = ' ';
+          write(1,&ch,1);
+
+          for (int i = cursor_position; i < line_length; i++) {
+            ch = 8;
+            write(1,&ch,1);
+          }
+        }
+
         int iterator = cursor_position - 1;
         char next = line_buffer[iterator + 1];
         line_buffer[iterator] = next;
@@ -155,21 +170,6 @@ char * read_line() {
         // Remove one character from buffer
         cursor_position--;
         line_length--;
-
-        if (line_length != cursor_position) {
-          for (int i = cursor_position; i < line_length; i++) {
-            ch = line_buffer[i];
-            write(1,&ch,1);
-          }
-
-          ch = ' ';
-          write(1,&ch,1);
-
-          for (int i = cursor_position; i < line_length; i++) {
-            ch = 8;
-            write(1,&ch,1);
-          }
-        }
       }
     } else if (ch==27) {
       // Escape sequence. Read two chars more
