@@ -205,6 +205,10 @@ void Command::execute() {
             // Initialize new child process
             ret = fork();
 
+            close(tempin);
+            close(tempout);
+            close(temperr);
+
             if (ret == 0) {
                 // Built-in function parsing and execution
                 if (!strcmp(args[0], "printenv")){
