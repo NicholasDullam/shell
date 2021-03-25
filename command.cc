@@ -208,6 +208,7 @@ void Command::execute() {
             if (ret == 0) {
                 close(tempin);
                 close(tempout);
+                close(temperr);
 
                 // Built-in function parsing and execution
                 if (!strcmp(args[0], "printenv")){
