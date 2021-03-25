@@ -148,6 +148,8 @@ void expandWildcardsIfNecessary(char* arg) {
 
   regex_t re;	
   int res = regcomp(&re, reg, REG_EXTENDED|REG_NOSUB);
+  free(reg);
+
   if (res != 0) {
     perror("compile");
     return;
@@ -188,6 +190,8 @@ void expandWildcardsIfNecessary(char* arg) {
         nEntries++;     
       } 
     }
+
+    free(res);
   }
 
   closedir(dir);
