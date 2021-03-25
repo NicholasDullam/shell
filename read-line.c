@@ -142,7 +142,7 @@ char * read_line() {
         write(1,&ch,1);
 
         // Remove one character from buffer
-        cursor_pointer--;
+        cursor_position--;
         line_length--;
       }
     } else if (ch==27) {
