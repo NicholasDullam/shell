@@ -125,6 +125,42 @@ char * read_line() {
       read_line_print_usage();
       line_buffer[0]=0;
       break;
+    } else if (ch == 4) {
+      // Write a space to erase the last character read
+      ch = ' ';
+      write(1,&ch,1);
+
+      // Go back one character
+      ch = 8;
+      write(1,&ch,1);
+
+      if (line_length != cursor_position) {
+        for (int i = cursor_position; i < line_length; i++) {
+          ch = line_buffer[i];
+          write(1,&ch,1);
+        }
+
+        ch = ' ';
+        write(1,&ch,1);
+
+        for (int i = cursor_position; i < line_length + 1; i++) {
+          ch = 8;
+          write(1,&ch,1);
+        }
+      }
+
+      int iterator = cursor_position - 1;
+      char next = line_buffer[iterator + 1];
+      line_buffer[iterator] = next;
+      iterator++;
+
+      while (iterator < line_length) {
+        next = line_buffer[iterator + 1];
+        line_buffer[iterator] = next;
+        iterator++;
+      }
+
+      line_length--;
     } else if (ch == 8) {
       if (cursor_position > 0) {
         // <backspace> was typed. Remove previous character read.
