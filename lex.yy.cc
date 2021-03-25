@@ -3284,7 +3284,7 @@ char *yytext_ptr;
 ////////////  Start added code ///////////
 
 
-extern “C” char * read_line();
+extern "C" char * read_line();
 
 int mygetc(FILE * f) {
   static char *p;

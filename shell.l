@@ -13,8 +13,6 @@
 #include <stdlib.h>
 #include <sys/types.h>
 #include <unistd.h>
-#include "y.tab.hh"
-
 #include <string.h>
 #include "y.tab.hh"
 
