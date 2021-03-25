@@ -28,8 +28,6 @@ void insertString(char* destination, int pos, char* seed) {
 }
 
 int line_length;
-int history_length;
-
 int cursor_position;
 
 // Buffer where line is stored
@@ -40,6 +38,7 @@ char line_buffer[MAX_BUFFER_LINE];
 // Yours have to be updated.
 int history_index = 0;
 int history_position = 0;
+int history_length = 0;
 
 char* history[MAX_HISTORY];
 
