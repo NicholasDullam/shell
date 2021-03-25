@@ -243,11 +243,11 @@ char * read_line() {
           }	
 
           // Copy line from history
-          strncpy(line_buffer, history[history_position], strlen(history[history_position]));
+          strcpy(line_buffer, history[history_position]));
           line_buffer[strlen(history[history_position])] = '\0';
           line_length = strlen(line_buffer);
           cursor_position = line_length;
-          history_position=(history_position+1) % history_length;
+          history_position= (history_position + 1) % history_length;
 
           // echo line
           write(1, line_buffer, line_length);
