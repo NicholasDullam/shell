@@ -150,7 +150,7 @@ char * read_line() {
           ch = ' ';
           write(1,&ch,1);
 
-          for (int i = cursor_position; i < line_length; i++) {
+          for (int i = cursor_position; i < line_length + 1; i++) {
             ch = 8;
             write(1,&ch,1);
           }
