@@ -252,7 +252,7 @@ char * read_line() {
           write(1, line_buffer, line_length);
         } else {
           ch = '\a';
-          write(1,&ch,1);
+          printf("%c", ch);
         }
       } else if (ch1==91 && ch2==68) {
         if (cursor_position > 0) {
