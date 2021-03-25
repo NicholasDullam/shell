@@ -135,6 +135,8 @@ char * read_line() {
         ch = 8;
         write(1,&ch,1);
 
+        line_length--;
+
         if (line_length != cursor_position) {
           for (int i = cursor_position; i < line_length; i++) {
             ch = line_buffer[i];
@@ -160,8 +162,6 @@ char * read_line() {
           line_buffer[iterator] = next;
           iterator++;
         }
-
-        line_length--;
       }
     } else if (ch == 8) {
       if (cursor_position > 0) {
