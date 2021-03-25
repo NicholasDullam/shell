@@ -144,12 +144,16 @@ char * read_line() {
         strcpy(line_buffer, history[history_index]);
         line_length = strlen(line_buffer);
         cursor_position = line_length;
-        history_index=(history_index+1)%history_length;
+        history_index=(history_index+1) % history_length;
 
         // echo line
         write(1, line_buffer, line_length);
       } else if (ch1==91 && ch2==68) {
-        if (cursor_position > 0) cursor_position--;
+        if (cursor_position > 0) {
+          ch = 8;
+          write(1,&ch,1);
+          cursor_position--;
+        }
         // Left Arrow
       } else if (ch1==91 && ch2==67) {
         if (cursor_position < line_length - 1) cursor_position++;
