@@ -156,7 +156,7 @@ char * read_line() {
         }
         // Left Arrow
       } else if (ch1==91 && ch2==67) {
-        if (cursor_position < line_length - 1) {
+        if (cursor_position < line_length) {
           ch = line_buffer[cursor_position++];
           write(1,&ch,1);
         }
