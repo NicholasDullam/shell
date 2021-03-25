@@ -243,7 +243,7 @@ char * read_line() {
           }	
 
           // Copy line from history
-          strcpy(line_buffer, history[history_position]));
+          strcpy(line_buffer, history[history_position]);
           line_buffer[strlen(history[history_position])] = '\0';
           line_length = strlen(line_buffer);
           cursor_position = line_length;
