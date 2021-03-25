@@ -15,6 +15,18 @@
 extern void tty_raw_mode(void);
 extern void tty_term_mode(void);
 
+void insertString(char* destination, int pos, char* seed) {
+    char * strC;
+
+    strC = (char*)malloc(strlen(destination)+strlen(seed)+1);
+    strncpy(strC,destination,pos);
+    strC[pos] = '\0';
+    strcat(strC,seed);
+    strcat(strC,destination+pos);
+    strcpy(destination,strC);
+    free(strC);
+}
+
 // Buffer where line is stored
 int line_length;
 int cursor_position;
@@ -71,6 +83,7 @@ char * read_line() {
       if (line_length==MAX_BUFFER_LINE-2) break; 
 
       // add char to buffer.
+      insertString(line_buffer, cursor_position, ch)
       line_buffer[cursor_position]=ch;
 
       line_length++;
