@@ -41,7 +41,7 @@ int history_index = 0;
 int history_position = 0;
 
 int max_history = 20;
-char * history [max_history];
+char * history[max_history];
 
 void read_line_print_usage()
 {
