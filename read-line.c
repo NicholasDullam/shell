@@ -137,10 +137,6 @@ char * read_line() {
         ch = ' ';
         write(1,&ch,1);
 
-        // Go back one character
-        ch = 8;
-        write(1,&ch,1);
-
         int iterator = cursor_position;
         char next = line_buffer[iterator + 1];
         line_buffer[iterator] = next;
