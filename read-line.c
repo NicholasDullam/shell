@@ -252,7 +252,7 @@ char * read_line() {
           // echo line
           write(1, line_buffer, line_length);
         } else {
-          ch = 7;
+          ch = '\a';
           write(1,&ch,1);
         }
       } else if (ch1==91 && ch2==68) {
