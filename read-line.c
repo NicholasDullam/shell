@@ -156,6 +156,20 @@ char * read_line() {
         cursor_position--;
         line_length--;
 
+        if (line_length != cursor_position) {
+          for (int i = cursor_position; i < line_length; i++) {
+            ch = line_buffer[i];
+            write(1,&ch,1);
+          }
+
+          h = ' ';
+          write(1,&ch,1);
+
+          for (int i = cursor_position; i < line_length; i++) {
+            ch = 8;
+            write(1,&ch,1);
+          }
+        }
       }
     } else if (ch==27) {
       // Escape sequence. Read two chars more
