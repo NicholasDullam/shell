@@ -192,6 +192,8 @@ void expandWildcardsIfNecessary(char* arg) {
     }
   }
 
+  regfree(&re);
+
   closedir(dir);
 
   sort(array, nEntries);
