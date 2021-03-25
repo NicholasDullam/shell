@@ -190,8 +190,6 @@ void expandWildcardsIfNecessary(char* arg) {
         nEntries++;     
       } 
     }
-
-    free(res);
   }
 
   closedir(dir);
