@@ -11,6 +11,7 @@
 #include <unistd.h>
 
 #define MAX_BUFFER_LINE 2048
+#define MAX_HISTORY 20
 
 extern void tty_raw_mode(void);
 extern void tty_term_mode(void);
@@ -40,8 +41,7 @@ char line_buffer[MAX_BUFFER_LINE];
 int history_index = 0;
 int history_position = 0;
 
-int max_history = 20;
-char* history[max_history];
+char* history[MAX_HISTORY];
 
 void read_line_print_usage()
 {
