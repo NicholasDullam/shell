@@ -250,6 +250,7 @@ void Command::execute() {
         int status;
         char statusConv[1024];
         waitpid(ret, &status, 0);
+        if (!status && getenv("ON_ERROR")) perror("%s", getenv("ON_ERROR")); 
         sprintf(statusConv, "%d", WEXITSTATUS(status));
         setenv("LAST_STAT", statusConv, 1);
     } else {
