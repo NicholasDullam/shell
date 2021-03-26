@@ -306,6 +306,12 @@ char * read_line() {
         // Right Arrow
       }
     } else if (ch == 4) {
+      for (int i = 0; i < line_length; i++) {
+        ch = line_buffer[i];
+        write(1,&ch,1);
+      }
+
+      cursor_position = line_length;
     // CTRL E
     } else if (ch == 1) {
       // CTRL A
