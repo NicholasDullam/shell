@@ -8,7 +8,9 @@
 int yyparse(void);
 
 void Shell::prompt() {
-  printf("myshell>");
+  char* prompt = getenv("PROMPT");
+  if (prompt) printf("%s>", prompt);
+  else printf("myshell>");
   fflush(stdout);
 }
 
