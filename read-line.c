@@ -305,7 +305,7 @@ char * read_line() {
         }
         // Right Arrow
       }
-    } else if (ch == 4) {
+    } else if (ch == 5) {
       for (int i = 0; i < line_length; i++) {
         ch = line_buffer[i];
         write(1,&ch,1);
