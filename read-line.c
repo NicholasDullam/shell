@@ -305,9 +305,9 @@ char * read_line() {
         }
         // Right Arrow
       }
-    } else if (4) {
+    } else if (ch == 4) {
     // CTRL E
-    } else if (1) {
+    } else if (ch == 1) {
       // CTRL A
       for (int i = 0; i < cursor_position; i++) {
         ch = 8;
