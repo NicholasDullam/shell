@@ -248,6 +248,7 @@ argument:
   WORD {
     //printf("   Yacc: insert argument \"%s\"\n", $1->c_str());
     expandWildcardsIfNecessary( (char*) ($1->c_str()) );
+    delete $1;
   }
   ;
 
