@@ -305,18 +305,18 @@ char * read_line() {
         }
         // Right Arrow
       }
-    }
-  } else if (4) {
+    } else if (4) {
     // CTRL E
-  } else if (1) {
-    // CTRL A
-    for (int i = 0; i < cursor_position) {
-      ch = 8;
-      write(1,&ch,1);
-    }
+    } else if (1) {
+      // CTRL A
+      for (int i = 0; i < cursor_position) {
+        ch = 8;
+        write(1,&ch,1);
+      }
 
-    cursor_position = 0;
-  }
+      cursor_position = 0;
+    }
+  } 
 
   // Add eol and null char at the end of string
   line_buffer[line_length]=10;
