@@ -309,6 +309,7 @@ char * read_line() {
     // CTRL E
     } else if (1) {
       // CTRL A
+      printf("testin");
       for (int i = 0; i < cursor_position; i++) {
         ch = 8;
         write(1,&ch,1);
