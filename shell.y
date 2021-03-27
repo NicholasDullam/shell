@@ -122,7 +122,7 @@ void expandWildcard(char* prefix, char* suffix) {
   while ( (ent = readdir(dir))!= NULL) {
     // Check if name matches
     regmatch_t match;
-    printf("%d", DT_DIR);
+    printf("%s", prefix);
     if (regexec(&re, ent->d_name, 1, &match, 0) == 0 && !(suffix[0] != 0 && ent->d_type == DT_DIR)) {
       if (ent->d_name[0] == '.') {
         if (component[0] == '.') {
