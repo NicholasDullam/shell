@@ -199,7 +199,7 @@ void expandWildcard(char* prefix, char* suffix) {
   } else {
     strcpy(component, suffix);
     component[strlen(suffix)] = '\0';
-    suffix = suffix + strlen(suffix);
+    suffix = suffix + strlen(suffix) - 1;
   }
 
   char newPrefix[MAXFILENAME];
