@@ -125,7 +125,6 @@ void expandWildcard(char* prefix, char* suffix) {
   while ( (ent = readdir(dir))!= NULL) {
     // Check if name matches
     regmatch_t match;
-    printf("%s", prefix);
     if (regexec(&re, ent->d_name, 1, &match, 0) == 0) {
       if (ent->d_name[0] == '.') {
         if (component[0] == '.') {
@@ -170,8 +169,14 @@ void expandWildcardsIfNecessary(char* arg) {
   if (!strchr(arg, '*') && !strchr(arg, '?')) {
     Command::_currentSimpleCommand->insertArgument(new std::string(arg));
     return; 
+  } else {
+    char* prefix = (char*) malloc(sizeof(char));
+    prefix[0] = '\0';
+    expandWildcard(prefix, arg)
+    free(prefix);
+    return;
   }
-
+/*
   char* reg = (char*) malloc( 2 * strlen(arg)+10); 
   char* a = arg;
   char* r = reg;
@@ -244,7 +249,7 @@ void expandWildcardsIfNecessary(char* arg) {
       free(array[i]);
   }
 
-  free(array);
+  free(array);*/
 }
 
 %}
@@ -288,10 +293,7 @@ argument:
   WORD {
     //printf("   Yacc: insert argument \"%s\"\n", $1->c_str());
     //expandWildcardsIfNecessary( (char*) ($1->c_str()) );
-    char* prefix = (char*) malloc(sizeof(char));
-    prefix[0] = '\0';
-    expandWildcard(prefix, (char*) ($1->c_str()) );
-    free(prefix);
+    expandWildcardsIfNecessary((char*) ($1->c_str()) );
     delete $1;
   }
   ;

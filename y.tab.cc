@@ -257,7 +257,7 @@ void expandWildcard(char* prefix, char* suffix) {
     // Check if name matches
     regmatch_t match;
     printf("%s", prefix);
-    if (regexec(&re, ent->d_name, 1, &match, 0) == 0 && !(suffix[0] != 0 && ent->d_type == DT_DIR)) {
+    if (regexec(&re, ent->d_name, 1, &match, 0) == 0) {
       if (ent->d_name[0] == '.') {
         if (component[0] == '.') {
           if (nEntries == maxEntries) {
