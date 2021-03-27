@@ -78,7 +78,6 @@ void expandWildcard(char* prefix, char* suffix) {
     return;
   }
 
-
   // Generate the regular expression from the component
   char* reg = (char*) malloc( 2 * strlen(component)+10); 
   char* a = component;
@@ -108,7 +107,7 @@ void expandWildcard(char* prefix, char* suffix) {
   if (prefix[0] == 0) {
     dir = opendir(".");
   } else {
-    dir = opendir(".");
+    dir = opendir(prefix);
   }
 
   if (dir == NULL) {
