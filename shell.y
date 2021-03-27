@@ -110,7 +110,7 @@ void expandWildcard(char* prefix, char* suffix) {
     sprintf(d, "./%s", prefix);
   }
 
-  DIR * dir;
+  DIR * dir = opendir(d);
 
   if (dir == NULL) {
     perror("opendir");

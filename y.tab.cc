@@ -233,7 +233,7 @@ void expandWildcard(char* prefix, char* suffix) {
   }
 
   // End Regex Generation, Open Directory from Prefix
-  char* d[MAXFILENAME];
+  char d[MAXFILENAME];
 
   if (prefix[0] == 0) {
     sprintf(d, "%s", ".");
