@@ -125,7 +125,6 @@ void expandWildcard(char* prefix, char* suffix) {
     // Check if name matches
     regmatch_t match;
     if (regexec(&re, ent->d_name, 1, &match, 0) == 0) {
-      printf("%s", ent->d_name);
       if (ent->d_name[0] == '.') {
         if (component[0] == '.') {
           if (nEntries == maxEntries) {
@@ -157,8 +156,7 @@ void expandWildcard(char* prefix, char* suffix) {
   // Add arguments 
   for (int i = 0; i < nEntries; i++) {
       sprintf(newPrefix, "%s/%s", prefix, array[i]);
-      printf("%s", newPrefix);
-     // expandWildcard(newPrefix, suffix);
+      expandWildcard(newPrefix, suffix);
       free(array[i]);
   }
 
