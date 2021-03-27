@@ -203,7 +203,7 @@ void expandWildcard(char* prefix, char* suffix) {
       if (h != NULL) {
         strncpy(component, suffix, strlen(suffix) - strlen(h));
         component[strlen(h) - strlen(suffix)] = '\0';
-        suffix = suffix + strlen(suffix) - strlen(h);
+        suffix = strlen(h) + 1;
       } else {
         strcpy(component, suffix);
         component[strlen(suffix)] = '\0';
