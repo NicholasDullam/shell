@@ -172,7 +172,7 @@ void expandWildcardsIfNecessary(char* arg) {
   } else {
     char* prefix = (char*) malloc(sizeof(char));
     prefix[0] = '\0';
-    expandWildcard(prefix, arg)
+    expandWildcard(prefix, arg);
     free(prefix);
     return;
   }
