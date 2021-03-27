@@ -54,7 +54,7 @@ void sort(char* arr[], int n){
 
 void expandWildcard(char* prefix, char* suffix) {
   printf("%s/%s", prefix, suffix);
-  if (!suffix[0] == 0) {
+  if (suffix[0] == 0) {
     Command::_currentSimpleCommand->insertArgument(new std::string(prefix));
     return; 
   }

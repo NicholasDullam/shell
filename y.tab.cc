@@ -1497,7 +1497,7 @@ yyreduce:
     {
     //printf("   Yacc: insert argument \"%s\"\n", $1->c_str());
     //expandWildcardsIfNecessary( (char*) ($1->c_str()) );
-    char prefix = (char*) malloc(sizeof(char));
+    char* prefix = (char*) malloc(sizeof(char));
     prefix[0] = '\0';
     expandWildcard(prefix, (char*) ((yyvsp[0].cpp_string)->c_str()) );
     free(prefix);
