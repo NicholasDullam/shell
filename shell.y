@@ -69,7 +69,6 @@ void expandWildcard(char* prefix, char* suffix) {
       strncpy(component, suffix, strlen(suffix) - strlen(s));
       component[strlen(s) - strlen(suffix)] = '\0';
       suffix = s + 1;
-    }
   } else {
     strcpy(component, suffix);
     component[strlen(suffix)] = '\0';
