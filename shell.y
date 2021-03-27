@@ -77,14 +77,9 @@ void expandWildcard(char* prefix, char* suffix) {
 
   char newPrefix[MAXFILENAME];
   if (!strchr(component, '*') && !strchr(component, '?')) {
-    if (prefix[0] == 0) {
-      strncpy(newPrefix, component, strlen(component));
-      newPrefix[strlen(component)] = '\0';
-    } else if (!strcmp(prefix, "/")) {
-      sprintf(newPrefix, "%s%s", prefix, component);
-    } else { 
-      sprintf(newPrefix, "%s/%s", prefix, component);
-    }
+    if (prefix[0] == 0) sprintf(newPrefix, "%s", component);
+    else if (!strcmp(prefix, "/")) sprintf(newPrefix, "%s%s", prefix, component);
+    else sprintf(newPrefix, "%s/%s", prefix, component);
     expandWildcard(newPrefix, suffix);
     return;
   }
@@ -165,8 +160,7 @@ void expandWildcard(char* prefix, char* suffix) {
 
   // Add arguments 
   for (int i = 0; i < nEntries; i++) {
-      if (prefix[0] == 0 || !strcmp(prefix, "/")) sprintf(newPrefix, "%s", array[i]);
-      else sprintf(newPrefix, "%s/%s", prefix, array[i]);
+      sprintf(newPrefix, "%s/%s", prefix, array[i]);
       expandWildcard(newPrefix, suffix);
       free(array[i]);
   }
