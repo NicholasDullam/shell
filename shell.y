@@ -102,12 +102,15 @@ void expandWildcard(char* prefix, char* suffix) {
   }
 
   // End Regex Generation, Open Directory from Prefix
-  DIR * dir;
+  char* d[MAXFILENAME];
+
   if (prefix[0] == 0) {
-    dir = opendir(".");
+    sprintf(d, "%s", ".");
   } else {
-    dir = opendir(prefix);
+    sprintf(d, "./%s", prefix);
   }
+
+  DIR * dir;
 
   if (dir == NULL) {
     perror("opendir");
