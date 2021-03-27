@@ -121,7 +121,7 @@ void expandWildcard(char* prefix, char* suffix) {
   char d[MAXFILENAME];
 
   if (prefix[0] == 0) {
-    sprintf(d, "%s", ".");
+    sprintf(d, "%s", "/");
   } else {
     sprintf(d, "%s", prefix);
   }
