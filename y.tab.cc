@@ -246,7 +246,7 @@ void expandWildcard(char* prefix, char* suffix) {
 
   if (dir == NULL) {
     printf("%s", prefix);
-    perror("opendir");
+    //perror("opendir");
     return; 
   }
 

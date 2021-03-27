@@ -113,11 +113,7 @@ void expandWildcard(char* prefix, char* suffix) {
 
   DIR * dir = opendir(d);
 
-  if (dir == NULL) {
-    printf("%s", prefix);
-    //perror("opendir");
-    return; 
-  }
+  if (dir == NULL) return; 
 
   struct dirent * ent;
   int maxEntries = 20;
