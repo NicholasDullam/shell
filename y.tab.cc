@@ -289,7 +289,7 @@ void expandWildcard(char* prefix, char* suffix) {
   for (int i = 0; i < nEntries; i++) {
       sprintf(newPrefix, "%s/%s", prefix, array[i]);
       printf("%s", newPrefix);
-      expandWildcard(newPrefix,suffix);
+     // expandWildcard(newPrefix, suffix);
       free(array[i]);
   }
 
