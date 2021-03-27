@@ -223,12 +223,12 @@ void Command::execute() {
                 execvp(args[0], args);
                 perror("Error in Child Process");
                 exit(1);
-            } 
-            
-            else if (ret < 0) {
+            } else if (ret < 0) {
                 perror("Error Forking Child");
                 return;
             }
+
+            if (i !=_simpleCommands.size() - 1) waitpid(ret, NULL, 0);
         }
 
         // Free dynamically allocated arguments
