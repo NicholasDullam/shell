@@ -50,15 +50,37 @@ void sort(char* arr[], int n){
   qsort(arr, n, sizeof(const char*), compare);
 }
 
-/*void expandWildcardsIfNecessary(char* arg) {
-  // Return if arg does not contain ‘*’ or ‘?’
-  if (!strchr(arg, '*') && !strchr(arg, '?')) {
-    Command::_currentSimpleCommand->insertArgument(new std::string(arg));
+#define MAXFILENAME 1024
+
+void expandWildcard(char* pref, char* suff) {
+  if (!suff[0] == 0) {
+    Command::_currentSimpleCommand->insertArgument(new std::string(pref));
     return; 
   }
 
-  char* reg = (char*) malloc( 2 * strlen(arg)+10); 
-  char* a = arg;
+  char * s = strchr(suffix, '/');
+  char component[MAXFILENAME];
+  if (s != NULL) {
+    strncpy(component, suffix, strlen(s) - strlen(suffix));
+    component[strlen(s) - strlen(suffix)] = '\0';
+    suffix = s + 1;
+  } else {
+    strcpy(component, suffix);
+    component[strlen(suffix)] = '\0';
+    suffix = suffix + strlen(suffix);
+  }
+
+  char newPrefix[MAXFILENAME];
+  if (!strchr(component, '*') && !strchr(component, '?')) {
+    sprintf(newPrefix, "%s/%s", prefix, component);
+    expandWildcard(newPrefix, suffix);
+    return;
+  }
+
+
+  // Generate the regular expression from the component
+  char* reg = (char*) malloc( 2 * strlen(component)+10); 
+  char* a = component;
   char* r = reg;
   *r = '^'; r++;
 
@@ -73,12 +95,21 @@ void sort(char* arr[], int n){
 
   regex_t re;	
   int res = regcomp(&re, reg, REG_EXTENDED|REG_NOSUB);
+  free(reg);
+
   if (res != 0) {
     perror("compile");
     return;
   }
 
-  DIR * dir = opendir(".");
+  // End Regex Generation, Open Directory from Prefix
+  DIR * dir;
+  if (prefix[0] == 0) {
+    dir = opendir(".");
+  } else {
+    dir = opendir(prefix);
+  }
+
   if (dir == NULL) {
     perror("opendir");
     return; 
@@ -88,7 +119,7 @@ void sort(char* arr[], int n){
   int maxEntries = 20;
   int nEntries = 0;
 
-  char ** array = (char**) malloc(maxEntries*sizeof(char*));
+  char ** array = (char**) malloc(maxEntries * sizeof(char*));
   while ( (ent = readdir(dir))!= NULL) {
     // Check if name matches
     regmatch_t match;
@@ -115,15 +146,21 @@ void sort(char* arr[], int n){
     }
   }
 
+  regfree(&re);
+
   closedir(dir);
 
   sort(array, nEntries);
 
   // Add arguments 
   for (int i = 0; i < nEntries; i++) {
-      Command::_currentSimpleCommand->insertArgument(new std::string(array[i])); 
+      sprintf(newPrefix,”%s/%s”, prefix, array[i]);
+      expandWildcard(newPrefix,suffix);
+      free(array[i]);
   }
-}*/
+
+  free(array);
+}
 
 void expandWildcardsIfNecessary(char* arg) {
   // Return if arg does not contain ‘*’ or ‘?’
@@ -247,7 +284,9 @@ argument_list:
 argument:
   WORD {
     //printf("   Yacc: insert argument \"%s\"\n", $1->c_str());
-    expandWildcardsIfNecessary( (char*) ($1->c_str()) );
+    //expandWildcardsIfNecessary( (char*) ($1->c_str()) );
+    char prefix[MAXFILENAME];
+    expandWildcard(prefix, (char*) ($1->c_str()) );
     delete $1;
   }
   ;
