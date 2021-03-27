@@ -127,6 +127,7 @@ void expandWildcard(char* prefix, char* suffix) {
 
   char ** array = (char**) malloc(maxEntries * sizeof(char*));
   while ( (ent = readdir(dir))!= NULL) {
+    printf("%s\n", ent->d_name);
     // Check if name matches
     regmatch_t match;
     if (regexec(&re, ent->d_name, 1, &match, 0) == 0) {
