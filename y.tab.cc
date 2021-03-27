@@ -238,7 +238,7 @@ void expandWildcard(char* prefix, char* suffix) {
   if (prefix[0] == 0) {
     sprintf(d, "%s", ".");
   } else {
-    sprintf(d, "./%s", prefix);
+    sprintf(d, "%s", prefix);
   }
 
   DIR * dir = opendir(d);
