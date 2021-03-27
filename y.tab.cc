@@ -201,7 +201,7 @@ void expandWildcard(char* prefix, char* suffix) {
     suffix = suffix + strlen(suffix);
   }
 
-  printf("%s", component);
+  printf("%s", prefix);
 
   char newPrefix[MAXFILENAME];
   if (!strchr(component, '*') && !strchr(component, '?')) {
