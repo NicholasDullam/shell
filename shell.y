@@ -288,8 +288,10 @@ argument:
   WORD {
     //printf("   Yacc: insert argument \"%s\"\n", $1->c_str());
     //expandWildcardsIfNecessary( (char*) ($1->c_str()) );
-    char prefix[MAXFILENAME];
+    char prefix = (char*) malloc(sizeof(char));
+    prefix[0] = '\0';
     expandWildcard(prefix, (char*) ($1->c_str()) );
+    free(prefix);
     delete $1;
   }
   ;
