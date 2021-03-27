@@ -204,6 +204,7 @@ void expandWildcardsIfNecessary(char* arg) {
 
   DIR * dir = opendir(".");
   if (dir == NULL) {
+    printf("%s", dir);
     perror("opendir");
     return; 
   }
