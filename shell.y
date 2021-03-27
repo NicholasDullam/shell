@@ -77,7 +77,7 @@ void expandWildcard(char* prefix, char* suffix) {
 
   char newPrefix[MAXFILENAME];
   if (!strchr(component, '*') && !strchr(component, '?')) {
-    if (component[0] == 0) sprintf(newPrefix, "%s", prefix);
+    if (component[0] == 0 || '/') sprintf(newPrefix, "%s", prefix);
     else sprintf(newPrefix, "%s/%s", prefix, component);
     expandWildcard(newPrefix, suffix);
     return;
