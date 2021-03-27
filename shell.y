@@ -53,7 +53,7 @@ void sort(char* arr[], int n){
 #define MAXFILENAME 1024
 
 void expandWildcard(char* prefix, char* suffix) {
-  printf("prefix:%s suffix:%s\n", prefix, suffix);
+  //printf("prefix:%s suffix:%s\n", prefix, suffix);
   if (suffix[0] == 0) {
     Command::_currentSimpleCommand->insertArgument(new std::string(prefix));
     return; 
