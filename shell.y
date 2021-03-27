@@ -122,7 +122,7 @@ void expandWildcard(char* prefix, char* suffix) {
   while ( (ent = readdir(dir))!= NULL) {
     // Check if name matches
     regmatch_t match;
-    if (regexec(&re, ent->d_name, 1, &match, 0) == 0) {
+    if (regexec(&re, ent->d_name, 1, &match, 0) == 0 && (strlen(suffix) && ent->d_type == DT_DIR)) {
       if (ent->d_name[0] == '.') {
         if (component[0] == '.') {
           if (nEntries == maxEntries) {
@@ -205,7 +205,7 @@ void expandWildcardsIfNecessary(char* arg) {
   while ( (ent = readdir(dir))!= NULL) {
     // Check if name matches
     regmatch_t match;
-    if (regexec(&re, ent->d_name, 1, &match, 0) == 0 && (strlen(suffix) && ent->d_type == DT_DIR)) {
+    if (regexec(&re, ent->d_name, 1, &match, 0) == 0) {
       if (ent->d_name[0] == '.') {
         if (arg[0] == '.') {
           if (nEntries == maxEntries) {
