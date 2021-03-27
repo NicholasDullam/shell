@@ -239,7 +239,7 @@ void expandWildcard(char* prefix, char* suffix) {
   if (prefix[0] == 0) {
     dir = opendir(".");
   } else {
-    dir = opendir(prefix);
+    dir = opendir(".");
   }
 
   if (dir == NULL) {
@@ -287,7 +287,7 @@ void expandWildcard(char* prefix, char* suffix) {
 
   // Add arguments 
   for (int i = 0; i < nEntries; i++) {
-      sprintf(newPrefix,"%s/%s", prefix, array[i]);
+      sprintf(newPrefix, "%s/%s", prefix, array[i]);
       printf("%s", newPrefix);
       expandWildcard(newPrefix,suffix);
       free(array[i]);
