@@ -183,8 +183,8 @@ void sort(char* arr[], int n){
 
 #define MAXFILENAME 1024
 
-void expandWildcard(char* pref, char* suff) {
-  if (!suff[0] == 0) {
+void expandWildcard(char* prefix, char* suffix) {
+  if (!suffix[0] == 0) {
     Command::_currentSimpleCommand->insertArgument(new std::string(pref));
     return; 
   }
@@ -256,7 +256,7 @@ void expandWildcard(char* pref, char* suff) {
     regmatch_t match;
     if (regexec(&re, ent->d_name, 1, &match, 0) == 0) {
       if (ent->d_name[0] == '.') {
-        if (arg[0] == '.') {
+        if (component[0] == '.') {
           if (nEntries == maxEntries) {
             maxEntries *=2;
             array = (char**) realloc(array, maxEntries*sizeof(char*)); 
@@ -285,7 +285,7 @@ void expandWildcard(char* pref, char* suff) {
 
   // Add arguments 
   for (int i = 0; i < nEntries; i++) {
-      sprintf(newPrefix,”%s/%s”, prefix, array[i]);
+      sprintf(newPrefix,"%s/%s", prefix, array[i]);
       expandWildcard(newPrefix,suffix);
       free(array[i]);
   }
