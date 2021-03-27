@@ -61,14 +61,28 @@ void expandWildcard(char* prefix, char* suffix) {
 
   char * s = strchr(suffix, '/');
   char component[MAXFILENAME];
-  if (s != NULL || suffix[0] == '/') {
-      strncpy(component, suffix, strlen(suffix) - strlen(s));
-      component[strlen(s) - strlen(suffix)] = '\0';
-      suffix = s + 1;
+
+  if (s != NULL && suffix[0] != '/') {
+    strncpy(component, suffix, strlen(suffix) - strlen(s));
+    component[strlen(s) - strlen(suffix)] = '\0';
+    suffix = s + 1;
   } else {
-    strcpy(component, suffix);
-    component[strlen(suffix)] = '\0';
-    suffix = suffix + strlen(suffix);
+    if (suffix[0] == '/') {
+      char * h = strchr(suffix + 1, '/');
+      if (h != NULL) {
+        strncpy(component, suffix, strlen(suffix) - strlen(h));
+        component[strlen(h) - strlen(suffix)] = '\0';
+        suffix = s + 1;
+      } else {
+        strcpy(component, suffix);
+        component[strlen(suffix)] = '\0';
+        suffix = suffix + strlen(suffix);
+      }
+    } else {
+      strcpy(component, suffix);
+      component[strlen(suffix)] = '\0';
+      suffix = suffix + strlen(suffix);
+    }
   }
 
   char newPrefix[MAXFILENAME];
