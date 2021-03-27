@@ -124,6 +124,7 @@ void expandWildcard(char* prefix, char* suffix) {
     // Check if name matches
     regmatch_t match;
     if (regexec(&re, ent->d_name, 1, &match, 0) == 0) {
+      printf("%s", ent->d_name);
       if (ent->d_name[0] == '.') {
         if (component[0] == '.') {
           if (nEntries == maxEntries) {
