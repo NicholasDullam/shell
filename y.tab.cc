@@ -185,7 +185,7 @@ void sort(char* arr[], int n){
 
 void expandWildcard(char* prefix, char* suffix) {
   if (!suffix[0] == 0) {
-    Command::_currentSimpleCommand->insertArgument(new std::string(pref));
+    Command::_currentSimpleCommand->insertArgument(new std::string(prefix));
     return; 
   }
 

@@ -155,6 +155,7 @@ void expandWildcard(char* prefix, char* suffix) {
   // Add arguments 
   for (int i = 0; i < nEntries; i++) {
       sprintf(newPrefix,"%s/%s", prefix, array[i]);
+      printf("%s", newPrefix);
       expandWildcard(newPrefix,suffix);
       free(array[i]);
   }
