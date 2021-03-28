@@ -250,6 +250,8 @@ void Command::execute() {
         int status;
         char statusConv[1024];
         waitpid(ret, &status, 0);
+
+        // Check for variable error
         if (status && getenv("ON_ERROR")) fprintf(stderr, "%s\n", getenv("ON_ERROR")); 
         sprintf(statusConv, "%d", WEXITSTATUS(status));
         setenv("LAST_STAT", statusConv, 1);

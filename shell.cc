@@ -8,6 +8,7 @@
 int yyparse(void);
 
 void Shell::prompt() {
+  // Check for variable prompt
   char* prompt = getenv("PROMPT");
   if (prompt) printf("%s>", prompt);
   else printf("myshell>");

@@ -292,27 +292,27 @@ char * read_line() {
           printf("%c", ch);
         }
       } else if (ch1==91 && ch2==68) {
+        // Left Arrow
         if (cursor_position > 0) {
           ch = 8;
           write(1,&ch,1);
           cursor_position--;
         }
-        // Left Arrow
       } else if (ch1==91 && ch2==67) {
+        // Right Arrow
         if (cursor_position < line_length) {
           ch = line_buffer[cursor_position++];
           write(1,&ch,1);
         }
-        // Right Arrow
       }
     } else if (ch == 5) {
+      // CTRL E
       for (int i = cursor_position; i < line_length; i++) {
         ch = line_buffer[i];
         write(1,&ch,1);
       }
 
       cursor_position = line_length;
-    // CTRL E
     } else if (ch == 1) {
       // CTRL A
       for (int i = 0; i < cursor_position; i++) {
@@ -330,6 +330,7 @@ char * read_line() {
   line_buffer[line_length]=0;
 
 
+  // Generate history elements and reset history_position
   history[history_index % MAX_HISTORY] = (char*) malloc(sizeof(char) * strlen(line_buffer));
   strncpy(history[history_index % MAX_HISTORY], line_buffer, strlen(line_buffer) - 1);
   history[history_index % MAX_HISTORY][strlen(line_buffer) - 1] = '\0';

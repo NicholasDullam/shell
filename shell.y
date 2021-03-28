@@ -53,7 +53,7 @@ void sort(char* arr[], int n){
 #define MAXFILENAME 1024
 
 void expandWildcard(char* prefix, char* suffix) {
-  //printf("prefix:%s suffix:%s\n", prefix, suffix);
+  // If the suffix is empty, insert prefix
   if (suffix[0] == 0) {
     Command::_currentSimpleCommand->insertArgument(new std::string(prefix));
     return; 
@@ -61,21 +61,27 @@ void expandWildcard(char* prefix, char* suffix) {
 
   char * s = strchr(suffix, '/');
   char component[MAXFILENAME];
+
+  // If the suffix is an absolute path, insert '/' into component
   if (suffix[0] == '/') {
     strncpy(component, suffix, 1);
     component[1] = '\0';
     suffix = s + 1;
   } else if (s != NULL) {
-      strncpy(component, suffix, strlen(suffix) - strlen(s));
-      component[strlen(s) - strlen(suffix)] = '\0';
-      suffix = s + 1;
+    // If no further path, then copy the entire suffix
+    strncpy(component, suffix, strlen(suffix) - strlen(s));
+    component[strlen(s) - strlen(suffix)] = '\0';
+    suffix = s + 1;
   } else {
+    // If further path, copy suffix until next '/'
     strcpy(component, suffix);
     component[strlen(suffix)] = '\0';
     suffix = suffix + strlen(suffix);
   }
 
   char newPrefix[MAXFILENAME];
+
+  // If component does not contain wildcard, move to prefix and call expandWildcard
   if (!strchr(component, '*') && !strchr(component, '?')) {
     if (prefix[0] == 0) sprintf(newPrefix, "%s", component);
     else if (!strcmp(prefix, "/")) sprintf(newPrefix, "%s%s", prefix, component);
@@ -152,10 +158,13 @@ void expandWildcard(char* prefix, char* suffix) {
     }
   }
 
+  // Free compiled regex
   regfree(&re);
 
+  // Close directory
   closedir(dir);
 
+  // Sort elements
   sort(array, nEntries);
 
   // Add arguments 
@@ -171,92 +180,19 @@ void expandWildcard(char* prefix, char* suffix) {
 }
 
 void expandWildcardsIfNecessary(char* arg) {
-  // Return if arg does not contain ‘*’ or ‘?’
+  // Handles arguments that have no existing wildcards
   if (!strchr(arg, '*') && !strchr(arg, '?')) {
+    // If no wildcard, insert argument
     Command::_currentSimpleCommand->insertArgument(new std::string(arg));
     return; 
   } else {
+    // If wildcard, create prefix and expandWildCard
     char* prefix = (char*) malloc(sizeof(char));
     prefix[0] = '\0';
     expandWildcard(prefix, arg);
     free(prefix);
     return;
   }
-/*
-  char* reg = (char*) malloc( 2 * strlen(arg)+10); 
-  char* a = arg;
-  char* r = reg;
-  *r = '^'; r++;
-
-  while (*a) {
-    if (*a == '*') { *r='.'; r++; *r='*'; r++; }
-    else if (*a == '?') { *r='.'; r++;}
-    else if (*a == '.') { *r='\\'; r++; *r='.'; r++;} else { *r=*a; r++;}
-    a++;
-  }
-
-  *r='$'; r++; *r=0;
-
-  regex_t re;	
-  int res = regcomp(&re, reg, REG_EXTENDED|REG_NOSUB);
-  free(reg);
-
-  if (res != 0) {
-    perror("compile");
-    return;
-  }
-
-  DIR * dir = opendir(".");
-  if (dir == NULL) {
-    printf("%s", dir);
-    perror("opendir");
-    return; 
-  }
-
-  struct dirent * ent;
-  int maxEntries = 20;
-  int nEntries = 0;
-
-  char ** array = (char**) malloc(maxEntries*sizeof(char*));
-  while ( (ent = readdir(dir))!= NULL) {
-    // Check if name matches
-    regmatch_t match;
-    if (regexec(&re, ent->d_name, 1, &match, 0) == 0) {
-      if (ent->d_name[0] == '.') {
-        if (arg[0] == '.') {
-          if (nEntries == maxEntries) {
-            maxEntries *=2;
-            array = (char**) realloc(array, maxEntries*sizeof(char*)); 
-          }
-
-          array[nEntries] = strdup(ent->d_name);
-          nEntries++;             
-        } 
-      } else {
-        if (nEntries == maxEntries) {
-          maxEntries *=2;
-          array = (char**) realloc(array, maxEntries*sizeof(char*)); 
-        }
-
-        array[nEntries] = strdup(ent->d_name);
-        nEntries++;     
-      } 
-    }
-  }
-
-  regfree(&re);
-
-  closedir(dir);
-
-  sort(array, nEntries);
-
-  // Add arguments 
-  for (int i = 0; i < nEntries; i++) {
-      Command::_currentSimpleCommand->insertArgument(new std::string(array[i])); 
-      free(array[i]);
-  }
-
-  free(array);*/
 }
 
 %}
@@ -298,8 +234,6 @@ argument_list:
 
 argument:
   WORD {
-    //printf("   Yacc: insert argument \"%s\"\n", $1->c_str());
-    //expandWildcardsIfNecessary( (char*) ($1->c_str()) );
     expandWildcardsIfNecessary((char*) ($1->c_str()) );
     delete $1;
   }
@@ -307,7 +241,6 @@ argument:
 
 command_word:
   WORD {
-    //printf("   Yacc: insert command \"%s\"\n", $1->c_str());
     Command::_currentSimpleCommand = new SimpleCommand();
     Command::_currentSimpleCommand->insertArgument( $1 );
   }
@@ -315,7 +248,6 @@ command_word:
 
 iomodifier_opt:
   GREAT WORD {
-    //printf("   Yacc: insert output \"%s\"\n", $2->c_str());
     if (!Shell::_currentCommand._outFile) {
       Shell::_currentCommand._outFile = $2;
     } else {
@@ -323,7 +255,6 @@ iomodifier_opt:
     }
   }
   | GREATGREAT WORD {
-    //printf("   Yacc: append output \"%s\"\n", $2->c_str());
     if (!Shell::_currentCommand._outFile) {
       Shell::_currentCommand._outFile = $2;
       Shell::_currentCommand._append = true;
